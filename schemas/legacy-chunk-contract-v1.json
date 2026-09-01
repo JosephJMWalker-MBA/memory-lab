@@ -1,0 +1,36 @@
+{
+  "contract": "legacy-chunk-contract-v1",
+  "status": "validated",
+  "source_identity": {
+    "path_style": "Windows relative path",
+    "separator": "\\",
+    "start_line_base": 0
+  },
+  "chunking": {
+    "heading_levels": "Markdown H1-H6",
+    "chunk_size_chars": 2000,
+    "semantic_threshold": 0.45,
+    "semantic_model": "all-MiniLM-L6-v2"
+  },
+  "chunk_ids": {
+    "unsplit": "MD5(<file_rel>:<start_line>)[:12]",
+    "semantic_subchunk": "MD5(<file_rel>:<start_line>:<subchunk_index>)[:12]"
+  },
+  "metadata": [
+    "source",
+    "heading",
+    "folder",
+    "tags",
+    "category",
+    "auto_tags",
+    "start_line"
+  ],
+  "vector": {
+    "model": "all-MiniLM-L6-v2",
+    "dimension": 384,
+    "distance": "cosine"
+  },
+  "runtime": {
+    "chroma_hnsw_write_runtime": "WSL Ubuntu"
+  }
+}

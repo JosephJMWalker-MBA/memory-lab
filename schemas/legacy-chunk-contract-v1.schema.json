@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/memory-lab/legacy-chunk-contract-v1.schema.json",
+  "title": "Legacy Chunk Contract v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract",
+    "status",
+    "source_identity",
+    "chunking",
+    "chunk_ids",
+    "metadata",
+    "vector",
+    "runtime"
+  ],
+  "properties": {
+    "contract": {"const": "legacy-chunk-contract-v1"},
+    "status": {"enum": ["validated", "provisional"]},
+    "source_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path_style", "separator", "start_line_base"],
+      "properties": {
+        "path_style": {"const": "Windows relative path"},
+        "separator": {"const": "\\"},
+        "start_line_base": {"const": 0}
+      }
+    },
+    "chunking": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["heading_levels", "chunk_size_chars", "semantic_threshold", "semantic_model"],
+      "properties": {
+        "heading_levels": {"const": "Markdown H1-H6"},
+        "chunk_size_chars": {"const": 2000},
+        "semantic_threshold": {"const": 0.45},
+        "semantic_model": {"const": "all-MiniLM-L6-v2"}
+      }
+    },
+    "chunk_ids": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["unsplit", "semantic_subchunk"],
+      "properties": {
+        "unsplit": {"const": "MD5(<file_rel>:<start_line>)[:12]"},
+        "semantic_subchunk": {"const": "MD5(<file_rel>:<start_line>:<subchunk_index>)[:12]"}
+      }
+    },
+    "metadata": {
+      "type": "array",
+      "const": ["source", "heading", "folder", "tags", "category", "auto_tags", "start_line"]
+    },
+    "vector": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["model", "dimension", "distance"],
+      "properties": {
+        "model": {"const": "all-MiniLM-L6-v2"},
+        "dimension": {"const": 384},
+        "distance": {"const": "cosine"}
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["chroma_hnsw_write_runtime"],
+      "properties": {
+        "chroma_hnsw_write_runtime": {"const": "WSL Ubuntu"}
+      }
+    }
+  }
+}
