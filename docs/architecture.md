@@ -151,6 +151,12 @@ Historical derived records are not rewritten, and withdrawal of support is not
 treated as proof of the opposite proposition. See
 [`docs/derived-reassessment-v0.md`](derived-reassessment-v0.md).
 
+A multiple-justification refinement separates provenance ancestry from logical
+necessity. A record can have several conjunctive justifications while remaining
+active if **any** independent justification survives. This means "affected by a
+support change" is not the same as "invalidated by that change." See
+[`docs/multiple-justifications-v0.md`](multiple-justifications-v0.md).
+
 This remains experimental synthetic semantics. LLM extraction, automatic
 evidence normalization, real retrieval-coverage estimation, automatic discovery
 of contrary evidence, private-corpus behavior, production persistence, and

@@ -35,6 +35,32 @@ Reference:
 - Jon Doyle, "A truth maintenance system", Artificial Intelligence 12(3), 1979.
   DOI: 10.1016/0004-3702(79)90008-0
 
+## Assumption-based truth maintenance
+
+Johan de Kleer's Assumption-Based Truth Maintenance System (ATMS) extends truth
+maintenance by tracking alternative supporting environments for a node. A
+justification has conjunctive antecedents, while a node can remain supported by
+multiple alternative environments.
+
+That distinction directly constrains Memory Lab's multiple-justification model:
+
+- antecedents inside one justification are AND;
+- independent justification environments are OR;
+- losing one environment must not retract a derived record while another valid
+  environment survives;
+- proposition identity must remain distinct from support-environment identity.
+
+Memory Lab is not attempting to reproduce a full ATMS. The v0 experiment adopts
+only this support-structure discipline and leaves minimal-environment
+subsumption, nogood environments, defaults, and general nonmonotonic reasoning
+out of scope.
+
+References:
+- Johan de Kleer, "An assumption-based TMS", Artificial Intelligence 28(2),
+  1986. DOI: 10.1016/0004-3702(86)90080-9.
+- Johan de Kleer, "Extending the ATMS", Artificial Intelligence 28(2), 1986.
+  DOI: 10.1016/0004-3702(86)90081-0.
+
 ## Nanopublications
 
 Nanopublications separate an assertion from its provenance and publication

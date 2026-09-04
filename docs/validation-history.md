@@ -159,6 +159,31 @@ This experiment does not yet model multiple independent justifications for the
 same semantic record, general rule engines, automatic trigger discovery from
 real source/index deltas, or persistent dependency indexes at corpus scale.
 
+## Multiple independent justifications v0
+
+The alternative-support experiment runs with:
+
+```bash
+python3 tests/run_multiple_justifications_v0.py
+```
+
+It demonstrates an OR-of-AND support model for one semantic derived record.
+Antecedents inside one justification are jointly required, while independent
+justifications are alternatives.
+
+The synthetic Aurora record is initially supported through both Sigma and Tau.
+When Sigma becomes clear, Aurora is correctly marked as affected but remains
+active through the independent Tau justification. Only when Tau also becomes
+clear does Aurora lose its final support path and become historical-only.
+
+The semantic Aurora record keeps the same identity across support-path changes.
+The historical record and justification-set artifact remain unchanged, and loss
+of all blocked justifications does not invent `Aurora status = clear`.
+
+This is synthetic public research only. It does not implement ATMS
+minimal-environment subsumption, inconsistent/nogood environments, defaults,
+probabilistic support weights, or corpus-scale support indexing.
+
 ## Legacy compatibility audit
 
 Six structurally different source documents were regenerated under the WSL query-encoder runtime and compared with their records in the recovered baseline.
@@ -261,7 +286,7 @@ A full logical equivalence audit was started between the untouched recovered bas
   be imported from exact files rather than recreated from documentation.
 - `experimental public research semantics`: executable synthetic behavior that
   tests a research model without claiming production or private-corpus validity,
-  currently including derived memory v0, its adversarial v0.1 refinement, and dependency-aware reassessment v0.
+  currently including derived memory v0, its adversarial v0.1 refinement, dependency-aware reassessment v0, and multiple independent justifications v0.
 - `designed but unimplemented`: architectural direction that is not yet
   executable behavior, including LLM extraction, automatic evidence
   normalization, real retrieval-coverage estimation, automatic contrary-evidence
