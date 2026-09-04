@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/memory-lab/derived-consistency-assessment-v0.schema.json",
+  "title": "Experimental Derived Consistency Assessment v0",
+  "description": "Keeps evidentiary support separate from cross-record consistency. Synthetic public research only.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "assessment_id", "constraint_id", "record_ids",
+    "assessed_at_snapshot", "supported_record_ids", "unsupported_record_ids",
+    "consistency_outcome", "current_view_outcome", "selected_record_ids",
+    "reason_code", "note"
+  ],
+  "properties": {
+    "schema": {"const": "derived-consistency-assessment-v0"},
+    "assessment_id": {"type": "string", "pattern": "^CA-[0-9a-f]{16}$"},
+    "constraint_id": {
+      "anyOf": [
+        {"type": "null"},
+        {"type": "string", "pattern": "^PC-[0-9a-f]{16}$"}
+      ]
+    },
+    "record_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "pattern": "^DM-[0-9a-f]{16}$"},
+      "uniqueItems": true
+    },
+    "assessed_at_snapshot": {"type": "string", "pattern": "^SYN-DM-[0-9]{4}$"},
+    "supported_record_ids": {"$ref": "#/$defs/recordIds"},
+    "unsupported_record_ids": {"$ref": "#/$defs/recordIds"},
+    "consistency_outcome": {"enum": ["compatible", "unresolved_conflict", "resolved_by_support_change"]},
+    "current_view_outcome": {"enum": ["allow_all_supported", "withhold_conflicting_supported", "allow_surviving_supported"]},
+    "selected_record_ids": {"$ref": "#/$defs/recordIds"},
+    "reason_code": {"enum": ["no_exclusivity_constraint", "exclusive_values_overlap", "support_change_removed_conflict"]},
+    "note": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "recordIds": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^DM-[0-9a-f]{16}$"},
+      "uniqueItems": true
+    }
+  }
+}

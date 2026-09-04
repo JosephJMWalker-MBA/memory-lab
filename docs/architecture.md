@@ -157,6 +157,13 @@ active if **any** independent justification survives. This means "affected by a
 support change" is not the same as "invalidated by that change." See
 [`docs/multiple-justifications-v0.md`](multiple-justifications-v0.md).
 
+A consistency layer then separates **support validity** from **joint
+consistency**. Individually support-verified records can still be withheld from
+the current view when an explicit predicate constraint makes them mutually
+incompatible in the same scope and valid time. Multi-valued predicates are not
+treated as conflicts merely because their object values differ. See
+[`docs/derived-conflict-v0.md`](derived-conflict-v0.md).
+
 This remains experimental synthetic semantics. LLM extraction, automatic
 evidence normalization, real retrieval-coverage estimation, automatic discovery
 of contrary evidence, private-corpus behavior, production persistence, and

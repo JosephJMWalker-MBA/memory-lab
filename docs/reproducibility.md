@@ -214,3 +214,20 @@ valid. The record leaves the current view only after the final independent
 support path fails.
 
 See `docs/multiple-justifications-v0.md`.
+
+
+## Derived conflict and consistency
+
+The supported-conflict experiment runs with:
+
+```bash
+python3 tests/run_derived_conflict_v0.py
+```
+
+It uses only `fixtures/derived-conflict-v0/evidence.json` and tests the
+separation of support validity from consistency validity, explicit
+single-value predicate constraints, withholding of unresolved supported
+conflicts, compatibility of unconstrained multi-valued relationships, and
+resolution by later support change.
+
+See `docs/derived-conflict-v0.md`.

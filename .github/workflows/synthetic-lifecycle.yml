@@ -31,3 +31,6 @@ jobs:
 
       - name: Run multiple independent justification semantics
         run: python3 tests/run_multiple_justifications_v0.py
+
+      - name: Run derived conflict consistency semantics
+        run: python3 tests/run_derived_conflict_v0.py

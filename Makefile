@@ -8,3 +8,4 @@ test:
 	python3 tests/run_derived_memory_adversarial.py
 	python3 tests/run_derived_reassessment_v0.py
 	python3 tests/run_multiple_justifications_v0.py
+	python3 tests/run_derived_conflict_v0.py
