@@ -1,0 +1,83 @@
+{
+  "snapshots": ["SYN-DM-0300", "SYN-DM-0301", "SYN-DM-0302"],
+  "evidence": [
+    {
+      "evidence_id": "EV-AURORA-SIGMA-DEP",
+      "snapshot_id": "SYN-DM-0300",
+      "source_id": "SRC-AURORA-SIGMA-DEP",
+      "text": "Project Aurora depends on Module Sigma.",
+      "assertions": [{
+        "record_type": "relationship",
+        "subject": "Project Aurora",
+        "predicate": "depends_on",
+        "object": "Module Sigma",
+        "qualifiers": {}
+      }]
+    },
+    {
+      "evidence_id": "EV-SIGMA-BLOCKED-0300",
+      "snapshot_id": "SYN-DM-0300",
+      "source_id": "SRC-SIGMA-BLOCKED",
+      "text": "Module Sigma status is blocked.",
+      "assertions": [{
+        "record_type": "state",
+        "subject": "Module Sigma",
+        "predicate": "status",
+        "object": "blocked",
+        "qualifiers": {}
+      }]
+    },
+    {
+      "evidence_id": "EV-AURORA-TAU-DEP",
+      "snapshot_id": "SYN-DM-0300",
+      "source_id": "SRC-AURORA-TAU-DEP",
+      "text": "Project Aurora depends on Module Tau.",
+      "assertions": [{
+        "record_type": "relationship",
+        "subject": "Project Aurora",
+        "predicate": "depends_on",
+        "object": "Module Tau",
+        "qualifiers": {}
+      }]
+    },
+    {
+      "evidence_id": "EV-TAU-BLOCKED-0300",
+      "snapshot_id": "SYN-DM-0300",
+      "source_id": "SRC-TAU-BLOCKED",
+      "text": "Module Tau status is blocked.",
+      "assertions": [{
+        "record_type": "state",
+        "subject": "Module Tau",
+        "predicate": "status",
+        "object": "blocked",
+        "qualifiers": {}
+      }]
+    },
+    {
+      "evidence_id": "EV-SIGMA-CLEAR-0301",
+      "snapshot_id": "SYN-DM-0301",
+      "source_id": "SRC-SIGMA-CLEAR",
+      "text": "Module Sigma status is clear.",
+      "assertions": [{
+        "record_type": "state",
+        "subject": "Module Sigma",
+        "predicate": "status",
+        "object": "clear",
+        "qualifiers": {}
+      }]
+    },
+    {
+      "evidence_id": "EV-TAU-CLEAR-0302",
+      "snapshot_id": "SYN-DM-0302",
+      "source_id": "SRC-TAU-CLEAR",
+      "text": "Module Tau status is clear.",
+      "assertions": [{
+        "record_type": "state",
+        "subject": "Module Tau",
+        "predicate": "status",
+        "object": "clear",
+        "qualifiers": {}
+      }]
+    }
+  ]
+}

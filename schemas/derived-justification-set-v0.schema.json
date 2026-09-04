@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/memory-lab/derived-justification-set-v0.schema.json",
+  "title": "Experimental Derived Justification Set v0",
+  "description": "OR-of-AND support structure: each justification requires all of its antecedents; the record is supported if any justification remains satisfied. Synthetic public research only.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "justification_set_id", "record_id", "semantics", "justifications"],
+  "properties": {
+    "schema": {"const": "derived-justification-set-v0"},
+    "justification_set_id": {"type": "string", "pattern": "^JS-[0-9a-f]{16}$"},
+    "record_id": {"type": "string", "pattern": "^DM-[0-9a-f]{16}$"},
+    "semantics": {"const": "any_satisfied_justification_supports_record"},
+    "justifications": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "justification_id", "derivation_rule", "derived_record_refs",
+          "evidence_refs"
+        ],
+        "properties": {
+          "justification_id": {"type": "string", "pattern": "^JX-[0-9a-f]{16}$"},
+          "derivation_rule": {"type": "string", "minLength": 1},
+          "derived_record_refs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {"type": "string", "pattern": "^DM-[0-9a-f]{16}$"},
+            "uniqueItems": true
+          },
+          "evidence_refs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {"type": "string", "pattern": "^EV-[A-Z0-9-]+$"},
+            "uniqueItems": true
+          }
+        }
+      }
+    }
+  }
+}

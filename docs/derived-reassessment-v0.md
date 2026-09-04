@@ -176,3 +176,13 @@ v0 intentionally leaves these open:
 The next strong adversarial case is multiple justifications. A truth-maintenance
 system should not withdraw a conclusion merely because one support path failed
 if another valid independent justification remains.
+
+
+## Multiple-justification follow-on
+
+The single-path limitation above is exercised and refined in
+`docs/multiple-justifications-v0.md`.
+
+That pass separates dependency closure from support validity: a record may be
+correctly selected for reassessment because one support path changed while still
+remaining active because another independent justification survives.

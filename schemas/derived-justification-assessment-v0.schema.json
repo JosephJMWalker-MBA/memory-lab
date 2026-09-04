@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/memory-lab/derived-justification-assessment-v0.schema.json",
+  "title": "Experimental Derived Justification Assessment v0",
+  "description": "Evaluates alternative support paths for one derived record at a named snapshot. Synthetic public research only.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "assessment_id", "justification_set_id", "record_id",
+    "assessed_at_snapshot", "active_justification_ids",
+    "inactive_justification_ids", "support_outcome", "resulting_view", "note"
+  ],
+  "properties": {
+    "schema": {"const": "derived-justification-assessment-v0"},
+    "assessment_id": {"type": "string", "pattern": "^JA-[0-9a-f]{16}$"},
+    "justification_set_id": {"type": "string", "pattern": "^JS-[0-9a-f]{16}$"},
+    "record_id": {"type": "string", "pattern": "^DM-[0-9a-f]{16}$"},
+    "assessed_at_snapshot": {"type": "string", "pattern": "^SYN-DM-[0-9]{4}$"},
+    "active_justification_ids": {"$ref": "#/$defs/justificationIds"},
+    "inactive_justification_ids": {"$ref": "#/$defs/justificationIds"},
+    "support_outcome": {"enum": ["retained", "withdrawn"]},
+    "resulting_view": {"enum": ["active", "historical_only"]},
+    "note": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "justificationIds": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^JX-[0-9a-f]{16}$"},
+      "uniqueItems": true
+    }
+  }
+}

@@ -197,3 +197,20 @@ results.
 
 The experiment does not modify historical derived records and does not require a
 graph database or retrieval runtime. See `docs/derived-reassessment-v0.md`.
+
+
+## Multiple independent justifications
+
+The alternative-support experiment runs with:
+
+```bash
+python3 tests/run_multiple_justifications_v0.py
+```
+
+It uses only `fixtures/multiple-justifications-v0/evidence.json` and tests
+OR-of-AND support semantics: failure of one independent justification triggers
+reassessment without withdrawing the record when another justification remains
+valid. The record leaves the current view only after the final independent
+support path fails.
+
+See `docs/multiple-justifications-v0.md`.

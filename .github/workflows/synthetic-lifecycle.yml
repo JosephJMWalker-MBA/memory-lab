@@ -28,3 +28,6 @@ jobs:
 
       - name: Run dependency-aware derived reassessment
         run: python3 tests/run_derived_reassessment_v0.py
+
+      - name: Run multiple independent justification semantics
+        run: python3 tests/run_multiple_justifications_v0.py
