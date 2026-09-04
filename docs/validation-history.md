@@ -12,6 +12,31 @@ This document records what has actually been demonstrated. Designed-but-untested
 
 Private source content and local filesystem paths are intentionally omitted from this public repository.
 
+## Public synthetic validation
+
+The environment-independent public fixture in `fixtures/synthetic-lifecycle/`
+has been reproduced with:
+
+```bash
+python3 tests/run_synthetic_lifecycle.py
+```
+
+This public check validates deterministic synthetic snapshot reproduction, exact
+ADD / CHANGE / DELETE classification, legacy-v1 chunk ID mechanics,
+zero-based heading line handling, Windows-style nested relative source identity,
+final source snapshot equality, and final logical chunk-record equality.
+
+The fixture sequence is:
+
+```text
+S0 -> ADD -> CHANGE expansion -> CHANGE contraction -> DELETE -> S4
+```
+
+`S4` intentionally equals `S0`. This is reproduced with public synthetic
+fixture data only. It does not validate the recovered baseline, Chroma
+cardinality, HNSW cosine retrieval, SQLite FTS, embedding vectors, or the
+pending full 302,240-record logical equivalence audit.
+
 ## Legacy compatibility audit
 
 Six structurally different source documents were regenerated under the WSL query-encoder runtime and compared with their records in the recovered baseline.
@@ -25,7 +50,7 @@ Aggregate result:
 - metadata mismatches: 0
 - text mismatches: 0
 
-The audit covered small and very large sources, including one source with more than 1,700 chunks. This demonstrated compatibility of chunk IDs, boundaries, documents, headings, folders, tags, categories, auto-tags, and zero-based start-line metadata for the tested sample.
+The audit covered small and very large sources, including one source with more than 1,700 chunks. This validated against recovered baseline compatibility of chunk IDs, boundaries, documents, headings, folders, tags, categories, auto-tags, and zero-based start-line metadata for the tested sample.
 
 ## Deterministic source snapshots
 
@@ -42,7 +67,7 @@ Deleting that synthetic source later returned the corpus to the exact original s
 
 A production-compatible synthetic source was chunked using the frozen legacy identity scheme and incrementally added to a clean clone of the recovered baseline.
 
-Demonstrated:
+Validated against recovered baseline:
 
 - collection count: 302,240 -> 302,241;
 - record readback by ID;
@@ -60,7 +85,7 @@ The committed ADD transition was replayed after state/ledger bootstrap. The stat
 
 The synthetic source was changed from one desired chunk to two.
 
-Demonstrated:
+Validated against recovered baseline:
 
 - existing legacy chunk ID updated in place by upsert;
 - second legacy chunk inserted in the same source transition;
@@ -73,7 +98,7 @@ Demonstrated:
 
 The synthetic source was changed from two desired chunks back to one.
 
-Demonstrated:
+Validated against recovered baseline:
 
 - desired replacement upserted first;
 - replacement verified before destructive cleanup;
@@ -87,7 +112,7 @@ Demonstrated:
 
 The synthetic source was removed from the source corpus and the resulting deletion plan targeted exactly one current indexed record.
 
-Demonstrated:
+Validated against recovered baseline:
 
 - delete preflight matched state snapshot and current index count;
 - pending transaction journal created before deletion;
@@ -103,6 +128,17 @@ Demonstrated:
 A full logical equivalence audit was started between the untouched recovered baseline and the round-tripped incremental test index. The first interactive run was interrupted by an SSH connection reset after more than 50,000 records. The audit itself was read-only; the validated index state was not mutated. Long-running reruns are intended to execute detached from SSH.
 
 **Status:** pending final complete result. Do not yet claim full 302,240-record logical equivalence until the detached audit finishes successfully.
+
+## Implementation categories
+
+- `validated against recovered baseline`: exercised against the private recovered
+  Chroma/FTS/vector index or its recovered source snapshot.
+- `reproduced with public synthetic fixture`: exercised by the public fixture and
+  environment-independent runner.
+- `pending exact validated-script migration`: validated local scripts that must
+  be imported from exact files rather than recreated from documentation.
+- `designed but unimplemented`: architectural direction that is not yet
+  executable behavior, including derived memory.
 
 ## Retrieval findings retained from earlier experiments
 

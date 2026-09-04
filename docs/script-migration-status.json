@@ -1,0 +1,107 @@
+{
+  "schema": "memory-lab-script-migration-status-v1",
+  "policy": "Do not recreate validated local scripts from documentation. Import exact validated files, sanitize private deployment material only, and validate against synthetic fixtures before marking a repository copy validated.",
+  "search_scope_note": "This Codex session searched the current Mac workspace paths available to it, including the repository checkout, the local Documents tree, /private/tmp, and a targeted .codex pass. It did not search the separate Magician Windows machine, where the known validated workspace may exist.",
+  "scripts": [
+    {
+      "script": "preflight_incremental_deleted_v0_3.py",
+      "state": "public",
+      "reason": "Already present in the public repository as the read-only delete preflight."
+    },
+    {
+      "script": "apply_incremental_deleted_v0_3.py",
+      "state": "public",
+      "reason": "Already present in the public repository as the delete transaction implementation."
+    },
+    {
+      "script": "build_source_snapshot.py",
+      "state": "validated_local_pending_import",
+      "reason": "Expected validated local script, but the exact file is unavailable in the current Mac workspace; it may exist on Magician."
+    },
+    {
+      "script": "compare_source_snapshots.py",
+      "state": "validated_local_pending_import",
+      "reason": "Expected validated local script, but the exact file is unavailable in the current Mac workspace; it may exist on Magician."
+    },
+    {
+      "script": "regenerate_legacy_chunks.py",
+      "state": "validated_local_pending_import",
+      "reason": "Expected validated local script, but the exact file is unavailable in the current Mac workspace; it may exist on Magician."
+    },
+    {
+      "script": "verify_legacy_chunk_compat.py",
+      "state": "validated_local_pending_import",
+      "reason": "Expected validated local script, but the exact file is unavailable in the current Mac workspace; it may exist on Magician."
+    },
+    {
+      "script": "build_legacy_full_metadata_expected.py",
+      "state": "validated_local_pending_import",
+      "reason": "Expected validated local script, but the exact file is unavailable in the current Mac workspace; it may exist on Magician."
+    },
+    {
+      "script": "verify_legacy_full_metadata.py",
+      "state": "validated_local_pending_import",
+      "reason": "Expected validated local script, but the exact file is unavailable in the current Mac workspace; it may exist on Magician."
+    },
+    {
+      "script": "prepare_incremental_legacy_chunks.py",
+      "state": "validated_local_pending_import",
+      "reason": "Expected validated local script, but the exact file is unavailable in the current Mac workspace; it may exist on Magician."
+    },
+    {
+      "script": "inspect_incremental_legacy_plan.py",
+      "state": "validated_local_pending_import",
+      "reason": "Expected validated local script, but the exact file is unavailable in the current Mac workspace; it may exist on Magician."
+    },
+    {
+      "script": "preflight_incremental_legacy_plan.py",
+      "state": "validated_local_pending_import",
+      "reason": "Expected validated local script, but the exact file is unavailable in the current Mac workspace; it may exist on Magician."
+    },
+    {
+      "script": "embed_incremental_legacy_plan.py",
+      "state": "validated_local_pending_import",
+      "reason": "Expected validated local script, but the exact file is unavailable in the current Mac workspace; it may exist on Magician and requires the embedding runtime."
+    },
+    {
+      "script": "apply_incremental_added_v0_1.py",
+      "state": "validated_local_pending_import",
+      "reason": "Expected validated local script, but the exact file is unavailable in the current Mac workspace; it may exist on Magician."
+    },
+    {
+      "script": "verify_incremental_added_vector.py",
+      "state": "validated_local_pending_import",
+      "reason": "Expected validated local script, but the exact file is unavailable in the current Mac workspace; it may exist on Magician and requires Chroma/HNSW/vector access."
+    },
+    {
+      "script": "bootstrap_incremental_index_state.py",
+      "state": "validated_local_pending_import",
+      "reason": "Expected validated local script, but the exact file is unavailable in the current Mac workspace; it may exist on Magician."
+    },
+    {
+      "script": "preflight_incremental_with_state.py",
+      "state": "validated_local_pending_import",
+      "reason": "Expected validated local script, but the exact file is unavailable in the current Mac workspace; it may exist on Magician."
+    },
+    {
+      "script": "preflight_incremental_changed_v0_2.py",
+      "state": "validated_local_pending_import",
+      "reason": "Expected validated local script, but the exact file is unavailable in the current Mac workspace; it may exist on Magician."
+    },
+    {
+      "script": "apply_incremental_changed_v0_2.py",
+      "state": "validated_local_pending_import",
+      "reason": "Expected validated local script, but the exact file is unavailable in the current Mac workspace; it may exist on Magician and requires Chroma/FTS/vector verification."
+    },
+    {
+      "script": "audit_roundtrip_logical_equivalence.py",
+      "state": "validated_local_pending_import",
+      "reason": "Expected validated local script, but the exact file is unavailable in the current Mac workspace; it may exist on Magician and is associated with the pending full real-index equivalence audit."
+    },
+    {
+      "script": "tests/run_synthetic_lifecycle.py",
+      "state": "synthetic_reimplementation",
+      "reason": "Public environment-independent regression runner created for the synthetic fixture only; it is not a replacement for any validated local script."
+    }
+  ]
+}

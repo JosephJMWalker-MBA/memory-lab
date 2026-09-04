@@ -1,0 +1,15 @@
+name: Synthetic lifecycle
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  synthetic-lifecycle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Run environment-independent lifecycle regression
+        run: python3 tests/run_synthetic_lifecycle.py
