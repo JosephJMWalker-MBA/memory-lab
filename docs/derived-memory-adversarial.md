@@ -155,3 +155,13 @@ This pass does not solve:
 - how derived-memory re-evaluation should scale over a large evolving corpus.
 
 Those are research questions, not hidden implementation details.
+
+
+## Reassessment follow-on
+
+The dependency graph introduced here is exercised in the next research lane:
+`docs/derived-reassessment-v0.md`.
+
+That pass asks what should happen when one of the support records changes after a
+derived chain has already been verified. The answer is modeled as targeted,
+append-only reassessment rather than mutation of historical records.

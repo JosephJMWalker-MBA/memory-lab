@@ -144,6 +144,13 @@ the proposition, preserves explicit recursive derivation dependencies plus
 canonical evidence closure, and separates world-valid time from knowledge time.
 See [`docs/derived-memory-adversarial.md`](derived-memory-adversarial.md).
 
+A dependency-aware reassessment lane adds the complementary direction: when a
+supporting derived record changes, Memory Lab computes the minimal reverse
+dependency closure and appends reassessment results for affected conclusions.
+Historical derived records are not rewritten, and withdrawal of support is not
+treated as proof of the opposite proposition. See
+[`docs/derived-reassessment-v0.md`](derived-reassessment-v0.md).
+
 This remains experimental synthetic semantics. LLM extraction, automatic
 evidence normalization, real retrieval-coverage estimation, automatic discovery
 of contrary evidence, private-corpus behavior, production persistence, and
