@@ -37,6 +37,29 @@ fixture data only. It does not validate the recovered baseline, Chroma
 cardinality, HNSW cosine retrieval, SQLite FTS, embedding vectors, or the
 pending full 302,240-record logical equivalence audit.
 
+## Public synthetic state-machine validation
+
+The environment-independent failure-semantics runner has been reproduced with:
+
+```bash
+python3 tests/run_failure_semantics.py
+```
+
+This is synthetic state-machine validation only. It demonstrates fail-closed
+handling for unexpected pre-existing ADD records, missing CHANGE sources,
+already-absent DELETE sources, snapshot mismatch, pending transaction barriers,
+foreign ownership collisions, and tampered state/ledger/record disagreement.
+
+It also demonstrates replay idempotence as an explicit no-op only when the
+committed transition and resulting state can be verified, CHANGE interruption
+semantics that preserve desired evidence before stale cleanup, DELETE
+interruption detection through a surviving pending journal, and chained ledger
+identity for repeated `A -> B -> A -> B` source edges.
+
+This is reproduced with public synthetic fixture logic. It is not recovered
+baseline integration validation and does not validate Chroma, HNSW, FTS,
+embeddings, or the pending 302,240-record equivalence audit.
+
 ## Legacy compatibility audit
 
 Six structurally different source documents were regenerated under the WSL query-encoder runtime and compared with their records in the recovered baseline.
