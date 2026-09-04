@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/memory-lab/mutation-plan-contract-v1.schema.json",
+  "title": "Public Mutation Plan Contract v1",
+  "description": "Public research/state-machine contract reproduced by synthetic state-machine tests; pending comparison with exact Magician implementation formats.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "status", "mutation", "from_snapshot", "to_snapshot", "source", "expected_count_before", "expected_count_after"],
+  "properties": {
+    "schema": {"const": "mutation-plan-contract-v1"},
+    "status": {"const": "reproduced_by_public_synthetic_harness"},
+    "mutation": {"enum": ["add", "change", "delete"]},
+    "from_snapshot": {"type": "string", "pattern": "^(SYN-[0-9a-f]{16}|[A-Z])$"},
+    "to_snapshot": {"type": "string", "pattern": "^(SYN-[0-9a-f]{16}|[A-Z])$"},
+    "source": {"type": "string", "minLength": 1},
+    "expected_count_before": {"type": "integer", "minimum": 0},
+    "expected_count_after": {"type": "integer", "minimum": 0},
+    "desired_ids": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "stale_ids": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    }
+  }
+}

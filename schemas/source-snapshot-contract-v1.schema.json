@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/memory-lab/source-snapshot-contract-v1.schema.json",
+  "title": "Public Source Snapshot Contract v1",
+  "description": "Public research/state-machine contract reproduced by the synthetic harness; pending comparison with exact Magician implementation formats.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "status", "snapshot_id", "files"],
+  "properties": {
+    "schema": {"const": "source-snapshot-contract-v1"},
+    "status": {"const": "reproduced_by_public_synthetic_harness"},
+    "snapshot_id": {"type": "string", "pattern": "^SYN-[0-9a-f]{16}$"},
+    "files": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["sha256", "bytes"],
+        "properties": {
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "bytes": {"type": "integer", "minimum": 0}
+        }
+      }
+    }
+  }
+}

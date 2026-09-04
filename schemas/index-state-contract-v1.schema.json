@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/memory-lab/index-state-contract-v1.schema.json",
+  "title": "Public Index State Contract v1",
+  "description": "Public research/state-machine contract reproduced by synthetic state-machine tests; pending comparison with exact Magician implementation formats.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "status", "current_snapshot", "current_count", "last_transition_id"],
+  "properties": {
+    "schema": {"const": "index-state-contract-v1"},
+    "status": {"const": "reproduced_by_public_synthetic_harness"},
+    "current_snapshot": {"type": "string", "pattern": "^(SYN-[0-9a-f]{16}|[A-Z])$"},
+    "current_count": {"type": "integer", "minimum": 0},
+    "last_transition_id": {"type": "string", "pattern": "^(TX-[0-9a-f]{16}|TX-GENESIS)$"}
+  }
+}

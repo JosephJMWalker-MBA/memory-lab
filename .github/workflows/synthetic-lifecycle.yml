@@ -16,3 +16,6 @@ jobs:
 
       - name: Run synthetic state-machine failure semantics
         run: python3 tests/run_failure_semantics.py
+
+      - name: Run public contract schema validation
+        run: python3 tests/run_contract_schema_validation.py

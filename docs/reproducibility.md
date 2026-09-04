@@ -119,3 +119,23 @@ real Chroma mutation, HNSW reachability, SQLite FTS synchronization, embedding
 readback, or exact validated-script behavior. Those remain dependent on the
 Magician/WSL integration environment and pending exact validated-script
 migration.
+
+## Public contract validation
+
+The public schema runner validates the versioned state-machine contracts:
+
+```bash
+python3 tests/run_contract_schema_validation.py
+```
+
+It checks valid synthetic snapshot, delta, mutation plan, index state, pending
+transaction, and ledger-entry artifacts against standard JSON Schema files in
+`schemas/`. It also verifies that missing identity/provenance fields, malformed
+mutation types, incomplete pending transactions, ledger entries missing chain
+identity, invalid snapshot identifiers, and unexpected additional fields are
+rejected.
+
+Schema validity remains separate from transition validity. A mutation plan can
+be structurally valid while still being unsafe to apply because its
+`from_snapshot` does not match the current index state. Those cross-object
+invariants stay in the synthetic state-machine tests.
