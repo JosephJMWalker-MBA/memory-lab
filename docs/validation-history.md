@@ -135,6 +135,30 @@ retrieval. The experiment does not validate automatic contrary-evidence
 discovery, real retrieval coverage, source-authority ranking, LLM extraction,
 or production recursive reasoning.
 
+## Dependency-aware derived reassessment v0
+
+The synthetic reassessment experiment runs with:
+
+```bash
+python3 tests/run_derived_reassessment_v0.py
+```
+
+It demonstrates that a changed supporting record can produce a deterministic,
+minimal reverse-dependency reassessment plan. Direct dependents are distinguished
+from transitive dependents and evaluated parent-before-child.
+
+The synthetic chain replaces `Module Sigma status = blocked` with
+`status = clear`. The prior Vega and Helios blocked derivations lose their
+required support and become historical-only in the newer current view. No
+opposite `status = clear` records are invented for Vega or Helios.
+
+Historical derived records remain byte-for-byte unchanged. Reassessment plans
+and results are separate append-only artifacts.
+
+This experiment does not yet model multiple independent justifications for the
+same semantic record, general rule engines, automatic trigger discovery from
+real source/index deltas, or persistent dependency indexes at corpus scale.
+
 ## Legacy compatibility audit
 
 Six structurally different source documents were regenerated under the WSL query-encoder runtime and compared with their records in the recovered baseline.
@@ -237,7 +261,7 @@ A full logical equivalence audit was started between the untouched recovered bas
   be imported from exact files rather than recreated from documentation.
 - `experimental public research semantics`: executable synthetic behavior that
   tests a research model without claiming production or private-corpus validity,
-  currently including derived memory v0 and its adversarial v0.1 refinement.
+  currently including derived memory v0, its adversarial v0.1 refinement, and dependency-aware reassessment v0.
 - `designed but unimplemented`: architectural direction that is not yet
   executable behavior, including LLM extraction, automatic evidence
   normalization, real retrieval-coverage estimation, automatic contrary-evidence

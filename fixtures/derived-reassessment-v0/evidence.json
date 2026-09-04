@@ -1,0 +1,57 @@
+{
+  "snapshots": ["SYN-DM-0200", "SYN-DM-0201"],
+  "evidence": [
+    {
+      "evidence_id": "EV-VEGA-DEP-0200",
+      "snapshot_id": "SYN-DM-0200",
+      "source_id": "SRC-VEGA-DEP",
+      "text": "Project Vega depends on Module Sigma.",
+      "assertions": [{
+        "record_type": "relationship",
+        "subject": "Project Vega",
+        "predicate": "depends_on",
+        "object": "Module Sigma",
+        "qualifiers": {}
+      }]
+    },
+    {
+      "evidence_id": "EV-SIGMA-BLOCKED-0200",
+      "snapshot_id": "SYN-DM-0200",
+      "source_id": "SRC-SIGMA-STATUS-OLD",
+      "text": "Module Sigma status is blocked.",
+      "assertions": [{
+        "record_type": "state",
+        "subject": "Module Sigma",
+        "predicate": "status",
+        "object": "blocked",
+        "qualifiers": {}
+      }]
+    },
+    {
+      "evidence_id": "EV-HELIOS-DEP-0200",
+      "snapshot_id": "SYN-DM-0200",
+      "source_id": "SRC-HELIOS-DEP",
+      "text": "Project Helios depends on Project Vega.",
+      "assertions": [{
+        "record_type": "relationship",
+        "subject": "Project Helios",
+        "predicate": "depends_on",
+        "object": "Project Vega",
+        "qualifiers": {}
+      }]
+    },
+    {
+      "evidence_id": "EV-SIGMA-CLEAR-0201",
+      "snapshot_id": "SYN-DM-0201",
+      "source_id": "SRC-SIGMA-STATUS-NEW",
+      "text": "Module Sigma status is clear.",
+      "assertions": [{
+        "record_type": "state",
+        "subject": "Module Sigma",
+        "predicate": "status",
+        "object": "clear",
+        "qualifiers": {}
+      }]
+    }
+  ]
+}

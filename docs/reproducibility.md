@@ -180,3 +180,20 @@ versus knowledge-time semantics.
 The fixture is closed-world solely so omitted relevant evidence can be detected
 deterministically. Real retrieval completeness remains unknown unless a bounded
 system can actually prove it. See `docs/derived-memory-adversarial.md`.
+
+
+## Dependency-aware reassessment
+
+The public reassessment experiment runs with:
+
+```bash
+python3 tests/run_derived_reassessment_v0.py
+```
+
+It uses only `fixtures/derived-reassessment-v0/evidence.json` and tests
+minimal reverse-dependency closure, deterministic planning, parent-before-child
+evaluation, support withdrawal without negation, and append-only reassessment
+results.
+
+The experiment does not modify historical derived records and does not require a
+graph database or retrieval runtime. See `docs/derived-reassessment-v0.md`.

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/memory-lab/derived-reassessment-plan-v0.schema.json",
+  "title": "Experimental Derived Reassessment Plan v0",
+  "description": "Dependency-aware plan for reassessing derived records after support changes. Synthetic public research only.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "plan_id", "status", "from_snapshot", "to_snapshot",
+    "trigger_record_ids", "directly_affected_record_ids",
+    "transitively_affected_record_ids", "evaluation_order",
+    "unaffected_record_ids"
+  ],
+  "properties": {
+    "schema": {"const": "derived-reassessment-plan-v0"},
+    "plan_id": {"type": "string", "pattern": "^RP-[0-9a-f]{16}$"},
+    "status": {"const": "planned"},
+    "from_snapshot": {"type": "string", "pattern": "^SYN-DM-[0-9]{4}$"},
+    "to_snapshot": {"type": "string", "pattern": "^SYN-DM-[0-9]{4}$"},
+    "trigger_record_ids": {"$ref": "#/$defs/recordIds"},
+    "directly_affected_record_ids": {"$ref": "#/$defs/recordIds"},
+    "transitively_affected_record_ids": {"$ref": "#/$defs/recordIds"},
+    "evaluation_order": {"$ref": "#/$defs/recordIds"},
+    "unaffected_record_ids": {"$ref": "#/$defs/recordIds"}
+  },
+  "$defs": {
+    "recordIds": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^DM-[0-9a-f]{16}$"},
+      "uniqueItems": true
+    }
+  }
+}

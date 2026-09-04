@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/memory-lab/derived-reassessment-result-v0.schema.json",
+  "title": "Experimental Derived Reassessment Result v0",
+  "description": "Append-only reassessment result for a historical derived record. Synthetic public research only.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "result_id", "plan_id", "record_id", "assessed_at_snapshot",
+    "prior_status", "support_outcome", "resulting_view",
+    "trigger_record_ids", "replacement_record_ids", "note"
+  ],
+  "properties": {
+    "schema": {"const": "derived-reassessment-result-v0"},
+    "result_id": {"type": "string", "pattern": "^RR-[0-9a-f]{16}$"},
+    "plan_id": {"type": "string", "pattern": "^RP-[0-9a-f]{16}$"},
+    "record_id": {"type": "string", "pattern": "^DM-[0-9a-f]{16}$"},
+    "assessed_at_snapshot": {"type": "string", "pattern": "^SYN-DM-[0-9]{4}$"},
+    "prior_status": {"enum": ["verified", "unresolved", "superseded", "rejected"]},
+    "support_outcome": {"enum": ["retained", "withdrawn", "replaced", "conflicted"]},
+    "resulting_view": {"enum": ["active", "historical_only", "unresolved"]},
+    "trigger_record_ids": {"$ref": "#/$defs/recordIds"},
+    "replacement_record_ids": {"$ref": "#/$defs/recordIds"},
+    "note": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "recordIds": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^DM-[0-9a-f]{16}$"},
+      "uniqueItems": true
+    }
+  }
+}
