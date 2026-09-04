@@ -4,6 +4,12 @@ The local Memory Lab workspace contains a growing set of validated scripts. This
 
 ## Migration status
 
+Exact validated local implementations were not found in the current Mac
+workspace during the first `build/reproducible-harness` migration pass. The
+known validated workspace may exist on the separate Magician Windows machine and
+was not available to this Codex session. Missing exact files remain pending
+rather than being recreated from documentation.
+
 ### Included here
 
 - `preflight_incremental_deleted_v0_3.py` — read-only delete preflight.
@@ -30,3 +36,22 @@ The local Memory Lab workspace contains a growing set of validated scripts. This
 - `audit_roundtrip_logical_equivalence.py`
 
 The migration rule is deliberately conservative: do not retype a locally validated script from memory and silently call it equivalent. Import the actual validated file, sanitize only deployment-specific material, and re-run its relevant fixture tests before marking the repository copy validated.
+
+## Synthetic lifecycle regression
+
+The public repository includes a fully invented Markdown lifecycle fixture under
+`fixtures/synthetic-lifecycle/` and an environment-independent runner:
+
+```bash
+python3 tests/run_synthetic_lifecycle.py
+```
+
+This check validates deterministic synthetic snapshot reproduction, exact delta
+classification, legacy-v1 chunk ID mechanics, zero-based heading line handling,
+final source snapshot equality, final logical chunk equality, and a deliberately
+detectable contaminated-state condition. Chroma, HNSW, embeddings, pending
+journal execution, ledger advancement, FTS cardinality, and collection
+cardinality remain integration checks until the exact validated scripts and
+runtime are imported.
+
+For per-script state and reasons, see `docs/script-migration-status.json`.
