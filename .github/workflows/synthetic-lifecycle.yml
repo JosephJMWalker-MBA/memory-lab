@@ -19,3 +19,6 @@ jobs:
 
       - name: Run public contract schema validation
         run: python3 tests/run_contract_schema_validation.py
+
+      - name: Run experimental derived-memory v0 semantics
+        run: python3 tests/run_derived_memory_v0.py

@@ -62,7 +62,7 @@ The public synthetic test does not prove:
 - pending journal durability around real index mutation;
 - ledger advancement in a real index directory;
 - exact behavior of validated local scripts that are still pending import;
-- derived memory behavior, which is designed but unimplemented.
+- derived-memory behavior beyond the separate experimental synthetic v0 lane.
 
 The full 302,240-record logical equivalence audit remains a separate validation
 lane tracked by GitHub Issue #2. Synthetic logical equality is useful because it
@@ -139,3 +139,26 @@ Schema validity remains separate from transition validity. A mutation plan can
 be structurally valid while still being unsafe to apply because its
 `from_snapshot` does not match the current index state. Those cross-object
 invariants stay in the synthetic state-machine tests.
+
+
+## Experimental derived-memory v0
+
+The public derived-memory experiment runs with:
+
+```bash
+python3 tests/run_derived_memory_v0.py
+```
+
+It uses only fictional normalized evidence in
+`fixtures/derived-memory-v0/evidence.json`. The normalization step is treated
+as given so the experiment can isolate derived-memory semantics from extraction
+quality.
+
+The test exercises corroboration, temporal supersession, contradiction,
+explicit correction, unsupported-inference revision, record-schema validation,
+and evidence immutability. It distinguishes evidence change from world-state
+change and interpretation change.
+
+This lane does not validate LLM extraction, retrieval selection, private corpus
+behavior, confidence calibration, or production persistence. See
+`docs/derived-memory-v0.md`.

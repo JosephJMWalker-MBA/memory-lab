@@ -102,17 +102,46 @@ Later transaction IDs should be chained to the previous committed transaction so
 
 ## 6. Derived memory
 
-Derived memory does not rewrite source and does not inherit truth merely because a model generated it. A derived record carries:
+Derived memory does not rewrite source and does not inherit truth merely because
+a model generated it. Derived records remain downstream interpretations with
+explicit evidence references and source snapshot identity.
 
-- a type (fact, state, decision, event, relationship, principle, temporal transition, etc.);
-- predicate / relation;
-- evidence references;
-- source snapshot ID;
-- confidence;
-- status (`proposed`, later `verified` or `rejected`);
-- optional supersession links.
+The first public executable model is **derived memory v0**, an experimental
+synthetic research lane. It begins after evidence normalization and tests:
 
-A later record may supersede an earlier interpretation without altering the earlier source or pretending the earlier corpus snapshot contained evidence that it did not.
+- stable derived identity with later corroborating evidence;
+- temporal state and relationship supersession;
+- unresolved contradictory evidence;
+- explicit correction without source rewriting;
+- unsupported-inference rejection and revision;
+- backward attribution checking from a proposed conclusion to its evidence.
+
+The v0 status vocabulary is `proposed`, `verified`, `rejected`,
+`unresolved`, and `superseded`. Supersession is reason-sensitive: a later
+record can replace an earlier one because the world changed, or because the
+interpretation changed. Those cases are not equivalent.
+
+v0 explicitly distinguishes:
+
+- **evidence changed** — additional evidence supports the same proposition;
+- **world state changed** — an older and newer derived state may both have been
+  correct at different times;
+- **interpretation changed** — the same or corrected evidence shows that an
+  earlier interpretation was wrong or too strong.
+
+The backward attribution check is not neural-network backpropagation. It is a
+provenance check that traces a derived proposition back through its attributed
+evidence and verifies whether the proposition is supported as written. Failure
+revises or rejects the derived record, never the canonical evidence.
+
+The public v0 schema intentionally omits scalar confidence because no calibrated
+confidence model has yet been demonstrated. See
+[`docs/derived-memory-v0.md`](derived-memory-v0.md).
+
+This remains experimental synthetic semantics. LLM extraction, automatic
+evidence normalization, retrieval-to-attribution selection, private-corpus
+behavior, production persistence, and recursive multi-hop derivation remain
+unimplemented.
 
 ## 7. Runtime boundary
 
