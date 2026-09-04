@@ -162,3 +162,21 @@ change and interpretation change.
 This lane does not validate LLM extraction, retrieval selection, private corpus
 behavior, confidence calibration, or production persistence. See
 `docs/derived-memory-v0.md`.
+
+
+## Adversarial derived-memory semantics
+
+The adversarial public experiment runs with:
+
+```bash
+python3 tests/run_derived_memory_adversarial.py
+```
+
+It uses only `fixtures/derived-memory-adversarial/evidence.json` and tests the
+difference between local evidentiary support and evidence-set coverage,
+qualifier preservation, recursive provenance, cycle rejection, and valid-time
+versus knowledge-time semantics.
+
+The fixture is closed-world solely so omitted relevant evidence can be detected
+deterministically. Real retrieval completeness remains unknown unless a bounded
+system can actually prove it. See `docs/derived-memory-adversarial.md`.

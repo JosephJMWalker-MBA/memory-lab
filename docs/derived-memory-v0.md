@@ -226,3 +226,18 @@ have?" They are questions that can falsify the semantics:
 
 Those questions belong after the v0 semantics remain stable under more
 adversarial synthetic cases.
+
+
+## Adversarial follow-on
+
+The questions listed above are exercised in the follow-on adversarial lane rather
+than being silently folded back into v0. See:
+
+- `docs/derived-memory-adversarial.md`;
+- `schemas/derived-memory-record-v0.1.schema.json`;
+- `schemas/derived-evidence-assessment-v0.schema.json`;
+- `tests/run_derived_memory_adversarial.py`.
+
+v0 remains the first executable semantics baseline. v0.1 records the contract
+changes forced by adversarial cases rather than rewriting what v0 originally
+demonstrated.

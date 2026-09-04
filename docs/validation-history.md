@@ -109,6 +109,32 @@ extraction, automatic evidence normalization, private-corpus behavior,
 retrieval-to-attribution selection, confidence calibration, production storage,
 or recursive multi-hop derived reasoning.
 
+## Adversarial public derived-memory semantics
+
+The follow-on adversarial experiment runs with:
+
+```bash
+python3 tests/run_derived_memory_adversarial.py
+```
+
+It tests four failure modes not covered by v0:
+
+- a locally supported claim can still be downgraded when relevant contrary
+  evidence was omitted, and unknown evidence coverage yields provisional rather
+  than global support;
+- semantically load-bearing qualifiers cannot be dropped without revision;
+- multi-hop derived records retain direct derived dependencies, an explicit
+  derivation rule, and canonical evidence closure, while cyclic support is
+  rejected;
+- valid time in the modeled world is distinct from the snapshot in which the
+  system first learned or reassessed a claim.
+
+This is synthetic public research only. Closed-world evidence completeness is
+available only inside the adversarial fixture and is not claimed for real
+retrieval. The experiment does not validate automatic contrary-evidence
+discovery, real retrieval coverage, source-authority ranking, LLM extraction,
+or production recursive reasoning.
+
 ## Legacy compatibility audit
 
 Six structurally different source documents were regenerated under the WSL query-encoder runtime and compared with their records in the recovered baseline.
@@ -211,11 +237,11 @@ A full logical equivalence audit was started between the untouched recovered bas
   be imported from exact files rather than recreated from documentation.
 - `experimental public research semantics`: executable synthetic behavior that
   tests a research model without claiming production or private-corpus validity,
-  currently including derived memory v0.
+  currently including derived memory v0 and its adversarial v0.1 refinement.
 - `designed but unimplemented`: architectural direction that is not yet
   executable behavior, including LLM extraction, automatic evidence
-  normalization, retrieval-to-attribution selection, and multi-hop derived
-  reasoning.
+  normalization, real retrieval-coverage estimation, automatic contrary-evidence
+  discovery, and production multi-hop reasoning.
 
 ## Retrieval findings retained from earlier experiments
 
