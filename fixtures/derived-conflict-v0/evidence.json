@@ -1,0 +1,83 @@
+{
+  "snapshots": ["SYN-DM-0400", "SYN-DM-0401"],
+  "evidence": [
+    {
+      "evidence_id": "EV-POLARIS-SIGMA-DEP",
+      "snapshot_id": "SYN-DM-0400",
+      "source_id": "SRC-POLARIS-SIGMA-DEP",
+      "text": "Project Polaris depends on Module Sigma.",
+      "assertions": [{
+        "record_type": "relationship",
+        "subject": "Project Polaris",
+        "predicate": "depends_on",
+        "object": "Module Sigma",
+        "qualifiers": {"environment": "production"}
+      }]
+    },
+    {
+      "evidence_id": "EV-SIGMA-BLOCKED-0400",
+      "snapshot_id": "SYN-DM-0400",
+      "source_id": "SRC-SIGMA-BLOCKED-0400",
+      "text": "Module Sigma status is blocked.",
+      "assertions": [{
+        "record_type": "state",
+        "subject": "Module Sigma",
+        "predicate": "status",
+        "object": "blocked",
+        "qualifiers": {"environment": "production"}
+      }]
+    },
+    {
+      "evidence_id": "EV-POLARIS-CHECKS-0400",
+      "snapshot_id": "SYN-DM-0400",
+      "source_id": "SRC-POLARIS-CHECKS",
+      "text": "Project Polaris release checks passed.",
+      "assertions": [{
+        "record_type": "state",
+        "subject": "Project Polaris",
+        "predicate": "release_checks",
+        "object": "passed",
+        "qualifiers": {"environment": "production"}
+      }]
+    },
+    {
+      "evidence_id": "EV-POLARIS-APPROVAL-0400",
+      "snapshot_id": "SYN-DM-0400",
+      "source_id": "SRC-POLARIS-APPROVAL",
+      "text": "Project Polaris release approval is granted.",
+      "assertions": [{
+        "record_type": "state",
+        "subject": "Project Polaris",
+        "predicate": "release_approval",
+        "object": "granted",
+        "qualifiers": {"environment": "production"}
+      }]
+    },
+    {
+      "evidence_id": "EV-POLARIS-TAU-DEP",
+      "snapshot_id": "SYN-DM-0400",
+      "source_id": "SRC-POLARIS-TAU-DEP",
+      "text": "Project Polaris also depends on Module Tau.",
+      "assertions": [{
+        "record_type": "relationship",
+        "subject": "Project Polaris",
+        "predicate": "depends_on",
+        "object": "Module Tau",
+        "qualifiers": {"environment": "production"}
+      }]
+    },
+    {
+      "evidence_id": "EV-SIGMA-CLEAR-0401",
+      "snapshot_id": "SYN-DM-0401",
+      "source_id": "SRC-SIGMA-CLEAR-0401",
+      "text": "Module Sigma status is clear.",
+      "assertions": [{
+        "record_type": "state",
+        "subject": "Module Sigma",
+        "predicate": "status",
+        "object": "clear",
+        "qualifiers": {"environment": "production"}
+      }]
+    }
+  ]
+}

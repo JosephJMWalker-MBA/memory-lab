@@ -184,6 +184,31 @@ This is synthetic public research only. It does not implement ATMS
 minimal-environment subsumption, inconsistent/nogood environments, defaults,
 probabilistic support weights, or corpus-scale support indexing.
 
+## Derived conflict and consistency v0
+
+The supported-conflict experiment runs with:
+
+```bash
+python3 tests/run_derived_conflict_v0.py
+```
+
+It separates individual evidentiary support from cross-record consistency. In the
+synthetic Polaris case, `status = blocked` and `status = ready` are each
+individually support-verified, but an explicit single-value status constraint in
+matching scope and overlapping valid time makes them jointly inconsistent.
+
+The consistency layer preserves both historical records and withholds an
+arbitrary winner from the current view. Different values on the multi-valued
+`depends_on` relation remain compatible because no exclusivity constraint
+applies.
+
+When the blocked derivation later loses support, the conflict resolves by support
+change and the surviving ready record may return to the current view.
+
+This experiment does not validate source-authority adjudication, probabilistic
+conflict resolution, automatic predicate-constraint discovery, complex temporal
+constraint logic, or private-corpus conflict handling.
+
 ## Legacy compatibility audit
 
 Six structurally different source documents were regenerated under the WSL query-encoder runtime and compared with their records in the recovered baseline.
@@ -286,7 +311,7 @@ A full logical equivalence audit was started between the untouched recovered bas
   be imported from exact files rather than recreated from documentation.
 - `experimental public research semantics`: executable synthetic behavior that
   tests a research model without claiming production or private-corpus validity,
-  currently including derived memory v0, its adversarial v0.1 refinement, dependency-aware reassessment v0, and multiple independent justifications v0.
+  currently including derived memory v0, its adversarial v0.1 refinement, dependency-aware reassessment v0, multiple independent justifications v0, and derived conflict/consistency v0.
 - `designed but unimplemented`: architectural direction that is not yet
   executable behavior, including LLM extraction, automatic evidence
   normalization, real retrieval-coverage estimation, automatic contrary-evidence

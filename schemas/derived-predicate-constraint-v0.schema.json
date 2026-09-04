@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/memory-lab/derived-predicate-constraint-v0.schema.json",
+  "title": "Experimental Derived Predicate Constraint v0",
+  "description": "Declares when multiple values for a derived predicate are mutually exclusive in the same scope/time. Synthetic public research only.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "constraint_id", "record_type", "predicate",
+    "value_cardinality", "qualifier_matching", "temporal_rule"
+  ],
+  "properties": {
+    "schema": {"const": "derived-predicate-constraint-v0"},
+    "constraint_id": {"type": "string", "pattern": "^PC-[0-9a-f]{16}$"},
+    "record_type": {"enum": ["fact", "state", "relationship", "event", "principle", "temporal_transition"]},
+    "predicate": {"type": "string", "minLength": 1},
+    "value_cardinality": {"enum": ["single_value_per_scope", "multi_value"]},
+    "qualifier_matching": {"enum": ["exact"]},
+    "temporal_rule": {"enum": ["overlap_required", "ignore_time"]}
+  }
+}

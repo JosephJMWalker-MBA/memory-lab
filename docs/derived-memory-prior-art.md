@@ -55,6 +55,19 @@ only this support-structure discipline and leaves minimal-environment
 subsumption, nogood environments, defaults, and general nonmonotonic reasoning
 out of scope.
 
+### Inconsistent environments
+
+ATMS work also treats inconsistency as something to represent and manage across
+supporting environments rather than as a reason to erase whichever supported
+node arrived second. That constrains Memory Lab's consistency layer: support for
+an individual record and compatibility among multiple supported records are
+separate questions.
+
+Memory Lab's first conflict experiment uses explicit predicate constraints
+rather than implementing full ATMS nogood propagation. The narrower requirement
+is that two support-valid records may be withheld together when an inspectable
+constraint establishes that they cannot both hold in the same scope/time.
+
 References:
 - Johan de Kleer, "An assumption-based TMS", Artificial Intelligence 28(2),
   1986. DOI: 10.1016/0004-3702(86)90080-9.

@@ -178,3 +178,12 @@ The next useful pressure test is likely **contradictory independent
 justifications**: what happens when one valid environment supports a proposition
 and another valid environment supports an incompatible proposition, especially
 when neither environment can be dismissed as incomplete?
+
+
+## Conflict follow-on
+
+The next pressure test is implemented in `docs/derived-conflict-v0.md`.
+
+That pass keeps justification validity separate from consistency validity: two
+records may each retain valid support while an explicit semantic constraint
+prevents both from being admitted to the current view simultaneously.
