@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/memory-lab/derived-evidence-assessment-v0.schema.json",
+  "title": "Experimental Derived Evidence Assessment v0",
+  "description": "Separates local support from evidence-coverage assessment so a supported claim cannot be promoted merely because contrary evidence was omitted. Synthetic public research only.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "assessment_id",
+    "record_id",
+    "source_snapshot_id",
+    "support_outcome",
+    "coverage_basis",
+    "coverage_outcome",
+    "considered_evidence_refs",
+    "relevant_evidence_refs",
+    "omitted_relevant_evidence_refs",
+    "overall_outcome",
+    "note"
+  ],
+  "properties": {
+    "schema": {
+      "const": "derived-evidence-assessment-v0"
+    },
+    "assessment_id": {
+      "type": "string",
+      "pattern": "^DA-[0-9a-f]{16}$"
+    },
+    "record_id": {
+      "type": "string",
+      "pattern": "^DM-[0-9a-f]{16}$"
+    },
+    "source_snapshot_id": {
+      "type": "string",
+      "pattern": "^SYN-DM-[0-9]{4}$"
+    },
+    "support_outcome": {
+      "enum": [
+        "supported",
+        "revised",
+        "rejected",
+        "unresolved"
+      ]
+    },
+    "coverage_outcome": {
+      "enum": [
+        "complete",
+        "incomplete",
+        "unknown"
+      ]
+    },
+    "coverage_basis": {
+      "enum": [
+        "synthetic_closed_world",
+        "retrieval_bounded",
+        "unknown"
+      ]
+    },
+    "considered_evidence_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^EV-[A-Z0-9-]+$"
+      },
+      "uniqueItems": true
+    },
+    "relevant_evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^EV-[A-Z0-9-]+$"
+      },
+      "uniqueItems": true
+    },
+    "omitted_relevant_evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^EV-[A-Z0-9-]+$"
+      },
+      "uniqueItems": true
+    },
+    "overall_outcome": {
+      "enum": [
+        "verified",
+        "provisionally_supported",
+        "revised",
+        "rejected",
+        "unresolved"
+      ]
+    },
+    "note": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

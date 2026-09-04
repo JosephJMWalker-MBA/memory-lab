@@ -22,3 +22,6 @@ jobs:
 
       - name: Run experimental derived-memory v0 semantics
         run: python3 tests/run_derived_memory_v0.py
+
+      - name: Run adversarial derived-memory semantics
+        run: python3 tests/run_derived_memory_adversarial.py

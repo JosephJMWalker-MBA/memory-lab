@@ -138,10 +138,16 @@ The public v0 schema intentionally omits scalar confidence because no calibrated
 confidence model has yet been demonstrated. See
 [`docs/derived-memory-v0.md`](derived-memory-v0.md).
 
+An adversarial v0.1 lane extends this model where v0 proved too weak. It
+separates local support from evidence-set coverage, treats qualifiers as part of
+the proposition, preserves explicit recursive derivation dependencies plus
+canonical evidence closure, and separates world-valid time from knowledge time.
+See [`docs/derived-memory-adversarial.md`](derived-memory-adversarial.md).
+
 This remains experimental synthetic semantics. LLM extraction, automatic
-evidence normalization, retrieval-to-attribution selection, private-corpus
-behavior, production persistence, and recursive multi-hop derivation remain
-unimplemented.
+evidence normalization, real retrieval-coverage estimation, automatic discovery
+of contrary evidence, private-corpus behavior, production persistence, and
+general recursive reasoning remain unimplemented.
 
 ## 7. Runtime boundary
 

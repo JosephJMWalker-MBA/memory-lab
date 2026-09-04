@@ -1,0 +1,87 @@
+{
+  "snapshots": ["SYN-DM-0100", "SYN-DM-0101", "SYN-DM-0102"],
+  "evidence": [
+    {
+      "evidence_id": "EV-ORION-DATE-A",
+      "snapshot_id": "SYN-DM-0100",
+      "source_id": "SRC-ORION-SCHEDULE-A",
+      "text": "Project Orion launch date is June 4.",
+      "assertions": [{"record_type": "fact", "subject": "Project Orion", "predicate": "launch_date", "object": "June 4", "qualifiers": {}}]
+    },
+    {
+      "evidence_id": "EV-ORION-DATE-B",
+      "snapshot_id": "SYN-DM-0100",
+      "source_id": "SRC-ORION-SCHEDULE-B",
+      "text": "Project Orion launch date is June 11.",
+      "assertions": [{"record_type": "fact", "subject": "Project Orion", "predicate": "launch_date", "object": "June 11", "qualifiers": {}}]
+    },
+    {
+      "evidence_id": "EV-MERIDIAN-ACCESS",
+      "snapshot_id": "SYN-DM-0100",
+      "source_id": "SRC-MERIDIAN-ACCESS",
+      "text": "Project Meridian access is approved for the internal pilot in staging.",
+      "assertions": [{
+        "record_type": "state",
+        "subject": "Project Meridian",
+        "predicate": "access",
+        "object": "approved",
+        "qualifiers": {"scope": "internal pilot", "environment": "staging"}
+      }]
+    },
+    {
+      "evidence_id": "EV-VEGA-DEPENDENCY",
+      "snapshot_id": "SYN-DM-0101",
+      "source_id": "SRC-VEGA-DEPENDENCY",
+      "text": "Project Vega depends on Module Sigma.",
+      "assertions": [{
+        "record_type": "relationship",
+        "subject": "Project Vega",
+        "predicate": "depends_on",
+        "object": "Module Sigma",
+        "qualifiers": {}
+      }]
+    },
+    {
+      "evidence_id": "EV-SIGMA-STATUS",
+      "snapshot_id": "SYN-DM-0101",
+      "source_id": "SRC-SIGMA-STATUS",
+      "text": "Module Sigma status is blocked.",
+      "assertions": [{
+        "record_type": "state",
+        "subject": "Module Sigma",
+        "predicate": "status",
+        "object": "blocked",
+        "qualifiers": {}
+      }]
+    },
+    {
+      "evidence_id": "EV-NOVA-INITIAL",
+      "snapshot_id": "SYN-DM-0100",
+      "source_id": "SRC-NOVA-INITIAL",
+      "text": "Project Nova is active.",
+      "assertions": [{
+        "record_type": "state",
+        "subject": "Project Nova",
+        "predicate": "status",
+        "object": "active",
+        "qualifiers": {},
+        "valid_time": {"from": "2026-01-01", "to": null}
+      }]
+    },
+    {
+      "evidence_id": "EV-NOVA-RETROACTIVE-CORRECTION",
+      "snapshot_id": "SYN-DM-0102",
+      "source_id": "SRC-NOVA-CORRECTION",
+      "text": "Correction received later: Project Nova has actually been paused since January 15.",
+      "corrects_evidence_refs": ["EV-NOVA-INITIAL"],
+      "assertions": [{
+        "record_type": "state",
+        "subject": "Project Nova",
+        "predicate": "status",
+        "object": "paused",
+        "qualifiers": {},
+        "valid_time": {"from": "2026-01-15", "to": null}
+      }]
+    }
+  ]
+}
