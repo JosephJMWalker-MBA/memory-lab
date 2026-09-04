@@ -85,3 +85,37 @@ not part of the public CI lane:
 Until the exact validated local scripts are imported and sanitized, their
 repository state remains pending exact validated-script migration rather than
 public validation.
+
+## Synthetic state-machine validation
+
+The public failure-semantics runner exercises mutation protocol invariants
+without pretending to validate Chroma, embeddings, HNSW, or FTS behavior:
+
+```bash
+python3 tests/run_failure_semantics.py
+```
+
+The fail-closed philosophy is that disagreement among the plan, claimed state,
+ledger, pending journal, or current logical records must stop mutation. The
+public tests cover unexpected pre-existing ADD records, missing CHANGE sources,
+already-absent DELETE sources, snapshot mismatch, foreign ownership collisions,
+pending transaction barriers, and tampered state/ledger/record disagreement.
+
+Replay is not treated as drift when the exact previously committed transition
+can be verified. It is an explicit no-op only when the ledger entry, chained
+transition identity, resulting snapshot, and logical record count agree.
+
+Interruption is part of the protocol, not an operational afterthought. For
+CHANGE, evidence continuity has priority over cleanup convenience: the desired
+representation must exist before stale records are destructively removed, so an
+interruption may leave temporary stale evidence rather than lose the desired
+replacement. For DELETE, a durable pending marker must exist before destructive
+removal begins, so an interrupted deletion is detectable and blocks subsequent
+mutation until recovery is resolved.
+
+The synthetic state-machine tests prove these control-flow invariants over
+invented logical records. They do not prove recovered-baseline compatibility,
+real Chroma mutation, HNSW reachability, SQLite FTS synchronization, embedding
+readback, or exact validated-script behavior. Those remain dependent on the
+Magician/WSL integration environment and pending exact validated-script
+migration.
