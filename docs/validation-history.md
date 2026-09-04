@@ -79,6 +79,36 @@ This is public research contract validation. It is pending Magician comparison
 and is not a claim that the schemas reproduce undocumented recovered
 implementation file formats.
 
+## Experimental public derived-memory v0
+
+The environment-independent derived-memory semantics experiment has been
+reproduced with:
+
+```bash
+python3 tests/run_derived_memory_v0.py
+```
+
+This synthetic experiment begins after evidence normalization. It demonstrates:
+
+- stable fact corroboration without minting a duplicate semantic record;
+- temporal state supersession that preserves the earlier state;
+- unresolved contradictory evidence rather than arbitrary overwrite;
+- explicit correction that supersedes interpretation without rewriting source;
+- temporal relationship change;
+- a backward attribution check that rejects the unsupported claim
+  `status = cancelled` when the attributed evidence only supports
+  `status = slowed`, then verifies the narrower revision;
+- schema rejection for malformed derived records;
+- unchanged canonical synthetic evidence across derived-memory operations.
+
+The test also makes an executable distinction among **evidence changed**,
+**world state changed**, and **interpretation changed**.
+
+This is experimental public research semantics only. It does not validate LLM
+extraction, automatic evidence normalization, private-corpus behavior,
+retrieval-to-attribution selection, confidence calibration, production storage,
+or recursive multi-hop derived reasoning.
+
 ## Legacy compatibility audit
 
 Six structurally different source documents were regenerated under the WSL query-encoder runtime and compared with their records in the recovered baseline.
@@ -179,8 +209,13 @@ A full logical equivalence audit was started between the untouched recovered bas
   environment-independent runner.
 - `pending exact validated-script migration`: validated local scripts that must
   be imported from exact files rather than recreated from documentation.
+- `experimental public research semantics`: executable synthetic behavior that
+  tests a research model without claiming production or private-corpus validity,
+  currently including derived memory v0.
 - `designed but unimplemented`: architectural direction that is not yet
-  executable behavior, including derived memory.
+  executable behavior, including LLM extraction, automatic evidence
+  normalization, retrieval-to-attribution selection, and multi-hop derived
+  reasoning.
 
 ## Retrieval findings retained from earlier experiments
 

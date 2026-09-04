@@ -68,8 +68,13 @@ Semantic checks remain in the Python state-machine tests. Examples:
 - CHANGE must materialize desired records before stale records are deleted;
 - DELETE must persist a pending transaction before destructive removal begins.
 
-## Out of scope
+## Derived-memory boundary
 
-These contracts do not implement derived memory. Future derived-memory contracts
-should remain separate from both `legacy-chunk-contract-v1` and the public
-state-machine contracts.
+These state-machine contracts do not define derived memory. The separate
+experimental `derived-memory-record-v0` contract is intentionally downstream
+of source/index mutation contracts and remains a synthetic public research
+model. See `docs/derived-memory-v0.md`.
+
+Derived-memory contracts remain separate from both
+`legacy-chunk-contract-v1` and the public state-machine contracts so
+interpretation semantics cannot silently become retrieval-index state.

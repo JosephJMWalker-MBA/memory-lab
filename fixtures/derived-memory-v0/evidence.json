@@ -1,0 +1,83 @@
+{
+  "snapshots": ["SYN-DM-0001", "SYN-DM-0002", "SYN-DM-0003"],
+  "evidence": [
+    {
+      "evidence_id": "EV-ATLAS-OWNER-1",
+      "snapshot_id": "SYN-DM-0001",
+      "source_id": "SRC-ATLAS-OWNER-1",
+      "text": "Project Atlas owner is Rowan.",
+      "assertions": [{"record_type": "fact", "subject": "Project Atlas", "predicate": "owner", "object": "Rowan"}]
+    },
+    {
+      "evidence_id": "EV-ATLAS-OWNER-2",
+      "snapshot_id": "SYN-DM-0002",
+      "source_id": "SRC-ATLAS-OWNER-2",
+      "text": "Rowan remains the owner of Project Atlas.",
+      "assertions": [{"record_type": "fact", "subject": "Project Atlas", "predicate": "owner", "object": "Rowan"}]
+    },
+    {
+      "evidence_id": "EV-ATLAS-STATUS-1",
+      "snapshot_id": "SYN-DM-0001",
+      "source_id": "SRC-ATLAS-STATUS-1",
+      "text": "Project Atlas status is active.",
+      "assertions": [{"record_type": "state", "subject": "Project Atlas", "predicate": "status", "object": "active"}]
+    },
+    {
+      "evidence_id": "EV-ATLAS-STATUS-2",
+      "snapshot_id": "SYN-DM-0002",
+      "source_id": "SRC-ATLAS-STATUS-2",
+      "text": "Project Atlas status is paused until funding resumes.",
+      "assertions": [{"record_type": "state", "subject": "Project Atlas", "predicate": "status", "object": "paused"}]
+    },
+    {
+      "evidence_id": "EV-HARBOR-DATE-1",
+      "snapshot_id": "SYN-DM-0002",
+      "source_id": "SRC-HARBOR-SCHEDULE-A",
+      "text": "Project Harbor launch date is May 10.",
+      "assertions": [{"record_type": "fact", "subject": "Project Harbor", "predicate": "launch_date", "object": "May 10"}]
+    },
+    {
+      "evidence_id": "EV-HARBOR-DATE-2",
+      "snapshot_id": "SYN-DM-0002",
+      "source_id": "SRC-HARBOR-SCHEDULE-B",
+      "text": "Project Harbor launch date is May 17.",
+      "assertions": [{"record_type": "fact", "subject": "Project Harbor", "predicate": "launch_date", "object": "May 17"}]
+    },
+    {
+      "evidence_id": "EV-NORTHWIND-MATERIAL-1",
+      "snapshot_id": "SYN-DM-0001",
+      "source_id": "SRC-NORTHWIND-NOTE-1",
+      "text": "Project Northwind uses a ceramic casing.",
+      "assertions": [{"record_type": "fact", "subject": "Project Northwind", "predicate": "casing_material", "object": "ceramic"}]
+    },
+    {
+      "evidence_id": "EV-NORTHWIND-MATERIAL-2",
+      "snapshot_id": "SYN-DM-0003",
+      "source_id": "SRC-NORTHWIND-CORRECTION-1",
+      "text": "Correction: Project Northwind uses a composite casing, not ceramic.",
+      "corrects_evidence_refs": ["EV-NORTHWIND-MATERIAL-1"],
+      "assertions": [{"record_type": "fact", "subject": "Project Northwind", "predicate": "casing_material", "object": "composite"}]
+    },
+    {
+      "evidence_id": "EV-LUMEN-REL-1",
+      "snapshot_id": "SYN-DM-0001",
+      "source_id": "SRC-LUMEN-REL-1",
+      "text": "Project Lumen's partnership with Ardent is active.",
+      "assertions": [{"record_type": "relationship", "subject": "Project Lumen", "predicate": "partnership_with_Ardent", "object": "active"}]
+    },
+    {
+      "evidence_id": "EV-LUMEN-REL-2",
+      "snapshot_id": "SYN-DM-0003",
+      "source_id": "SRC-LUMEN-REL-2",
+      "text": "Project Lumen's partnership with Ardent has ended.",
+      "assertions": [{"record_type": "relationship", "subject": "Project Lumen", "predicate": "partnership_with_Ardent", "object": "ended"}]
+    },
+    {
+      "evidence_id": "EV-KEPLER-STATUS-1",
+      "snapshot_id": "SYN-DM-0002",
+      "source_id": "SRC-KEPLER-STATUS-1",
+      "text": "Project Kepler prototype testing slowed this week.",
+      "assertions": [{"record_type": "state", "subject": "Project Kepler", "predicate": "status", "object": "slowed"}]
+    }
+  ]
+}
