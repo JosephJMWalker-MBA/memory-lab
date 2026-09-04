@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/memory-lab/ledger-entry-contract-v1.schema.json",
+  "title": "Public Ledger Entry Contract v1",
+  "description": "Public research/state-machine contract reproduced by synthetic state-machine tests; pending comparison with exact Magician implementation formats.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "status", "mutation", "from_snapshot", "to_snapshot", "source", "edge_id", "transition_id", "parent_transition_id", "count_before", "count_after"],
+  "properties": {
+    "schema": {"const": "ledger-entry-contract-v1"},
+    "status": {"const": "committed"},
+    "mutation": {"enum": ["bootstrap", "add", "change", "delete"]},
+    "from_snapshot": {
+      "anyOf": [
+        {"type": "null"},
+        {"type": "string", "pattern": "^(SYN-[0-9a-f]{16}|[A-Z])$"}
+      ]
+    },
+    "to_snapshot": {"type": "string", "pattern": "^(SYN-[0-9a-f]{16}|[A-Z])$"},
+    "source": {"type": "string", "minLength": 1},
+    "edge_id": {"type": "string", "pattern": "^EDGE-[0-9a-f]{16}$"},
+    "transition_id": {"type": "string", "pattern": "^(TX-[0-9a-f]{16}|TX-GENESIS)$"},
+    "parent_transition_id": {
+      "anyOf": [
+        {"type": "null"},
+        {"type": "string", "pattern": "^(TX-[0-9a-f]{16}|TX-GENESIS)$"}
+      ]
+    },
+    "count_before": {"type": "integer", "minimum": 0},
+    "count_after": {"type": "integer", "minimum": 0}
+  }
+}

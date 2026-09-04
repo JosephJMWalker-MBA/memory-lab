@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/memory-lab/pending-transaction-contract-v1.schema.json",
+  "title": "Public Pending Transaction Contract v1",
+  "description": "Public research/state-machine contract reproduced by synthetic state-machine tests; pending comparison with exact Magician implementation formats.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "status", "mutation", "from_snapshot", "to_snapshot", "source", "edge_id", "transition_id", "parent_transition_id", "expected_count_before", "expected_count_after", "affected_ids"],
+  "properties": {
+    "schema": {"const": "pending-transaction-contract-v1"},
+    "status": {"const": "prepared"},
+    "mutation": {"enum": ["add", "change", "delete"]},
+    "from_snapshot": {"type": "string", "pattern": "^(SYN-[0-9a-f]{16}|[A-Z])$"},
+    "to_snapshot": {"type": "string", "pattern": "^(SYN-[0-9a-f]{16}|[A-Z])$"},
+    "source": {"type": "string", "minLength": 1},
+    "edge_id": {"type": "string", "pattern": "^EDGE-[0-9a-f]{16}$"},
+    "transition_id": {"type": "string", "pattern": "^TX-[0-9a-f]{16}$"},
+    "parent_transition_id": {"type": "string", "pattern": "^(TX-[0-9a-f]{16}|TX-GENESIS)$"},
+    "expected_count_before": {"type": "integer", "minimum": 0},
+    "expected_count_after": {"type": "integer", "minimum": 0},
+    "affected_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    }
+  }
+}

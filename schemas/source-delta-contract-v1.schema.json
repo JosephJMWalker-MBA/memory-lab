@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/memory-lab/source-delta-contract-v1.schema.json",
+  "title": "Public Source Delta Contract v1",
+  "description": "Public research/state-machine contract reproduced by the synthetic harness; pending comparison with exact Magician implementation formats.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "status", "from_snapshot", "to_snapshot", "added", "changed", "deleted", "unchanged"],
+  "properties": {
+    "schema": {"const": "source-delta-contract-v1"},
+    "status": {"const": "reproduced_by_public_synthetic_harness"},
+    "from_snapshot": {"type": "string", "pattern": "^SYN-[0-9a-f]{16}$"},
+    "to_snapshot": {"type": "string", "pattern": "^SYN-[0-9a-f]{16}$"},
+    "added": {"$ref": "#/$defs/sourceList"},
+    "changed": {"$ref": "#/$defs/sourceList"},
+    "deleted": {"$ref": "#/$defs/sourceList"},
+    "unchanged": {"$ref": "#/$defs/sourceList"}
+  },
+  "$defs": {
+    "sourceList": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    }
+  }
+}

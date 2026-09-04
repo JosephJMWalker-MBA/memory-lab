@@ -60,6 +60,25 @@ This is reproduced with public synthetic fixture logic. It is not recovered
 baseline integration validation and does not validate Chroma, HNSW, FTS,
 embeddings, or the pending 302,240-record equivalence audit.
 
+## Public contract schema validation
+
+The environment-independent public contract schemas have been reproduced with:
+
+```bash
+python3 tests/run_contract_schema_validation.py
+```
+
+This validates structurally correct synthetic source snapshot, source delta,
+mutation plan, index state, pending transaction, and ledger-entry artifacts. It
+also demonstrates schema rejection for missing identity/provenance fields,
+malformed mutation types, incomplete pending transactions, ledger entries
+missing chain identity, invalid snapshot identifiers, and unexpected additional
+fields.
+
+This is public research contract validation. It is pending Magician comparison
+and is not a claim that the schemas reproduce undocumented recovered
+implementation file formats.
+
 ## Legacy compatibility audit
 
 Six structurally different source documents were regenerated under the WSL query-encoder runtime and compared with their records in the recovered baseline.
