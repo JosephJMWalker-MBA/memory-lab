@@ -3,6 +3,8 @@
 **Standing:** active research / engineering harness  
 **Current phase:** prior-art integration + semantic hardening  
 **Runtime choice:** unresolved / deliberately replaceable  
+**Current substitution map:** `docs/substitution-conformance-map-v0.md`  
+**Prior-art integration tracker:** GitHub issue #11
 
 ## Current identity
 
@@ -80,6 +82,36 @@ event sourcing
 
 Memory Lab therefore should not claim these primitives as novel and should not rebuild them without concrete evidence that composition is insufficient.
 
+## Substitution/conformance mapping status
+
+The first field-by-field mapping is complete in:
+
+`docs/substitution-conformance-map-v0.md`
+
+The map compares current schemas and responsibilities against:
+
+- TMS / ATMS;
+- W3C PROV + nanopublication / Whyis-like machinery;
+- Graphiti / Zep;
+- ordinary temporal / event-sourced application state.
+
+Classification vocabulary:
+
+```text
+NATIVE
+ADAPTABLE
+MISSING
+UNNECESSARY
+```
+
+Main result:
+
+**Most record, temporal, provenance, justification, reassessment, and retrieval machinery is substitutable.**
+
+The current JSON schemas remain useful synthetic fixtures but should not be promoted wholesale into a production ontology.
+
+A draft implementation-independent research profile, `ML-EP-0`, now captures the surviving behavioral obligations. It is not a ratified standard and no external runtime has yet been shown to conform.
+
 ## Strongest current research distinctions
 
 Under current pressure, the most promising Memory Lab distinctions are:
@@ -104,7 +136,23 @@ preserved history
 != permanent veto
 ```
 
-The final distinction is developed in `docs/inheritance-without-foreclosure.md` and remains empirically unresolved.
+### Strongest surviving gap
+
+The clearest missing cross-runtime semantic in the current comparison is **evidence coverage**.
+
+TMS/ATMS can establish support from reasons; provenance systems can record what evidence was used; Graphiti/Zep can preserve source-episode associations. None of those facts alone proves that the materially relevant evidence universe was adequately considered.
+
+That distinction now carries the highest empirical burden: it must demonstrate decision value beyond retrieval metrics, search receipts, provenance, and ordinary uncertainty labels.
+
+### Current-view admission
+
+Separate historical/support status from current-view participation remains useful in the synthetic fixtures, but ordinary application state is a serious simpler baseline. Memory Lab must show that a portable conformance boundary adds value rather than merely renaming a well-designed projection table.
+
+### Inheritance without foreclosure
+
+The historical-memory hypothesis is developed in `docs/inheritance-without-foreclosure.md` and remains empirically unresolved.
+
+Its likely strongest form is a reassessment protocol over preserved causal history, not a bespoke storage primitive.
 
 ## Relationship to GIE / GEI
 
@@ -122,6 +170,8 @@ A successful Memory Lab program discovers the smallest defensible semantic contr
 - Chroma/HNSW is not the canonical future runtime.
 - A standalone custom truth-maintenance engine is not justified.
 - A custom knowledge-graph runtime is not justified by current evidence.
+- The `ML-EP-0` draft profile is not ratified or externally validated.
+- No external runtime has yet passed a Memory Lab adapter/conformance fixture.
 - Evidence coverage is not yet measured robustly on open real corpora.
 - Real-corpus derived-memory behavior is not yet established.
 - Inheritance without foreclosure is not yet empirically established.
@@ -132,12 +182,16 @@ A successful Memory Lab program discovers the smallest defensible semantic contr
 
 Do not add broad new runtime machinery first.
 
-Prefer this sequence:
+The mapping phase is complete enough to move to substitution experiments.
 
-1. map Memory Lab semantics explicitly onto strong prior-art substrates;
-2. identify which distinctions are native, adaptable, or genuinely missing;
-3. build conformance fixtures around the surviving distinctions;
-4. test at least one existing runtime / composition against those fixtures;
-5. run real-corpus experiments for evidence coverage and current-view behavior;
+Next sequence:
+
+1. **Graphiti adapter:** port `derived-conflict-v0` / Polaris and test whether its preserve-both-support-histories + withhold-current-view behavior can be represented cleanly over Graphiti's native contradiction/invalidation model;
+2. measure adapter complexity and distinguish a true semantic gap from configuration/application policy;
+3. **Whyis adapter:** port a reassessment/revision fixture and test whether separate current-view admission adds value beyond native revision, retirement, archive, and truth-maintenance behavior;
+4. add a bounded evidence-coverage receipt over one external runtime without creating a new memory engine;
+5. test whether coverage state changes downstream decisions beyond provenance/retrieval metrics alone;
 6. test inheritance without foreclosure with controlled tasks where simpler baselines can win;
 7. only then decide whether any custom runtime component is justified.
+
+The next useful result should be an external-runtime substitution result, including a clean result where the external runtime makes a Memory Lab component unnecessary.
