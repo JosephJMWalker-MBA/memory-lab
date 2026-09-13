@@ -12,9 +12,10 @@ Do not treat success in one track as proof of the other.
 1. `../STATUS.md` — current state and immediate research direction
 2. `../README.md` — project identity
 3. `research-position.md` — implementation-independent research thesis
-4. `architecture.md` — current architecture and validated tracks
-5. `derived-memory-prior-art.md` — prior-art pressure and substitution map
-6. `inheritance-without-foreclosure.md` — historical-memory reopening hypothesis
+4. `substitution-conformance-map-v0.md` — field-by-field mapping to established substrates and draft `ML-EP-0` conformance profile
+5. `architecture.md` — current architecture and validated tracks
+6. `derived-memory-prior-art.md` — prior-art pressure and source lineage
+7. `inheritance-without-foreclosure.md` — historical-memory reopening hypothesis
 
 ## Engineering / retrieval track
 
@@ -38,8 +39,9 @@ Read roughly in this sequence:
 4. `multiple-justifications-v0.md`
 5. `derived-conflict-v0.md`
 6. `derived-memory-prior-art.md`
+7. `substitution-conformance-map-v0.md`
 
-This sequence shows how synthetic adversarial cases forced the semantics to become more precise.
+This sequence shows how synthetic adversarial cases forced the semantics to become more precise and then how prior art removes unnecessary ownership of the underlying machinery.
 
 Do not infer:
 
@@ -49,7 +51,18 @@ later document
 production architecture
 ```
 
-These are research contracts and experiments unless explicitly promoted by later evidence.
+These are research contracts, experiments, and comparison artifacts unless explicitly promoted by later evidence.
+
+The substitution map classifies responsibilities as:
+
+```text
+NATIVE
+ADAPTABLE
+MISSING
+UNNECESSARY
+```
+
+`MISSING` means only that the reviewed substrate did not demonstrate the same responsibility end-to-end. It does not establish novelty.
 
 ## Security boundary
 
@@ -74,6 +87,8 @@ documented design
 
 `validation-history.md` contains engineering evidence for the retrieval track.
 The derived-memory documents state what their synthetic fixtures actually demonstrate.
+
+The current substitution map is **comparison evidence**, not an executed external-runtime conformance result.
 
 ## Current research rule
 
