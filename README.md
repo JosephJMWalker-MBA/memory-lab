@@ -13,8 +13,9 @@ Read:
 1. [`STATUS.md`](STATUS.md) — current research state and next direction
 2. [`AGENTS.md`](AGENTS.md) — prior-art-first operating guidance
 3. [`docs/research-position.md`](docs/research-position.md) — what Memory Lab is trying to discover
-4. [`docs/architecture.md`](docs/architecture.md) — current architecture and validated implementation tracks
-5. [`docs/derived-memory-prior-art.md`](docs/derived-memory-prior-art.md) — established work constraining the research
+4. [`docs/substitution-conformance-map-v0.md`](docs/substitution-conformance-map-v0.md) — field-by-field substitution map and draft implementation-independent profile
+5. [`docs/architecture.md`](docs/architecture.md) — current architecture and validated implementation tracks
+6. [`docs/derived-memory-prior-art.md`](docs/derived-memory-prior-art.md) — established work constraining the research
 
 For long-horizon reopening / historical-memory work, see:
 
@@ -69,6 +70,19 @@ Memory Lab does **not** claim to have invented:
 Relevant substrates include classical TMS / ATMS, W3C PROV, nanopublications and Whyis, temporal/bitemporal systems, event sourcing, Graphiti/Zep, and ordinary relational/application-state machinery.
 
 The project should reuse those systems where they already solve the problem.
+
+The first field-by-field substitution pass now classifies Memory Lab responsibilities as:
+
+```text
+NATIVE
+ADAPTABLE
+MISSING
+UNNECESSARY
+```
+
+See [`docs/substitution-conformance-map-v0.md`](docs/substitution-conformance-map-v0.md).
+
+The result is deliberately reductive: most record/storage/runtime machinery appears substitutable. The strongest current gap is evidence-coverage semantics; current-view admission and conditional historical inheritance remain under falsification against simpler application-state/provenance approaches.
 
 The strongest remaining question is whether Memory Lab's exact boundary discipline adds measurable value and whether that value is best delivered as:
 
@@ -179,6 +193,8 @@ See [`docs/security-and-data-boundaries.md`](docs/security-and-data-boundaries.m
 ## Status
 
 Research / engineering harness in a **prior-art integration + semantic hardening** phase.
+
+The mapping phase is complete enough to begin external-runtime substitution tests. The first recommended adapter experiment is the `derived-conflict-v0` Polaris fixture against Graphiti's native contradiction/invalidation behavior; see `STATUS.md` and issue #11.
 
 The goal is not to maximize custom architecture.
 
