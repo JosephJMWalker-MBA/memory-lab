@@ -1,0 +1,438 @@
+{
+  "experiment": "gei-conformance-v0",
+  "issue": 15,
+  "status": "fixed before the rerun against the GEI Round 66 branch head",
+  "gei": {
+    "repository": "JosephJMWalker-MBA/governed-intelligence-ecology",
+    "commit": "efeb1bade87232bb6e3c0d2d2fd0294275776ab8",
+    "processor": "pyshacl==0.40.1, as in GEI requirements-semantic.txt",
+    "harness_options": "inference none, meta_shacl true, advanced false, js false, as in GEI scripts/validate_reference_path.py",
+    "composition": "each overlay is validated together with GEI's composed positive reference path (POSITIVE_FILES) against GEI's full shape set (SHAPE_FILES)",
+    "branch": "round-66-st007-scope-erasure-invalidation-placement"
+  },
+  "examined_before_registration": [
+    "GEI scripts/validate_semantics.py, full mode, passed with the pinned processor at the pinned commit",
+    "GEI contracts (semantic-transition-and-disposition-v1, general-obligation-coverage-v0, resource-resolution and scope-compatibility adapter obligations), the ST-001, ST-002, ST-003, ST-007, and ST-012 shapes, handling-decision provenance, the reference-path scope shape, the CVD and REC profiles, and the history, epistemic, ST-002, ST-007, and ST-012 fixtures",
+    "ST-007 targets every subject of prov:wasRevisionOf; GEI's own st012-positive-v0.ttl revises a non-coverage record with prov:wasRevisionOf; no GEI fixture uses prov:invalidatedAtTime or prov:wasInvalidatedBy",
+    "GEI Round 66 was authored in the same session. Its placement-test results and its canonical-suite pass at efeb1ba were known before this file was written, so this rerun is a consistency check of the mapping against the changed commit, not a blind prediction"
+  ],
+  "classification": {
+    "violation_form": "NATIVE if GEI's unmodified shapes reject the faithful export. ADAPTABLE if GEI accepts it but the candidate shape (existing terms only) rejects it and the candidate passes GEI's full fixture suite. OUT-OF-SCOPE if GEI accepts it and the form was declared, before running, not checkable in a single conformance graph (an absence, a semantic entailment, the adequacy of a plan, or a runtime operation) or delegated by GEI. MISSING otherwise.",
+    "obligation": "the weakest class among the obligation's motivating violation forms, in the order MISSING < OUT-OF-SCOPE < ADAPTABLE < NATIVE",
+    "capability_form": "capability forms should conform under GEI; a rejected capability form is a representation conflict, and the runner records whether the ST-007 narrowing candidate resolves it",
+    "candidate_roles_in_this_rerun": "Candidate A is GEI's own opt-in invalidation-provenance profile shape. ADAPTABLE for O3 therefore now means: GEI core accepts the export, and GEI's opt-in profile rejects it. Candidate B is Memory Lab's original subject-guard ST-007 variant, kept for comparison."
+  },
+  "obligations": {
+    "O1": {
+      "statement": "Recorded conclusions are not rewritten when derivation rules or interpretations change: record, do not recompute history on read.",
+      "gei_contract": [
+        "T5 historical preservation: earlier states remain reconstructible",
+        "section 11 historical integrity: later evidence must not be rewritten into the provenance of an earlier decision",
+        "ST-012 generation-before-usage timestamps"
+      ],
+      "contract_gaps": []
+    },
+    "O2": {
+      "statement": "Withdrawal is never deletion; lawful erasure is a separate explicit operation.",
+      "gei_contract": [
+        "T5 relation selection: an entity that ceases to be available for use -> PROV invalidation",
+        "resource-resolution adapter obligation section 5: failure to resolve must remain represented"
+      ],
+      "contract_gaps": [
+        "no clause separates lawful erasure from withdrawal; T5 states no erasure exception"
+      ]
+    },
+    "O3": {
+      "statement": "A support-valid record for a constrained predicate is not closed by a substrate's native resolver; every closure has an inspectable conflict basis.",
+      "gei_contract": [
+        "contract thesis: a material change in epistemic disposition requires an explicit provenance-bearing operation",
+        "T2 explicit operation",
+        "T3 attributable producer",
+        "T4 governing basis",
+        "ST-002 plan-governed disposition decision"
+      ],
+      "contract_gaps": [
+        "no shape requires PROV invalidation itself to be an explicit operation"
+      ]
+    },
+    "O4": {
+      "statement": "Absence of retrieved support or contrary evidence is never decided or rendered as confirmation or negation.",
+      "gei_contract": [
+        "ST-002 a disposition consumes an explicit coverage measurement",
+        "ST-003 bounded completeness requires a reconstructible envelope",
+        "REC profile section 8 anti-promotion rule",
+        "CVD-003 withheld does not imply false",
+        "T7 unknowns remain representable"
+      ],
+      "contract_gaps": []
+    },
+    "O5": {
+      "statement": "Supported conflicting claims stay visible; the admission policy is scoped, versioned, and chosen by governance.",
+      "gei_contract": [
+        "CVD-005 disposition scope preserved",
+        "T6 scope-compatibility adapter obligation",
+        "T7 unresolved contradiction must not silently become resolved",
+        "ST-002 disposition decisions carry a prov:Plan"
+      ],
+      "contract_gaps": []
+    },
+    "O6": {
+      "statement": "No operation leaves dangling provenance.",
+      "gei_contract": [
+        "T1a represented identity",
+        "T1b native resolution where required (resource-resolution adapter obligation)"
+      ],
+      "contract_gaps": []
+    },
+    "O7": {
+      "statement": "Removing one support does not remove a record that still has another.",
+      "gei_contract": [
+        "standards-first rule: support and justification are delegated to SEPIO/EVI/argumentation components; GEI owns no support algebra"
+      ],
+      "contract_gaps": []
+    },
+    "O8": {
+      "statement": "Temporal succession does not stand in for a world-change vs correction judgement.",
+      "gei_contract": [
+        "CVD profile section 4: supersession identifies why it occurred (world state changed, interpretation corrected, record revised, policy changed) where material",
+        "T5 relation selection: revision vs replacement vs invalidation"
+      ],
+      "contract_gaps": []
+    }
+  },
+  "overlays": [
+    {
+      "file": "ml-good.ttl",
+      "obligation": "ALL",
+      "kind": "capability",
+      "source": "graphiti-conflict-v0 direct_write_world_change; coverage-scifact-v0 exhaustive ceiling",
+      "export_mapping": "records and projections as prov:Entity; admission as ST-002 disposition decisions; Graphiti invalid_at of a genuine world change as prov:invalidatedAtTime with an explicit invalidating activity; exhaustive coverage with a DCAT envelope",
+      "predicted": {
+        "gei_conforms": true,
+        "rejecting_gei_shape_files": [],
+        "candidate_invalidation_conforms": true,
+        "candidate_st007_narrowed_conforms": true
+      }
+    },
+    {
+      "file": "o1-recompute-no-history.ttl",
+      "obligation": "O1",
+      "kind": "violation",
+      "motivating": true,
+      "single_graph_checkable": false,
+      "why": "the lost 0200 conclusion is an absence; no single-graph check can see a record that was never exported",
+      "source": "appstate-baseline-v0 B2 after the rule-v2 probe",
+      "export_mapping": "only the recomputed projection is exported",
+      "predicted": {
+        "gei_conforms": true,
+        "rejecting_gei_shape_files": [],
+        "candidate_invalidation_conforms": true,
+        "candidate_st007_narrowed_conforms": true
+      }
+    },
+    {
+      "file": "o1-backdated-plan.ttl",
+      "obligation": "O1",
+      "kind": "violation",
+      "motivating": false,
+      "single_graph_checkable": true,
+      "why": "",
+      "source": "appstate-baseline-v0 B2, alternative representation",
+      "export_mapping": "the recomputed conclusion keeps the original decision time while using a later-generated rule",
+      "predicted": {
+        "gei_conforms": false,
+        "rejecting_gei_shape_files": [
+          "st-012-temporal-integrity.shacl.ttl"
+        ],
+        "candidate_invalidation_conforms": false,
+        "candidate_st007_narrowed_conforms": false
+      }
+    },
+    {
+      "file": "o2-deleted-evidence.ttl",
+      "obligation": "O2",
+      "kind": "violation",
+      "motivating": true,
+      "single_graph_checkable": false,
+      "why": "by GEI design an IRI reference is represented identity (T1a); whether the referenced resource still resolves is adapter-level native resolution (T1b), and no universal RDF-only resolver shape is justified",
+      "source": "graphiti-conflict-v0 remove_first_supporting_episode",
+      "export_mapping": "the deleted fact is referenced by the later projection and not described",
+      "predicted": {
+        "gei_conforms": true,
+        "rejecting_gei_shape_files": [],
+        "candidate_invalidation_conforms": true,
+        "candidate_st007_narrowed_conforms": true
+      }
+    },
+    {
+      "file": "o2-deleted-coverage-input.ttl",
+      "obligation": "O2",
+      "kind": "violation",
+      "motivating": false,
+      "single_graph_checkable": true,
+      "why": "",
+      "source": "graphiti-conflict-v0 remove_first_supporting_episode, applied to a typed load-bearing input",
+      "export_mapping": "the deleted coverage measurement is referenced by the decision and not described",
+      "predicted": {
+        "gei_conforms": false,
+        "rejecting_gei_shape_files": [
+          "st-002-reviewed-disposition.shacl.ttl"
+        ],
+        "candidate_invalidation_conforms": false,
+        "candidate_st007_narrowed_conforms": false
+      }
+    },
+    {
+      "file": "o3-closure-without-basis.ttl",
+      "obligation": "O3",
+      "kind": "violation",
+      "motivating": true,
+      "single_graph_checkable": true,
+      "why": "",
+      "source": "graphiti-conflict-v0 native resolution",
+      "export_mapping": "the closure as a superseded projection with no generating decision",
+      "predicted": {
+        "gei_conforms": false,
+        "rejecting_gei_shape_files": [
+          "st-002-reviewed-disposition.shacl.ttl"
+        ],
+        "candidate_invalidation_conforms": false,
+        "candidate_st007_narrowed_conforms": false
+      }
+    },
+    {
+      "file": "o3-invalidation-without-basis.ttl",
+      "obligation": "O3",
+      "kind": "violation",
+      "motivating": true,
+      "single_graph_checkable": true,
+      "why": "",
+      "source": "graphiti-conflict-v0 native_later_valid_at_contradiction",
+      "export_mapping": "Graphiti invalid_at as prov:invalidatedAtTime with no invalidating activity",
+      "predicted": {
+        "gei_conforms": true,
+        "rejecting_gei_shape_files": [],
+        "candidate_invalidation_conforms": false,
+        "candidate_st007_narrowed_conforms": true
+      }
+    },
+    {
+      "file": "o3-closure-with-recency-plan.ttl",
+      "obligation": "O3",
+      "kind": "violation",
+      "motivating": false,
+      "single_graph_checkable": false,
+      "why": "whether a recorded plan is an adequate conflict basis is a policy judgement; GEI records the plan and does not encode the policy engine's reasoning",
+      "source": "graphiti-conflict-v0 native resolution, with the resolver recorded",
+      "export_mapping": "the closure as an attributable decision under the plan 'latest valid_at wins'",
+      "predicted": {
+        "gei_conforms": true,
+        "rejecting_gei_shape_files": [],
+        "candidate_invalidation_conforms": true,
+        "candidate_st007_narrowed_conforms": true
+      }
+    },
+    {
+      "file": "o4-absence-as-bounded-complete.ttl",
+      "obligation": "O4",
+      "kind": "violation",
+      "motivating": true,
+      "single_graph_checkable": true,
+      "why": "",
+      "source": "coverage-scifact-v0 top-10 retrieval",
+      "export_mapping": "bounded-complete coverage from a top-10 retrieval with no access scope or temporal bound",
+      "predicted": {
+        "gei_conforms": false,
+        "rejecting_gei_shape_files": [
+          "st-003-bounded-coverage.shacl.ttl"
+        ],
+        "candidate_invalidation_conforms": false,
+        "candidate_st007_narrowed_conforms": false
+      }
+    },
+    {
+      "file": "o4-admitted-without-coverage.ttl",
+      "obligation": "O4",
+      "kind": "violation",
+      "motivating": true,
+      "single_graph_checkable": true,
+      "why": "",
+      "source": "coverage-scifact-v0 arm A0 default-accept",
+      "export_mapping": "an admission decision that consumes no coverage measurement",
+      "predicted": {
+        "gei_conforms": false,
+        "rejecting_gei_shape_files": [
+          "st-002-reviewed-disposition.shacl.ttl"
+        ],
+        "candidate_invalidation_conforms": false,
+        "candidate_st007_narrowed_conforms": false
+      }
+    },
+    {
+      "file": "o4-invented-negation.ttl",
+      "obligation": "O4",
+      "kind": "violation",
+      "motivating": true,
+      "single_graph_checkable": false,
+      "why": "whether 'Vega status clear' follows from the evidence is a semantic entailment; GEI delegates support assessment to SEPIO/domain profiles",
+      "source": "appstate-baseline-v0 B0 closed-world default",
+      "export_mapping": "the invented record derives from the withdrawn record and is admitted by a plan-governed decision",
+      "predicted": {
+        "gei_conforms": true,
+        "rejecting_gei_shape_files": [],
+        "candidate_invalidation_conforms": true,
+        "candidate_st007_narrowed_conforms": true
+      }
+    },
+    {
+      "file": "o5-conflict-dropped.ttl",
+      "obligation": "O5",
+      "kind": "violation",
+      "motivating": true,
+      "single_graph_checkable": false,
+      "why": "the dropped claim is an absence of a projection; nothing marks the record as conflicting",
+      "source": "appstate-baseline-v0 B0; graphiti-conflict-v0 native resolution",
+      "export_mapping": "only the ready projection exists",
+      "predicted": {
+        "gei_conforms": true,
+        "rejecting_gei_shape_files": [],
+        "candidate_invalidation_conforms": true,
+        "candidate_st007_narrowed_conforms": true
+      }
+    },
+    {
+      "file": "o5-scoped-dual-dispositions.ttl",
+      "obligation": "O5",
+      "kind": "capability",
+      "source": "appstate-baseline-v0 checks C8 and C9",
+      "export_mapping": "two projections of one record, each from a decision under its scope's versioned prov:Plan",
+      "predicted": {
+        "gei_conforms": true,
+        "rejecting_gei_shape_files": [],
+        "candidate_invalidation_conforms": true,
+        "candidate_st007_narrowed_conforms": true
+      }
+    },
+    {
+      "file": "o6-dangling-episode.ttl",
+      "obligation": "O6",
+      "kind": "violation",
+      "motivating": true,
+      "single_graph_checkable": false,
+      "why": "by GEI design an IRI reference is represented identity (T1a); resolution is adapter-level (T1b)",
+      "source": "graphiti-conflict-v0 remove_corroborating_episode",
+      "export_mapping": "the removed episode is still referenced as provenance and not described",
+      "predicted": {
+        "gei_conforms": true,
+        "rejecting_gei_shape_files": [],
+        "candidate_invalidation_conforms": true,
+        "candidate_st007_narrowed_conforms": true
+      }
+    },
+    {
+      "file": "o7-withdrawn-despite-support.ttl",
+      "obligation": "O7",
+      "kind": "violation",
+      "motivating": true,
+      "single_graph_checkable": false,
+      "why": "multiple-support correctness needs a support algebra; GEI delegates support reasoning to TMS/SEPIO-style components",
+      "source": "graphiti-conflict-v0 remove_first_supporting_episode cascade; multiple-justifications-v0",
+      "export_mapping": "a record withheld although one of two derivation sources is intact",
+      "predicted": {
+        "gei_conforms": true,
+        "rejecting_gei_shape_files": [],
+        "candidate_invalidation_conforms": true,
+        "candidate_st007_narrowed_conforms": true
+      }
+    },
+    {
+      "file": "o8-recency-invalidation-with-plan.ttl",
+      "obligation": "O8",
+      "kind": "violation",
+      "motivating": true,
+      "single_graph_checkable": false,
+      "why": "whether the newer claim expresses a change in the world is semantic; the structural invalidation provenance is present",
+      "source": "graphiti-conflict-v0 native_later_valid_at_contradiction",
+      "export_mapping": "the earlier record invalidated by the resolver under 'latest valid_at wins'; its projection superseded by the concurrent claim",
+      "predicted": {
+        "gei_conforms": true,
+        "rejecting_gei_shape_files": [],
+        "candidate_invalidation_conforms": true,
+        "candidate_st007_narrowed_conforms": true
+      }
+    },
+    {
+      "file": "o8-correction-as-revision.ttl",
+      "obligation": "O8",
+      "kind": "capability",
+      "source": "derived-memory-v0 interpretation correction, recorded as GEI T5 prescribes",
+      "export_mapping": "the corrected record prov:wasRevisionOf the original; the original projection superseded by the corrected one",
+      "predicted": {
+        "gei_conforms": true,
+        "rejecting_gei_shape_files": [],
+        "candidate_invalidation_conforms": true,
+        "candidate_st007_narrowed_conforms": true
+      }
+    }
+  ],
+  "gei_internal_checks": [
+    {
+      "name": "st012-positive-under-st007",
+      "fixture": "semantic-transition-v0/st012-positive-v0.ttl",
+      "shapes": [
+        "st-007-human-feedback-transition.shacl.ttl"
+      ],
+      "predicted": {
+        "conforms": true,
+        "conforms_with_st007_narrowed": true
+      }
+    }
+  ],
+  "predicted_noninterference": {
+    "candidate_invalidation": true,
+    "candidate_st007_narrowed": false
+  },
+  "predicted_obligation_classes": {
+    "O1": "OUT-OF-SCOPE",
+    "O2": "OUT-OF-SCOPE",
+    "O3": "ADAPTABLE",
+    "O4": "OUT-OF-SCOPE",
+    "O5": "OUT-OF-SCOPE",
+    "O6": "OUT-OF-SCOPE",
+    "O7": "OUT-OF-SCOPE",
+    "O8": "OUT-OF-SCOPE"
+  },
+  "derived_from": "expectations.json, preregistered at memory-lab 0dd7d4a. Only the items in rerun_changes differ.",
+  "candidates": {
+    "invalidation": "gei:semantics/shapes/invalidation-provenance-profile.shacl.ttl",
+    "st007_narrowed": "candidate/st-007-narrowed.shacl.ttl"
+  },
+  "results_file": "results/gei-conformance-v0-gei-efeb1ba.results.json",
+  "rerun_changes": [
+    {
+      "item": "o8-correction-as-revision.ttl",
+      "from": "GEI rejects it (ST-007)",
+      "to": "GEI accepts it",
+      "why": "Round 66 narrows ST-007 to coverage revisions"
+    },
+    {
+      "item": "st012-positive-under-st007",
+      "from": "fails ST-007",
+      "to": "conforms",
+      "why": "same narrowing"
+    },
+    {
+      "item": "noninterference.candidate_st007_narrowed",
+      "from": "passes",
+      "to": "fails",
+      "why": "GEI's new ST-007 regression fixture, an untyped coverage revision, escapes Memory Lab's subject-only guard. Round 66 falsified that candidate"
+    },
+    {
+      "item": "candidates.invalidation",
+      "from": "Memory Lab candidate A",
+      "to": "GEI's opt-in profile shape",
+      "why": "the rule GEI adopted, at the placement it chose"
+    }
+  ],
+  "holds_if": "every prediction check holds: the obligation classes are unchanged (O3 ADAPTABLE; O1, O2 and O4-O8 OUT-OF-SCOPE; none MISSING), and the changes in rerun_changes are observed"
+}
