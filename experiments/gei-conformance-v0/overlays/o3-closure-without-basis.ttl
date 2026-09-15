@@ -1,0 +1,20 @@
+@prefix ml: <https://example.org/memory-lab/export/> .
+@prefix prof: <https://example.org/gie-profile/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# O3, violation, motivating.
+# Source: graphiti-conflict-v0, native resolution (issue #11).
+#
+# Graphiti closed Polaris-blocked by recency and records no basis for the
+# closure. Exported as a current-view projection, the closure is a superseded
+# projection with no generating decision.
+
+ml:o3BlockedRecord a prov:Entity .
+ml:o3ReadyProjection a prov:Entity .
+
+ml:o3BlockedProjection
+    a prov:Entity ;
+    prof:currentViewDisposition prof:superseded ;
+    prov:wasDerivedFrom ml:o3BlockedRecord ;
+    dcterms:isReplacedBy ml:o3ReadyProjection .

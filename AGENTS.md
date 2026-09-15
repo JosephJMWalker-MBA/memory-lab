@@ -4,7 +4,11 @@ Read this before adding architecture, schemas, storage, retrieval machinery, or 
 
 ## Current phase
 
-Memory Lab is in **prior-art integration + semantic hardening**.
+Memory Lab is a **conformance harness for epistemic-continuity obligations** (`docs/what-remains-v0.md`).
+
+Its six research distinctions were tested against Graphiti, ordinary application state, and SciFact, or delegated to GEI. None survives as a Memory Lab primitive. The resulting obligations O1–O8 map onto GEI contract clauses, except O7, which belongs to TMS/ATMS-style support models (`docs/gei-conformance-mapping-v0.md`). GEI owns the shapes.
+
+Do not add new distinctions, schemas, or runtime pieces to keep the project alive. `docs/what-remains-v0.md` §6 lists the triggers that would reopen a research claim.
 
 The repository already contains useful engineering and synthetic semantics, but it is not committed to becoming a standalone production memory runtime.
 
@@ -16,6 +20,10 @@ Start with:
 4. `docs/architecture.md`
 5. `docs/derived-memory-prior-art.md`
 6. the specific experiment / schema relevant to the task
+7. `docs/gei-backpropagation-audit.md` before work touching an adjacent GEI layer (Pyxis, Hermeneia, Telos, MASI)
+8. `docs/graphiti-substitution-v0.md` before any runtime-substrate work
+9. `docs/what-remains-v0.md` before proposing any new Memory Lab work
+10. `docs/gei-conformance-mapping-v0.md` before proposing a shape, a GEI change, or an exporter
 
 For long-horizon historical reopening work, also read:
 
@@ -48,6 +56,9 @@ Before inventing a new memory primitive, graph layer, truth-maintenance engine, 
 - temporal / bitemporal databases and knowledge graphs;
 - event sourcing;
 - Graphiti / Zep;
+- formal argumentation (Dung, ASPIC+, AIF);
+- SEPIO / EVI evidence vocabularies and W3C DQV quality measurements;
+- Wikidata statement ranks (support vs current standing);
 - ordinary relational application state;
 - lexical / vector / graph retrieval composition.
 
@@ -168,6 +179,32 @@ Memory Lab may contribute:
 while another system supplies runtime machinery.
 
 That is a valid success state.
+
+### Negative boundary
+
+Memory Lab reports epistemic state: support, coverage, consistency, historical standing, and current-view disposition.
+
+Preserving information about the following does not make Memory Lab their owner:
+
+- authority, authorization, and execution eligibility (Telos / policy engines);
+- which admission policy governs a scope, and whether uncertainty is material enough to block action (Telos / application governance);
+- participant standing and steward acceptance (Hermeneia / GEI standing);
+- corrective independence across participants (GEI / MASI);
+- downstream use rights and lawful erasure (rights governance);
+- truth.
+
+Do not emit fields for any of these. `admitted` never means authorized or true. `withheld` never means false.
+
+See `docs/gei-backpropagation-audit.md` §5–§6.
+
+### Substrate adapters
+
+When adapting a runtime:
+
+- never map withdrawal onto a deletion operation;
+- never let a substrate's native conflict resolver close a support-valid record for a predicate that has an explicit constraint.
+
+See `docs/graphiti-substitution-v0.md`.
 
 ## Change rule
 

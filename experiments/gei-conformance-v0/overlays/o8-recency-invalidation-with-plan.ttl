@@ -1,0 +1,55 @@
+@prefix ml: <https://example.org/memory-lab/export/> .
+@prefix prof: <https://example.org/gie-profile/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# O8, violation, motivating.
+# Source: graphiti-conflict-v0, native_later_valid_at_contradiction (issue #11).
+#
+# Two concurrent supported claims. The later valid_at wins, and the earlier
+# record is invalidated as if the world had changed. The invalidation is
+# attributed to the resolver under "latest valid_at wins", and the blocked
+# projection is superseded by the ready one.
+
+ml:o8Resolver a prov:SoftwareAgent .
+ml:o8LatestValidAtWins a prov:Plan .
+
+ml:o8BlockedRecord
+    a prov:Entity ;
+    prov:invalidatedAtTime "2026-06-02T00:00:00Z"^^xsd:dateTime ;
+    prov:wasInvalidatedBy ml:o8Resolution .
+ml:o8ReadyRecord a prov:Entity .
+
+ml:o8Resolution
+    a prov:Activity ;
+    prov:used ml:o8ReadyRecord ;
+    prov:qualifiedAssociation [ a prov:Association ; prov:agent ml:o8Resolver ; prov:hadPlan ml:o8LatestValidAtWins ] .
+
+ml:o8EvidenceSet a prov:Entity .
+
+ml:o8Coverage
+    a dqv:QualityMeasurement, prov:Entity ;
+    dqv:isMeasurementOf prof:relevantEvidenceCoverage ;
+    dqv:computedOn ml:o8EvidenceSet ;
+    dqv:value "unknown" .
+
+ml:o8Decision
+    a prov:Activity ;
+    prov:used ml:o8BlockedRecord, ml:o8ReadyRecord, ml:o8Coverage ;
+    prov:qualifiedAssociation [ a prov:Association ; prov:agent ml:o8Resolver ; prov:hadPlan ml:o8LatestValidAtWins ] ;
+    prov:generated ml:o8BlockedProjection, ml:o8ReadyProjection .
+
+ml:o8BlockedProjection
+    a prov:Entity ;
+    prof:currentViewDisposition prof:superseded ;
+    prov:wasGeneratedBy ml:o8Decision ;
+    prov:wasDerivedFrom ml:o8BlockedRecord ;
+    dcterms:isReplacedBy ml:o8ReadyProjection .
+
+ml:o8ReadyProjection
+    a prov:Entity ;
+    prof:currentViewDisposition prof:admitted ;
+    prov:wasGeneratedBy ml:o8Decision ;
+    prov:wasDerivedFrom ml:o8ReadyRecord .

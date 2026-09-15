@@ -209,6 +209,152 @@ This experiment does not validate source-authority adjudication, probabilistic
 conflict resolution, automatic predicate-constraint discovery, complex temporal
 constraint logic, or private-corpus conflict handling.
 
+## Graphiti substitution v0 (external runtime, synthetic)
+
+The Memory-Lab-owned adapter and conformance checks run with:
+
+```bash
+python3 tests/run_graphiti_adapter_v0.py
+```
+
+This demonstrates the following without Graphiti installed:
+
+- the Polaris translation is deterministic;
+- a read-only admission projection over Graphiti-shaped edge state reproduces the native conflict lane's assessments byte-for-byte;
+- the ML-EP-0 checks detect four failure modes:
+  - recency collapse;
+  - unconstrained invalidation;
+  - deletion-as-withdrawal;
+  - dangling provenance;
+- every conformance verdict and admission recorded in the live evidence file can be recomputed from the recorded states.
+
+The live run executed `graphiti-core==0.30.2` on embedded Kuzu 0.11.3 at Memory Lab commit `c3d12d7`:
+
+```bash
+python experiments/graphiti-conflict-v0/run_graphiti_live.py
+```
+
+It exercised Graphiti's own code across ten scenarios:
+
+- persistence;
+- `resolve_extracted_edge`: the fast path, verdict handling, attribute handling, and temporal resolution;
+- `Graphiti.remove_episode`.
+
+Contradiction verdicts were scripted. No LLM, embedder, search, or production backend was used. See `graphiti-substitution-v0.md`.
+
+This is executed external-runtime evidence over one synthetic fixture. It does not validate:
+
+- real LLM contradiction behavior;
+- Graphiti search;
+- Neo4j or FalkorDB persistence;
+- real-corpus behavior.
+
+## Current-view admission vs application-state baseline v0
+
+The comparison runs with:
+
+```bash
+python3 tests/run_appstate_baseline_v0.py
+```
+
+It rebuilds the reassessment, multiple-justification, and conflict lanes' artifacts with the existing lane code. It then compares them with three sqlite3 designs that import no Memory Lab semantics:
+
+- **B1:** recorded conclusions;
+- **B2:** recompute-on-read;
+- **B0:** naive mutable state.
+
+What it demonstrates:
+
+- B1 reproduces every Memory Lab current-view outcome, and also expresses scoped dispositions and policy versions.
+- B2 rewrites history when a derivation rule changes.
+- B0 invents negations, erases the conflict, and keeps no history.
+- The reassessment results' mapping onto CVD values round-trips without loss.
+
+These are synthetic comparisons over hand-designed fixtures. They do not validate real application code, concurrent writers, valid-time intervals on derived facts, or concurrent contradictory base evidence. See `appstate-baseline-v0.md`.
+
+## Coverage decision value v0 (SciFact, preregistered)
+
+The protocol is `experiments/coverage-scifact-v0/PREREGISTRATION.md`, committed before any arm ran. The run and its verification:
+
+```bash
+python3 experiments/coverage-scifact-v0/fetch_scifact.py
+```
+
+```bash
+python3 experiments/coverage-scifact-v0/run_coverage_scifact.py
+```
+
+```bash
+python3 tests/run_coverage_scifact_v0.py
+```
+
+The run was executed on the SciFact dev split (300 claims) at commit `5e4ae07` on a clean tree. It used oracle abstract-level stance, stdlib BM25, and a sentence-level TF-IDF audit, with k ∈ {3, 10, 20}. All six preregistered predictions held:
+
+- Default-accept made 119 wrong accepts at k = 10; NEI semantics made none.
+- Categorical coverage was `unknown` for every claim under non-exhaustive retrieval.
+- The reassess-on-`known-incomplete` arm matched plain pooling on every claim.
+- The metric gate chose no threshold at every k.
+
+CI recomputes every recorded aggregate, threshold, prediction, and bootstrap interval from the recorded per-claim rankings and labels.
+
+Limits of this evidence:
+
+- It covers one judged collection whose judged universe contains no mixed-polarity claims.
+- The stance is an oracle, and retrieval is lexical only.
+- It does not test conflicting evidence, a real stance model, or neural retrieval.
+
+## GEI conformance mapping v0 (#15, preregistered)
+
+The protocol is `experiments/gei-conformance-v0/expectations.json`, committed at `0dd7d4a` before any SHACL run.
+
+The run needs:
+
+- the pinned environment in `experiments/gei-conformance-v0/requirements.txt`;
+- a clean GEI checkout at `4dd69ff`.
+
+```bash
+python experiments/gei-conformance-v0/run_gei_mapping.py --gei /path/to/governed-intelligence-ecology
+```
+
+```bash
+python3 tests/run_gei_mapping_v0.py
+```
+
+The recorded run was executed at `cab806d` on a clean tree, with pySHACL 0.40.1 and GEI's processor options. GEI's own `validate_semantics.py` passed in the same run.
+
+All seventeen overlay predictions held:
+
+- **Rejected by GEI:** five violation forms, by GEI's unmodified ST-002, ST-003, and ST-012.
+- **Caught only by a candidate shape:** one form, a PROV invalidation with no invalidating activity.
+- **Accepted:** eight forms, all declared in advance as not checkable in one conformance graph.
+- **Conflict found:** GEI's ST-007 rejected a revision that conforms to T5, and it also rejects GEI's own `st012-positive-v0.ttl`. A narrowed ST-007 fixed both. It still failed all 12 composed negatives and left all 14 atomic cases unchanged.
+
+CI re-derives every prediction check and every class from the recorded outcomes.
+
+Limits of this evidence:
+
+- The overlays are hand-authored, not produced by an exporter.
+- Only one processor was used (Level 1), with no Apache Jena comparison.
+- The predictions were derived from the shape text. Their holding confirms that the processor reads the shapes as written.
+
+### Rerun against GEI Round 66
+
+The rerun used GEI `efeb1ba`, the head of GEI PR #2 (draft):
+
+```bash
+python experiments/gei-conformance-v0/run_gei_mapping.py --gei /path/to/governed-intelligence-ecology --expectations expectations-gei-efeb1ba.json
+```
+
+The rerun predictions were committed at `b9db0a5` before the run. Round 66's outcomes were already known, so this rerun is a consistency check.
+
+Results:
+
+- All 20 prediction checks held.
+- GEI's own suite exited 0, across all six steps.
+- The obligation classes are unchanged.
+- GEI now accepts a correction recorded as a revision.
+- Memory Lab's subject-only ST-007 candidate now fails GEI's new regression fixture, as predicted.
+
 ## Legacy compatibility audit
 
 Six structurally different source documents were regenerated under the WSL query-encoder runtime and compared with their records in the recovered baseline.
@@ -312,6 +458,10 @@ A full logical equivalence audit was started between the untouched recovered bas
 - `experimental public research semantics`: executable synthetic behavior that
   tests a research model without claiming production or private-corpus validity,
   currently including derived memory v0, its adversarial v0.1 refinement, dependency-aware reassessment v0, multiple independent justifications v0, and derived conflict/consistency v0.
+- `executed external-runtime substitution (synthetic)`: a published runtime's
+  own code exercised against a Memory Lab fixture, with any substituted
+  participant (for example scripted LLM verdicts) declared; currently Graphiti
+  substitution v0.
 - `designed but unimplemented`: architectural direction that is not yet
   executable behavior, including LLM extraction, automatic evidence
   normalization, real retrieval-coverage estimation, automatic contrary-evidence

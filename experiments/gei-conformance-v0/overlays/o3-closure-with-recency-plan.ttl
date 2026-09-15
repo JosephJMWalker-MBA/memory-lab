@@ -1,0 +1,42 @@
+@prefix ml: <https://example.org/memory-lab/export/> .
+@prefix prof: <https://example.org/gie-profile/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# O3, violation, not motivating (the adequacy of the basis).
+#
+# The same closure is exported with its resolver as the agent and "latest
+# valid_at wins" as the plan. The basis is now recorded, but it is recency,
+# not an explicit constraint.
+
+ml:o3cResolver a prov:SoftwareAgent .
+ml:o3cLatestValidAtWins a prov:Plan .
+ml:o3cBlockedRecord a prov:Entity .
+ml:o3cReadyRecord a prov:Entity .
+ml:o3cEvidenceSet a prov:Entity .
+
+ml:o3cCoverage
+    a dqv:QualityMeasurement, prov:Entity ;
+    dqv:isMeasurementOf prof:relevantEvidenceCoverage ;
+    dqv:computedOn ml:o3cEvidenceSet ;
+    dqv:value "unknown" .
+
+ml:o3cResolution
+    a prov:Activity ;
+    prov:used ml:o3cBlockedRecord, ml:o3cReadyRecord, ml:o3cCoverage ;
+    prov:qualifiedAssociation [ a prov:Association ; prov:agent ml:o3cResolver ; prov:hadPlan ml:o3cLatestValidAtWins ] ;
+    prov:generated ml:o3cBlockedProjection, ml:o3cReadyProjection .
+
+ml:o3cBlockedProjection
+    a prov:Entity ;
+    prof:currentViewDisposition prof:superseded ;
+    prov:wasGeneratedBy ml:o3cResolution ;
+    prov:wasDerivedFrom ml:o3cBlockedRecord ;
+    dcterms:isReplacedBy ml:o3cReadyProjection .
+
+ml:o3cReadyProjection
+    a prov:Entity ;
+    prof:currentViewDisposition prof:admitted ;
+    prov:wasGeneratedBy ml:o3cResolution ;
+    prov:wasDerivedFrom ml:o3cReadyRecord .

@@ -1,0 +1,34 @@
+@prefix ml: <https://example.org/memory-lab/export/> .
+@prefix prof: <https://example.org/gie-profile/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+
+# O2, violation, motivating.
+# Source: graphiti-conflict-v0, remove_first_supporting_episode (issue #11).
+#
+# Graphiti deleted the release-checks fact although a second episode still
+# supported it. In a faithful export, a later projection still derives from
+# that fact, but the fact's description is gone: ml:o2ChecksFact is referenced
+# and never described.
+
+ml:o2Agent a prov:SoftwareAgent .
+ml:o2Policy a prov:Plan .
+ml:o2EvidenceSet a prov:Entity .
+
+ml:o2Coverage
+    a dqv:QualityMeasurement, prov:Entity ;
+    dqv:isMeasurementOf prof:relevantEvidenceCoverage ;
+    dqv:computedOn ml:o2EvidenceSet ;
+    dqv:value "unknown" .
+
+ml:o2Decision
+    a prov:Activity ;
+    prov:used ml:o2ChecksFact, ml:o2Coverage ;
+    prov:qualifiedAssociation [ a prov:Association ; prov:agent ml:o2Agent ; prov:hadPlan ml:o2Policy ] ;
+    prov:generated ml:o2ReadyProjection .
+
+ml:o2ReadyProjection
+    a prov:Entity ;
+    prof:currentViewDisposition prof:withheld ;
+    prov:wasGeneratedBy ml:o2Decision ;
+    prov:wasDerivedFrom ml:o2ChecksFact .

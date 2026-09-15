@@ -253,9 +253,27 @@ That is useful product behavior, but it is not the same as Memory Lab's delibera
 
 This makes `derived-conflict-v0` an excellent first Graphiti adapter fixture.
 
+**Executed result (2026-09-14):** see `graphiti-substitution-v0.md`.
+
+- Written directly, both claims are preserved natively by Graphiti 0.30.2's data model.
+- A read-only admission projection then withholds both.
+- Graphiti's native resolver keeps both current when `valid_at` is equal.
+- Otherwise the native resolver lets the later `valid_at` win, which writes a world-time end onto a support-valid record.
+
+Classification is refined from **PARTIAL** to: representation **NATIVE**; the resolver must be **bypassed for constrained predicates**.
+
 ### Ordinary application state
 
 **ADAPTABLE and a serious simpler baseline.** A database can preserve historical assertions and maintain a separate current-view table/projection. Memory Lab must demonstrate that an explicit reusable conformance profile adds value beyond ordinary careful application design.
+
+**Executed result (2026-09-14):** see `appstate-baseline-v0.md`. The baseline won.
+
+- An event-sourced facts table with SQL derivation rules and a scoped, versioned policy table reproduced every Memory Lab current-view outcome.
+- It also expressed scope and policy version.
+- A recompute-on-read variant rewrote history after a rule change.
+- A naive mutable design invented negations and erased the conflict.
+
+What survives is the conformance checks, not a representation.
 
 ## Disposition
 
@@ -359,6 +377,8 @@ A candidate runtime/composition does **not** need Memory Lab's JSON schemas. It 
 
 Source evidence and prior derived/reassessment history must not be silently rewritten merely because the current view changes.
 
+*Draft amendment (from #13):* this includes recomputation under a changed derivation rule or interpretation. Conclusions drawn under an earlier rule must remain readable as they were drawn.
+
 ## EP-02 Provenance closure
 
 A consequential derived proposition must be traceable through its immediate derivation/support relationships to source evidence or an explicitly external assumption.
@@ -377,6 +397,13 @@ not-assessed
 ```
 
 or an explicitly mapped equivalent.
+
+*Executed test (#12, `coverage-scifact-v0.md`):* on SciFact, an explicit coverage state added no decision value beyond provenance plus retrieval metrics.
+
+- NEI claim-verification semantics already enforce the decision consequence of this requirement.
+- Under non-exhaustive retrieval, the categorical state is constant (`unknown`).
+
+EP-03 is retained only as a rendering obligation (O4 in `what-remains-v0.md`): "no contrary evidence retrieved" must not be stated as "no contrary evidence exists".
 
 ## EP-04 Multiple-support correctness
 
@@ -400,7 +427,11 @@ An individually support-valid record must not lose its historical support status
 
 The system must be able to represent whether a historical/support-valid record participates in the current working view without rewriting the historical record.
 
-This requirement remains under falsification against ordinary application state.
+*Executed comparison (#13, `appstate-baseline-v0.md`):* ordinary event-sourced state with a scoped, versioned policy table satisfies this requirement. It also represents scope and policy version.
+
+EP-08 is retained as a conformance obligation, not as a Memory Lab primitive.
+
+*Draft amendment:* the disposition should be scoped and attributable to a policy identity/version.
 
 ## EP-09 Explicit conflict basis
 
@@ -494,6 +525,10 @@ Possible outcomes:
 - **Not representable without bypassing core behavior:** preserve the conformance distinction and test another substrate.
 
 Do not grade Graphiti negatively merely because its product semantics choose a different useful tradeoff.
+
+**Outcome:** adaptable, by bypassing the contradiction resolver for constrained predicates.
+
+Memory Lab narrowed to constraints, the admission projection, and conformance checks. See `graphiti-substitution-v0.md`.
 
 ## Second: Whyis reassessment/revision adapter
 

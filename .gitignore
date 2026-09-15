@@ -27,6 +27,9 @@ incremental-pending.json
 *.pid
 *.log
 
+# Downloaded third-party datasets (fetched by script; never redistributed here)
+experiments/*/data/
+
 # Private or generated memory artifacts
 derived-memory/
 snapshots/

@@ -1,0 +1,25 @@
+@prefix ml: <https://example.org/memory-lab/export/> .
+@prefix prof: <https://example.org/gie-profile/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+# O2, violation, not motivating.
+#
+# The same deletion applied to a load-bearing typed input. The coverage
+# measurement that the disposition decision used has been deleted, so
+# ml:o2bCoverageGone is referenced and never described.
+
+ml:o2bRecord a prov:Entity .
+ml:o2bAgent a prov:SoftwareAgent .
+ml:o2bPolicy a prov:Plan .
+
+ml:o2bDecision
+    a prov:Activity ;
+    prov:used ml:o2bRecord, ml:o2bCoverageGone ;
+    prov:qualifiedAssociation [ a prov:Association ; prov:agent ml:o2bAgent ; prov:hadPlan ml:o2bPolicy ] ;
+    prov:generated ml:o2bProjection .
+
+ml:o2bProjection
+    a prov:Entity ;
+    prof:currentViewDisposition prof:admitted ;
+    prov:wasGeneratedBy ml:o2bDecision ;
+    prov:wasDerivedFrom ml:o2bRecord .

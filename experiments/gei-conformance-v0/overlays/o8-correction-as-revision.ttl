@@ -1,0 +1,43 @@
+@prefix ml: <https://example.org/memory-lab/export/> .
+@prefix prof: <https://example.org/gie-profile/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# O8, capability.
+#
+# An interpretation correction recorded as GEI's T5 prescribes: the corrected
+# record is a revised version of the earlier record (prov:wasRevisionOf), and
+# the earlier projection is superseded by the corrected one. Nothing in the
+# world changed, and no invalidation is asserted.
+
+ml:o8bOriginalRecord a prov:Entity .
+ml:o8bCorrectedRecord a prov:Entity ; prov:wasRevisionOf ml:o8bOriginalRecord .
+ml:o8bReviewer a prov:SoftwareAgent .
+ml:o8bCorrectionReview a prov:Plan .
+ml:o8bEvidenceSet a prov:Entity .
+
+ml:o8bCoverage
+    a dqv:QualityMeasurement, prov:Entity ;
+    dqv:isMeasurementOf prof:relevantEvidenceCoverage ;
+    dqv:computedOn ml:o8bEvidenceSet ;
+    dqv:value "unknown" .
+
+ml:o8bDecision
+    a prov:Activity ;
+    prov:used ml:o8bCorrectedRecord, ml:o8bOriginalRecord, ml:o8bCoverage ;
+    prov:qualifiedAssociation [ a prov:Association ; prov:agent ml:o8bReviewer ; prov:hadPlan ml:o8bCorrectionReview ] ;
+    prov:generated ml:o8bOriginalProjection, ml:o8bCorrectedProjection .
+
+ml:o8bOriginalProjection
+    a prov:Entity ;
+    prof:currentViewDisposition prof:superseded ;
+    prov:wasGeneratedBy ml:o8bDecision ;
+    prov:wasDerivedFrom ml:o8bOriginalRecord ;
+    dcterms:isReplacedBy ml:o8bCorrectedProjection .
+
+ml:o8bCorrectedProjection
+    a prov:Entity ;
+    prof:currentViewDisposition prof:admitted ;
+    prov:wasGeneratedBy ml:o8bDecision ;
+    prov:wasDerivedFrom ml:o8bCorrectedRecord .

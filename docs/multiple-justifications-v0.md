@@ -187,3 +187,20 @@ The next pressure test is implemented in `docs/derived-conflict-v0.md`.
 That pass keeps justification validity separate from consistency validity: two
 records may each retain valid support while an explicit semantic constraint
 prevents both from being admitted to the current view simultaneously.
+
+## Terminology note: alternative is not independent
+
+In this lane, "independent justification" means **logically alternative**
+(the ATMS OR): losing one support path does not withdraw the record while
+another path survives.
+
+It does not mean the paths are independent as evidence or independent in how
+they fail. Two justifications can share a canonical evidence leaf or an
+upstream extraction, and then they fail together.
+
+Consequences:
+
+- The number of surviving justifications must not be read as corroboration
+  strength.
+- Common-cause analysis belongs to corrective-independence work outside Memory
+  Lab (see `gei-backpropagation-audit.md` GB-14).

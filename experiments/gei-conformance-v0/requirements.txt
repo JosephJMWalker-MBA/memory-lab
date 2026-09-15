@@ -1,0 +1,11 @@
+# Pinned environment for run_gei_mapping.py only (issue #15).
+# pyshacl matches GEI's requirements-semantic.txt; the rest is the set it resolved to.
+# The public test suite (make test) does not need these packages.
+pyshacl==0.40.1
+rdflib==7.6.0
+owlrl==7.6.2
+html5rdf==1.2.1
+pyparsing==3.3.2
+prettytable==3.18.0
+packaging==26.3
+wcwidth==0.8.3

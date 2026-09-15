@@ -1,0 +1,26 @@
+@prefix ml: <https://example.org/memory-lab/export/> .
+@prefix prof: <https://example.org/gie-profile/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+# O4, violation, motivating.
+# Source: coverage-scifact-v0, arm A0 default-accept (issue #12).
+#
+# The claim is admitted because no contrary evidence was retrieved. The decision
+# consumes the claim and the retrieved evidence, but no coverage measurement.
+
+ml:o4bClaimRecord a prov:Entity .
+ml:o4bRetrievedEvidence a prov:Entity .
+ml:o4bAgent a prov:SoftwareAgent .
+ml:o4bDefaultAccept a prov:Plan .
+
+ml:o4bDecision
+    a prov:Activity ;
+    prov:used ml:o4bClaimRecord, ml:o4bRetrievedEvidence ;
+    prov:qualifiedAssociation [ a prov:Association ; prov:agent ml:o4bAgent ; prov:hadPlan ml:o4bDefaultAccept ] ;
+    prov:generated ml:o4bProjection .
+
+ml:o4bProjection
+    a prov:Entity ;
+    prof:currentViewDisposition prof:admitted ;
+    prov:wasGeneratedBy ml:o4bDecision ;
+    prov:wasDerivedFrom ml:o4bClaimRecord .

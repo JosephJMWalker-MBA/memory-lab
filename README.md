@@ -6,6 +6,8 @@ Memory Lab studies how a system can preserve what was known, why it was believed
 
 It is a local-first research and engineering harness, not a claim that one custom memory runtime should replace established truth-maintenance, provenance, temporal-knowledge, graph, or retrieval systems.
 
+**Current identity (2026-09-15).** Memory Lab tested its six distinctions in three substitution experiments. Each distinction collapsed to ordinary machinery or was delegated. Memory Lab is now a **conformance harness**: executable fixtures, thin adapters, and checks that report whether a memory substrate or application design preserves eight epistemic-continuity obligations or collapses them. See [`docs/what-remains-v0.md`](docs/what-remains-v0.md). A fourth check mapped those obligations onto GEI's existing SHACL machinery. GEI's contracts already state seven of the eight; the eighth, O7, belongs to the support models GEI delegates to ([`docs/gei-conformance-mapping-v0.md`](docs/gei-conformance-mapping-v0.md)).
+
 ## Start here
 
 Read:
@@ -16,6 +18,11 @@ Read:
 4. [`docs/substitution-conformance-map-v0.md`](docs/substitution-conformance-map-v0.md) — field-by-field substitution map and draft implementation-independent profile
 5. [`docs/architecture.md`](docs/architecture.md) — current architecture and validated implementation tracks
 6. [`docs/derived-memory-prior-art.md`](docs/derived-memory-prior-art.md) — established work constraining the research
+7. [`docs/graphiti-substitution-v0.md`](docs/graphiti-substitution-v0.md) — first executed external-runtime substitution result
+8. [`docs/gei-backpropagation-audit.md`](docs/gei-backpropagation-audit.md) — GEI-derived future work and Memory Lab's negative boundary
+9. [`docs/coverage-scifact-v0.md`](docs/coverage-scifact-v0.md) — preregistered coverage decision-value test
+10. [`docs/what-remains-v0.md`](docs/what-remains-v0.md) — what remains of Memory Lab after the substitution experiments
+11. [`docs/gei-conformance-mapping-v0.md`](docs/gei-conformance-mapping-v0.md) — O1–O8 mapped onto GEI's SHACL conformance machinery
 
 For long-horizon reopening / historical-memory work, see:
 
@@ -182,6 +189,17 @@ GEI
 
 If an existing system already provides the required responsibility end-to-end more simply, Memory Lab should narrow rather than compete with it.
 
+Memory Lab reports epistemic state. Preserving information about the following does not make Memory Lab their owner:
+
+- authority;
+- the choice of admission policy;
+- decision sufficiency;
+- participant standing;
+- use rights;
+- truth.
+
+See [`docs/gei-backpropagation-audit.md`](docs/gei-backpropagation-audit.md) §5.
+
 ## Repository boundary
 
 This repository contains reusable code, schemas, contracts, sanitized fixtures, and validation documentation.
@@ -194,7 +212,31 @@ See [`docs/security-and-data-boundaries.md`](docs/security-and-data-boundaries.m
 
 Research / engineering harness in a **prior-art integration + semantic hardening** phase.
 
-The mapping phase is complete enough to begin external-runtime substitution tests. The first recommended adapter experiment is the `derived-conflict-v0` Polaris fixture against Graphiti's native contradiction/invalidation behavior; see `STATUS.md` and issue #11.
+The first external-runtime substitution experiment has been executed: `derived-conflict-v0` (Polaris) against Graphiti 0.30.2, with scripted contradiction verdicts.
+
+- Graphiti's data model plus a thin, read-only admission projection preserved the Polaris semantics.
+- Graphiti's native contradiction resolver and its episode removal did not.
+
+Memory Lab narrowed accordingly. See [`docs/graphiti-substitution-v0.md`](docs/graphiti-substitution-v0.md), `STATUS.md`, and issue #11.
+
+A second comparison tested current-view admission against ordinary application state ([`docs/appstate-baseline-v0.md`](docs/appstate-baseline-v0.md), issue #13).
+
+- Ordinary event-sourced application state with a scoped, versioned policy table reproduced every Memory Lab current-view outcome on the synthetic fixtures.
+- Current-view admission is therefore treated as an application pattern that Memory Lab tests, not a primitive Memory Lab owns.
+
+A third comparison tested evidence coverage, in a preregistered experiment on SciFact ([`docs/coverage-scifact-v0.md`](docs/coverage-scifact-v0.md), issue #12).
+
+- An explicit coverage state added no decision value beyond provenance plus retrieval metrics.
+- NEI claim-verification semantics already prevented the absence fallacy.
+- Categorical coverage was constant under non-exhaustive retrieval.
+
+What remains of Memory Lab is set out in [`docs/what-remains-v0.md`](docs/what-remains-v0.md).
+
+A fourth check mapped obligations O1–O8 onto GEI's existing SHACL machinery ([`docs/gei-conformance-mapping-v0.md`](docs/gei-conformance-mapping-v0.md), issue #15).
+
+- GEI's contracts state seven of the eight obligations. O7 is delegated to support models.
+- Its shapes reject their single-graph structural forms, except invalidation provenance.
+- The two GEI defects and the erasure gap are fixed on a GEI branch (GEI PR #2, a draft, not merged), and the mapping rerun against it held.
 
 The goal is not to maximize custom architecture.
 

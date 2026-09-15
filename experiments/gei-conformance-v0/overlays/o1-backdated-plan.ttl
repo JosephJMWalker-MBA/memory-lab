@@ -1,0 +1,26 @@
+@prefix ml: <https://example.org/memory-lab/export/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# O1, violation, not motivating (an alternative representation of the same
+# failure).
+#
+# The recomputed 0200 conclusion is exported with the original decision time,
+# although the rule it used (v2) was generated later.
+
+ml:o1bRuleV2
+    a prov:Plan, prov:Entity ;
+    prov:generatedAtTime "2026-09-15T00:00:00Z"^^xsd:dateTime .
+
+ml:o1bDerivation
+    a prov:Activity ;
+    prov:qualifiedUsage [
+        a prov:Usage ;
+        prov:entity ml:o1bRuleV2 ;
+        prov:atTime "2026-06-01T00:00:00Z"^^xsd:dateTime
+    ] ;
+    prov:generated ml:o1bHeliosConclusion .
+
+ml:o1bHeliosConclusion
+    a prov:Entity ;
+    prov:wasGeneratedBy ml:o1bDerivation .

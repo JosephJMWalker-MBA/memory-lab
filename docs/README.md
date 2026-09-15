@@ -16,6 +16,12 @@ Do not treat success in one track as proof of the other.
 5. `architecture.md` — current architecture and validated tracks
 6. `derived-memory-prior-art.md` — prior-art pressure and source lineage
 7. `inheritance-without-foreclosure.md` — historical-memory reopening hypothesis
+8. `graphiti-substitution-v0.md` — first executed external-runtime substitution result
+9. `gei-backpropagation-audit.md` — GEI-derived findings, negative boundary, interface obligations
+10. `appstate-baseline-v0.md` — current-view admission vs ordinary application state (EP-08 narrowed)
+11. `coverage-scifact-v0.md` — preregistered coverage decision-value test (no decision value found)
+12. `what-remains-v0.md` — the adversarial check and the redefinition of Memory Lab as a conformance harness
+13. `gei-conformance-mapping-v0.md` — O1–O8 mapped onto GEI's SHACL machinery (GEI states seven and delegates O7; its two defects are fixed in GEI PR #2)
 
 ## Engineering / retrieval track
 
@@ -40,6 +46,11 @@ Read roughly in this sequence:
 5. `derived-conflict-v0.md`
 6. `derived-memory-prior-art.md`
 7. `substitution-conformance-map-v0.md`
+8. `graphiti-substitution-v0.md`
+9. `appstate-baseline-v0.md`
+10. `coverage-scifact-v0.md`
+11. `what-remains-v0.md`
+12. `gei-conformance-mapping-v0.md`
 
 This sequence shows how synthetic adversarial cases forced the semantics to become more precise and then how prior art removes unnecessary ownership of the underlying machinery.
 
@@ -88,7 +99,9 @@ documented design
 `validation-history.md` contains engineering evidence for the retrieval track.
 The derived-memory documents state what their synthetic fixtures actually demonstrate.
 
-The current substitution map is **comparison evidence**, not an executed external-runtime conformance result.
+The substitution map is **comparison evidence**.
+
+The first executed external-runtime result is `graphiti-substitution-v0.md`. It covers one synthetic fixture, uses scripted contradiction verdicts, and runs on an embedded backend. It is not production evidence or real-LLM evidence.
 
 ## Current research rule
 

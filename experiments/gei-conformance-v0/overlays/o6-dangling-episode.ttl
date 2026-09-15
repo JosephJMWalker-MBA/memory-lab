@@ -1,0 +1,34 @@
+@prefix ml: <https://example.org/memory-lab/export/> .
+@prefix prof: <https://example.org/gie-profile/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+
+# O6, violation, motivating.
+# Source: graphiti-conflict-v0, remove_corroborating_episode (issue #11).
+#
+# The removed episode is still listed as provenance of a surviving record:
+# ml:o6EpisodeRemoved is referenced and never described.
+
+ml:o6EpisodeKept a prov:Entity .
+ml:o6ChecksRecord a prov:Entity ; prov:wasDerivedFrom ml:o6EpisodeKept, ml:o6EpisodeRemoved .
+ml:o6Agent a prov:SoftwareAgent .
+ml:o6Policy a prov:Plan .
+ml:o6EvidenceSet a prov:Entity .
+
+ml:o6Coverage
+    a dqv:QualityMeasurement, prov:Entity ;
+    dqv:isMeasurementOf prof:relevantEvidenceCoverage ;
+    dqv:computedOn ml:o6EvidenceSet ;
+    dqv:value "unknown" .
+
+ml:o6Decision
+    a prov:Activity ;
+    prov:used ml:o6ChecksRecord, ml:o6Coverage ;
+    prov:qualifiedAssociation [ a prov:Association ; prov:agent ml:o6Agent ; prov:hadPlan ml:o6Policy ] ;
+    prov:generated ml:o6Projection .
+
+ml:o6Projection
+    a prov:Entity ;
+    prof:currentViewDisposition prof:admitted ;
+    prov:wasGeneratedBy ml:o6Decision ;
+    prov:wasDerivedFrom ml:o6ChecksRecord .
