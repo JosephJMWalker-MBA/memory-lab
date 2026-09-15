@@ -303,6 +303,40 @@ Limits of this evidence:
 - The stance is an oracle, and retrieval is lexical only.
 - It does not test conflicting evidence, a real stance model, or neural retrieval.
 
+## GEI conformance mapping v0 (#15, preregistered)
+
+The protocol is `experiments/gei-conformance-v0/expectations.json`, committed at `0dd7d4a` before any SHACL run.
+
+The run needs:
+
+- the pinned environment in `experiments/gei-conformance-v0/requirements.txt`;
+- a clean GEI checkout at `4dd69ff`.
+
+```bash
+python experiments/gei-conformance-v0/run_gei_mapping.py --gei /path/to/governed-intelligence-ecology
+```
+
+```bash
+python3 tests/run_gei_mapping_v0.py
+```
+
+The recorded run was executed at `cab806d` on a clean tree, with pySHACL 0.40.1 and GEI's processor options. GEI's own `validate_semantics.py` passed in the same run.
+
+All seventeen overlay predictions held:
+
+- **Rejected by GEI:** five violation forms, by GEI's unmodified ST-002, ST-003, and ST-012.
+- **Caught only by a candidate shape:** one form, a PROV invalidation with no invalidating activity.
+- **Accepted:** eight forms, all declared in advance as not checkable in one conformance graph.
+- **Conflict found:** GEI's ST-007 rejected a revision that conforms to T5, and it also rejects GEI's own `st012-positive-v0.ttl`. A narrowed ST-007 fixed both. It still failed all 12 composed negatives and left all 14 atomic cases unchanged.
+
+CI re-derives every prediction check and every class from the recorded outcomes.
+
+Limits of this evidence:
+
+- The overlays are hand-authored, not produced by an exporter.
+- Only one processor was used (Level 1), with no Apache Jena comparison.
+- The predictions were derived from the shape text. Their holding confirms that the processor reads the shapes as written.
+
 ## Legacy compatibility audit
 
 Six structurally different source documents were regenerated under the WSL query-encoder runtime and compared with their records in the recovered baseline.
