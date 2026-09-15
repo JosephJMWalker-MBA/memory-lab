@@ -386,6 +386,13 @@ Rank 3 (GB-04) was executed as #12, as a preregistered test on SciFact; see `doc
 
 After all three experiments, `docs/what-remains-v0.md` redefines Memory Lab as a conformance harness for obligations O1–O8.
 
+#15 then mapped O1–O8 onto GEI's existing SHACL machinery; see `docs/gei-conformance-mapping-v0.md`.
+
+- GEI's contracts state seven of the eight obligations. O7 is delegated to support models.
+- Two GEI defects are recorded as recommendations, not applied:
+  - ST-007's target;
+  - unchecked PROV invalidation.
+
 ## 8. Relationship to existing issues
 
 | Existing issue | Relationship |

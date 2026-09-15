@@ -6,7 +6,7 @@ Read this before adding architecture, schemas, storage, retrieval machinery, or 
 
 Memory Lab is a **conformance harness for epistemic-continuity obligations** (`docs/what-remains-v0.md`).
 
-Its six research distinctions were tested against Graphiti, ordinary application state, and SciFact, or delegated to GEI. None survives as a Memory Lab primitive.
+Its six research distinctions were tested against Graphiti, ordinary application state, and SciFact, or delegated to GEI. None survives as a Memory Lab primitive. The resulting obligations O1–O8 map onto GEI contract clauses, except O7, which belongs to TMS/ATMS-style support models (`docs/gei-conformance-mapping-v0.md`). GEI owns the shapes.
 
 Do not add new distinctions, schemas, or runtime pieces to keep the project alive. `docs/what-remains-v0.md` §6 lists the triggers that would reopen a research claim.
 
@@ -23,6 +23,7 @@ Start with:
 7. `docs/gei-backpropagation-audit.md` before work touching an adjacent GEI layer (Pyxis, Hermeneia, Telos, MASI)
 8. `docs/graphiti-substitution-v0.md` before any runtime-substrate work
 9. `docs/what-remains-v0.md` before proposing any new Memory Lab work
+10. `docs/gei-conformance-mapping-v0.md` before proposing a shape, a GEI change, or an exporter
 
 For long-horizon historical reopening work, also read:
 

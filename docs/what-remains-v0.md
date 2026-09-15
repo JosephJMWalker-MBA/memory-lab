@@ -71,7 +71,7 @@ Each obligation has the executed test that motivated it.
 | O7 | Removing one support does not remove a record that still has another. | #11: EP-04. Prior art: ATMS |
 | O8 | Temporal succession does not stand in for a world-change vs correction judgement. | #11: EP-10 |
 
-These are GEI-level conformance obligations under GEI's T1–T7 general obligations, not Memory Lab primitives. They restate GEI's discipline that **persisted information is not automatically true, authoritative, wanted, selected, or governing** as tests someone can run.
+These are GEI-level conformance obligations under GEI's T1–T7 general obligations, not Memory Lab primitives. `gei-conformance-mapping-v0.md` §4 gives the GEI contract text for each one. They restate GEI's discipline that **persisted information is not automatically true, authoritative, wanted, selected, or governing** as tests someone can run.
 
 ## 4. What Memory Lab stops doing
 
@@ -87,6 +87,15 @@ These are GEI-level conformance obligations under GEI's T1–T7 general obligati
   - keep the executable Python checks here for substrates that are not RDF (Graphiti, SQL, retrieval pipelines).
 - **The Chroma/HNSW engineering track** remains separate, validated lineage. #1 and #2 remain open.
 
+**Executed (#15, `gei-conformance-mapping-v0.md`).** Seventeen overlays, preregistered at `0dd7d4a`, were validated against GEI's unmodified shapes at `4dd69ff` with pinned pySHACL. All predictions held.
+
+- **Single-graph forms:** GEI's shapes reject every single-graph structural form of the obligations except one, an invalidation with no invalidating activity. O3 is therefore ADAPTABLE.
+- **The other seven:** these are OUT-OF-SCOPE for single-graph SHACL. Each has a motivating failure that is an absence, an unresolved reference, an entailment, a plan-adequacy judgement, or support algebra. GEI's contract prose states each of them, with two exceptions: O2 lacks a lawful-erasure clause, and O7 is delegated to support models.
+- **MISSING:** none.
+- **A conflict inside GEI:** ST-007 rejects the `prov:wasRevisionOf` that GEI's T5 prescribes for corrected records.
+
+The result: O1–O8 are GEI obligations with GEI citations, except O7, which GEI delegates to TMS/ATMS-style support models. Memory Lab keeps the differential (before/after) checks for substrates that are not RDF, and adds no responsibility.
+
 ### Implications back up for GEI
 
 These are recorded for GEI's maintainers. They have not been applied to the GEI repository.
@@ -100,7 +109,7 @@ These are recorded for GEI's maintainers. They have not been applied to the GEI 
 |---|---|
 | A substrate or design that passes O1–O8 yet produces a demonstrable epistemic failure in real use | A new obligation |
 | GEI C-001 shows causal reopening beats its baselines | EP-11 becomes an obligation with evidence |
-| A conflicting-evidence collection shows the coverage **label**, not retrieval, changing decisions (H4) | A reopening of coverage. By construction this is not expected (A3-reassess ≡ A2-pool) |
+| A conflicting-evidence collection shows the coverage **label**, not retrieval, changing decisions (H4) | A reopening of coverage. By construction this is not expected (A3-reassess ≡ A2-pool). **Reopen condition only:** the search for such a collection was dropped on 2026-09-15 |
 
 Without one of these, the answer to "what memory semantics are actually required?" is: the ones already in TMS/ATMS, bitemporal stores, event sourcing, PROV/DQV, and NEI claim-verification semantics. Memory Lab supplies checks that they were not lost in composition.
 
@@ -109,7 +118,7 @@ Without one of these, the answer to "what memory semantics are actually required
 | Issue | Recommendation |
 |---|---|
 | #11 | The Graphiti result is recorded. The Whyis target is optional (it would exercise O1/O2 on nanopublication revision). Low priority |
-| #12 | Narrowing recorded; close after review. H4 is deferred and needs a licensed dataset |
-| #13 | Narrowing recorded; close after review |
+| #12 | Closed as a completed narrowing. H4 is a reopen condition only; the dataset search was dropped |
+| #13 | Closed as a completed narrowing |
 | #14 | Argumentation would further narrow O5's admission rule. Low priority |
-| #15 | Becomes primary: the obligations move to GEI's conformance layer |
+| #15 | Mapping executed (`gei-conformance-mapping-v0.md`). GEI's contracts state seven of the obligations (O2 without its erasure clause) and delegate O7. Its shapes check their single-graph forms, except PROV invalidation provenance. The two shape changes and one prose clause are recommendations for GEI's maintainers. The code exporter is deferred |

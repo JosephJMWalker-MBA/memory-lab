@@ -6,7 +6,7 @@ Memory Lab studies how a system can preserve what was known, why it was believed
 
 It is a local-first research and engineering harness, not a claim that one custom memory runtime should replace established truth-maintenance, provenance, temporal-knowledge, graph, or retrieval systems.
 
-**Current identity (2026-09-15).** Memory Lab tested its six distinctions in three substitution experiments. Each distinction collapsed to ordinary machinery or was delegated. Memory Lab is now a **conformance harness**: executable fixtures, thin adapters, and checks that report whether a memory substrate or application design preserves eight epistemic-continuity obligations or collapses them. See [`docs/what-remains-v0.md`](docs/what-remains-v0.md).
+**Current identity (2026-09-15).** Memory Lab tested its six distinctions in three substitution experiments. Each distinction collapsed to ordinary machinery or was delegated. Memory Lab is now a **conformance harness**: executable fixtures, thin adapters, and checks that report whether a memory substrate or application design preserves eight epistemic-continuity obligations or collapses them. See [`docs/what-remains-v0.md`](docs/what-remains-v0.md). A fourth check mapped those obligations onto GEI's existing SHACL machinery. GEI's contracts already state seven of the eight; the eighth, O7, belongs to the support models GEI delegates to ([`docs/gei-conformance-mapping-v0.md`](docs/gei-conformance-mapping-v0.md)).
 
 ## Start here
 
@@ -22,6 +22,7 @@ Read:
 8. [`docs/gei-backpropagation-audit.md`](docs/gei-backpropagation-audit.md) — GEI-derived future work and Memory Lab's negative boundary
 9. [`docs/coverage-scifact-v0.md`](docs/coverage-scifact-v0.md) — preregistered coverage decision-value test
 10. [`docs/what-remains-v0.md`](docs/what-remains-v0.md) — what remains of Memory Lab after the substitution experiments
+11. [`docs/gei-conformance-mapping-v0.md`](docs/gei-conformance-mapping-v0.md) — O1–O8 mapped onto GEI's SHACL conformance machinery
 
 For long-horizon reopening / historical-memory work, see:
 
@@ -230,6 +231,12 @@ A third comparison tested evidence coverage, in a preregistered experiment on Sc
 - Categorical coverage was constant under non-exhaustive retrieval.
 
 What remains of Memory Lab is set out in [`docs/what-remains-v0.md`](docs/what-remains-v0.md).
+
+A fourth check mapped obligations O1–O8 onto GEI's existing SHACL machinery ([`docs/gei-conformance-mapping-v0.md`](docs/gei-conformance-mapping-v0.md), issue #15).
+
+- GEI's contracts state seven of the eight obligations. O7 is delegated to support models.
+- Its shapes reject their single-graph structural forms, except invalidation provenance.
+- Two GEI defects are recorded as recommendations. GEI is unchanged.
 
 The goal is not to maximize custom architecture.
 

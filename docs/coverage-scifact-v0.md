@@ -113,7 +113,9 @@ Prediction 6 held. **Explicit coverage state added no decision value on homogene
 
 **Not tested.** SciFact has no mixed-polarity claims.
 
-SciFact-Open (Wadden et al., 2022) pools evidence over 500K abstracts and would contain such cases. Its tarball is 287,369,773 bytes. Its repository states no license for its annotations; the corpus is S2ORC, which is ODC-By. It was **not downloaded**. That needs your decision.
+SciFact-Open (Wadden et al., 2022) pools evidence over 500K abstracts and would contain such cases. Its tarball is 287,369,773 bytes. Its repository states no license for its annotations; the corpus is S2ORC, which is ODC-By. It was **not downloaded**.
+
+**Decision (2026-09-15): the search for a conflicting-evidence collection is dropped.** H4 remains only as a reopen condition (`what-remains-v0.md` §6). No dataset search or download is planned.
 
 Expectation for H4 if it is ever run: by construction, A3-reassess equals A2-pool. So even with conflicting evidence, the coverage label cannot beat pooling. The CI test demonstrates this on a synthetic mixed claim.
 

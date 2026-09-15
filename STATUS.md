@@ -6,6 +6,7 @@
 **Current substitution map:** `docs/substitution-conformance-map-v0.md`  
 **First executed substitution result:** `docs/graphiti-substitution-v0.md`  
 **GEI backpropagation audit:** `docs/gei-backpropagation-audit.md`  
+**GEI conformance mapping (#15):** `docs/gei-conformance-mapping-v0.md`  
 **Prior-art integration tracker:** GitHub issue #11 (focused follow-ons: #12 coverage decision value, #13 current-view vs application state, #14 argumentation baseline, #15 export to the GEI profile)
 
 ## Current identity
@@ -23,6 +24,14 @@ None of the six research distinctions survives as a Memory Lab primitive. Memory
 > a conformance harness for epistemic-continuity obligations O1–O8. It holds executable fixtures, thin substrate adapters, and checks that report whether a memory substrate or application design preserves those obligations or collapses them.
 
 It is not a memory system, a runtime, an ontology, or a source of new distinctions.
+
+A fourth check, the #15 mapping (`docs/gei-conformance-mapping-v0.md`), mapped O1–O8 onto GEI's existing SHACL machinery:
+
+- GEI's contracts state seven of the eight obligations. O2 lacks a lawful-erasure clause. O7 is delegated to support models.
+- Its shapes reject their single-graph structural forms, except invalidation provenance.
+- None is MISSING.
+
+O1–O8 therefore belong to GEI, or, for O7, to the support models GEI delegates to. What remains for Memory Lab is differential (before/after) checks for substrates that are not RDF.
 
 It is not currently committed to becoming the production memory runtime for GIE/GEI or any other system.
 
@@ -194,7 +203,7 @@ This is recorded as a narrowing:
 - its informative variants are extra retrieval and recall estimation;
 - its representation is a DQV + PROV envelope.
 
-What survives is the rendering obligation O4. The conflicting-evidence case (H4) was not testable, because SciFact has no mixed-polarity claims.
+What survives is the rendering obligation O4. The conflicting-evidence case (H4) was not testable, because SciFact has no mixed-polarity claims. The search for a conflicting-evidence collection was dropped on 2026-09-15. H4 is a reopen condition only.
 
 Consequence for the schema: the coverage schema change (GB-03) is no longer justified. Map legacy values to REC values at export (#15).
 
@@ -219,6 +228,35 @@ The historical-memory hypothesis is developed in `docs/inheritance-without-forec
 Its likely strongest form is a reassessment protocol over preserved causal history, not a bespoke storage primitive.
 
 The controlled test is GEI experiment C-001, together with its pre-outcome amendment; it is not a Memory Lab experiment. Memory Lab does not run a competing protocol and does not author or preview C-001's sealed instruments. Memory Lab's role is to supply the minimum historical-record shape.
+
+## GEI conformance mapping (#15)
+
+**Executed (`docs/gei-conformance-mapping-v0.md`).**
+
+- **Setup:** preregistered at `0dd7d4a`. GEI was at `4dd69ff`, unmodified, validated with pinned pySHACL 0.40.1.
+- **Method:** seventeen overlays, each a faithful export of a failure or capability seen in #11–#13, were validated together with GEI's composed positive reference path against all sixteen GEI shape files.
+- **Outcome:** all seventeen predictions held.
+
+| Obligation | Class | Forms GEI rejects natively |
+|---|---|---|
+| O1 | OUT-OF-SCOPE | backdated rule use (ST-012) |
+| O2 | OUT-OF-SCOPE | deleted typed coverage input (ST-002) |
+| O3 | ADAPTABLE | closure without a decision (ST-002). Invalidation without an activity needs a candidate shape |
+| O4 | OUT-OF-SCOPE | bounded-complete without an envelope (ST-003); admission without a coverage input (ST-002) |
+| O5 | OUT-OF-SCOPE | none needed: scoped dual dispositions are represented |
+| O6 | OUT-OF-SCOPE | none: resolution is adapter-level (T1b) by GEI design |
+| O7 | OUT-OF-SCOPE | none: support algebra is delegated |
+| O8 | OUT-OF-SCOPE | none. Recording a correction as a revision is blocked by ST-007 |
+
+OUT-OF-SCOPE means a motivating failure cannot be seen in one conformance graph: it is an absence, an unresolved reference, an entailment, a plan-adequacy judgement, or support algebra. GEI's contracts state each of these obligations, with two exceptions: O7 is delegated to support models, and O2 lacks a lawful-erasure clause.
+
+Three recommendations go to GEI's maintainers. None has been applied:
+
+- **ST-007:** it targets every `prov:wasRevisionOf` subject, so it rejects the revision relation GEI's own T5 prescribes for corrected records. GEI's own `st012-positive-v0.ttl` fails ST-007. A narrowed target fixes this, with no effect on any GEI case.
+- **PROV invalidation:** no shape checks it, although T5 names it. A Graphiti-style `invalid_at` with no invalidating activity conforms.
+- **Erasure:** T5 has no lawful-erasure clause (prose only).
+
+This is another successful narrowing. Memory Lab adds no new responsibility.
 
 ## Relationship to GIE / GEI
 
@@ -254,7 +292,9 @@ The negative boundary and interface obligations are in `docs/gei-backpropagation
   - Its native contradiction-resolution and episode-removal paths did not.
   - No real LLM, production backend, or real corpus was involved.
 - Memory Lab's admission rule has not yet been compared with formal argumentation semantics (#14).
-- Evidence coverage has been tested once, on a real judged collection (SciFact, oracle stance, lexical retrieval), where it added no decision value. It has not been tested on a collection with conflicting evidence, and not with a real stance model.
+- Evidence coverage has been tested once, on a real judged collection (SciFact, oracle stance, lexical retrieval), where it added no decision value. It has not been tested on a collection with conflicting evidence, and not with a real stance model. The search for such a collection is dropped; H4 is a reopen condition only.
+- No Memory Lab state has been exported to RDF by code. The GEI mapping (#15) used hand-authored overlays of observed failures.
+- The GEI mapping is Level-1 evidence: one processor (pySHACL), with no Apache Jena comparison.
 - Real-corpus derived-memory behavior is not yet established.
 - Inheritance without foreclosure is not yet empirically established.
 - Current-view semantics have not yet been demonstrated across multiple independent existing runtimes.
@@ -271,19 +311,25 @@ Completed:
 
 - the Graphiti adapter experiment for `derived-conflict-v0` (#11);
 - the current-view vs application-state comparison (#13);
-- the coverage decision-value experiment (#12).
+- the coverage decision-value experiment (#12);
+- the GEI conformance mapping (#15).
 
-All three narrowed Memory Lab. The resulting redefinition is in `docs/what-remains-v0.md`.
+All four narrowed Memory Lab. The redefinition is in `docs/what-remains-v0.md`, and the mapping to GEI is in `docs/gei-conformance-mapping-v0.md`.
 
-Next sequence, given the redefinition:
+Next sequence, given the mapping:
 
-1. **#15: move obligations O1–O8 into GEI's conformance layer.** This means exporting Memory Lab states to the GEI profile and expressing the obligations as GEI shapes and fixtures where RDF is natural. The executable checks for Graphiti, SQL, and retrieval pipelines stay here.
+1. **Offer the #15 recommendations to GEI's maintainers.** Memory Lab does not edit GEI. The recommendations are:
+   - narrow ST-007's target;
+   - check PROV invalidation provenance, either with a shape or with an adapter profile for substrates that export temporal invalidation;
+   - add a lawful-erasure clause to T5.
+
+   A code exporter is deferred until a real integration with a substrate that is not RDF needs one.
 2. **Concurrent contradictory base evidence.** This is an O3/O5 check. Both Graphiti and the ordinary baseline resolve single-valued base facts by recency, and neither was tested against concurrent contradiction at the base level.
 3. **#14 argumentation baseline.** This would further narrow O5's admission rule. Low priority.
 4. **Optional:**
    - a Whyis substitution (#11), which would exercise O1/O2 on nanopublication revision; blocked here with no deployment;
-   - a real-LLM Graphiti replication, which needs infrastructure and a provider key;
-   - H4 on a licensed conflicting-evidence collection, which is predicted to measure retrieval, not coverage.
-5. **No custom runtime component is justified** by current evidence.
+   - a real-LLM Graphiti replication, which needs infrastructure and a provider key.
+5. **H4 is dropped.** The conflicting-evidence dataset search is recorded only as a reopen condition (`docs/what-remains-v0.md` §6).
+6. **No custom runtime component is justified** by current evidence.
 
 Inheritance without foreclosure is tested by GEI C-001, not by a Memory Lab experiment.
