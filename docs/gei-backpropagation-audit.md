@@ -13,7 +13,7 @@ This audit is a recovered future-work map plus a negative-boundary record. It do
 | Source | What was inspected |
 |---|---|
 | `JosephJMWalker-MBA/governed-intelligence-ecology` @ `4dd69ff` (origin/main) | `AGENTS.md`, `STATUS.md`, `README.md`, `docs/architecture-levels-and-roles.md`, `docs/component-implementation-status.md`, `semantics/` (contracts, profiles, shapes, fixtures), `research/experiments/` (C-001 protocol, amendment, review, reconnaissance), prior-art rounds 01–12 plus 03A, theory paper v0.3, GEI issue #1 |
-| Local `~/Desktop/governed-intelligence-ecology` | Working copy 37 commits behind origin with two untracked C-001 files; those files now exist on origin. The local working tree was read, not modified |
+| Local `~/Desktop/governed-intelligence-ecology` | Working copy 37 commits behind origin, with two untracked C-001 files and one uncommitted README change. The two files match their origin copies apart from a trailing newline. The README change only indexes those two files, which origin's README already lists. No research exists only locally. The working tree was read, not modified |
 | `JosephJMWalker-MBA/Telos` | foundation ontology, correction/supersession pressure (XTDB), invariant hostile reviews, experiment 0007 (stale view / fencing), issue #194 |
 | `JosephJMWalker-MBA/Hermeneia` | vision freeze issue #78, integration docs |
 | `JosephJMWalker-MBA/pyxis` | README principles (evidence-first, no authority promotion) |
