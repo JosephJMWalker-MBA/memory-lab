@@ -19,6 +19,8 @@ Do not treat success in one track as proof of the other.
 8. `graphiti-substitution-v0.md` — first executed external-runtime substitution result
 9. `gei-backpropagation-audit.md` — GEI-derived findings, negative boundary, interface obligations
 10. `appstate-baseline-v0.md` — current-view admission vs ordinary application state (EP-08 narrowed)
+11. `coverage-scifact-v0.md` — preregistered coverage decision-value test (no decision value found)
+12. `what-remains-v0.md` — the adversarial check and the redefinition of Memory Lab as a conformance harness
 
 ## Engineering / retrieval track
 
@@ -45,6 +47,8 @@ Read roughly in this sequence:
 7. `substitution-conformance-map-v0.md`
 8. `graphiti-substitution-v0.md`
 9. `appstate-baseline-v0.md`
+10. `coverage-scifact-v0.md`
+11. `what-remains-v0.md`
 
 This sequence shows how synthetic adversarial cases forced the semantics to become more precise and then how prior art removes unnecessary ownership of the underlying machinery.
 

@@ -398,6 +398,13 @@ not-assessed
 
 or an explicitly mapped equivalent.
 
+*Executed test (#12, `coverage-scifact-v0.md`):* on SciFact, an explicit coverage state added no decision value beyond provenance plus retrieval metrics.
+
+- NEI claim-verification semantics already enforce the decision consequence of this requirement.
+- Under non-exhaustive retrieval, the categorical state is constant (`unknown`).
+
+EP-03 is retained only as a rendering obligation (O4 in `what-remains-v0.md`): "no contrary evidence retrieved" must not be stated as "no contrary evidence exists".
+
 ## EP-04 Multiple-support correctness
 
 When multiple independent support paths exist, loss of one path must not withdraw the proposition while another valid path remains.

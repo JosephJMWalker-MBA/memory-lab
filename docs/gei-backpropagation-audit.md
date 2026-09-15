@@ -379,6 +379,13 @@ Rank 2 (GB-01, GB-02, GB-09) was then executed as #13; see `docs/appstate-baseli
 - It also represented scope and policy version.
 - EP-08 is therefore narrowed to a conformance obligation.
 
+Rank 3 (GB-04) was executed as #12, as a preregistered test on SciFact; see `docs/coverage-scifact-v0.md`.
+
+- An explicit coverage state added no decision value.
+- GB-03's schema change is withdrawn in favour of mapping to REC values at export.
+
+After all three experiments, `docs/what-remains-v0.md` redefines Memory Lab as a conformance harness for obligations O1–O8.
+
 ## 8. Relationship to existing issues
 
 | Existing issue | Relationship |

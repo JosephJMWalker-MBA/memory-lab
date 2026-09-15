@@ -272,6 +272,37 @@ What it demonstrates:
 
 These are synthetic comparisons over hand-designed fixtures. They do not validate real application code, concurrent writers, valid-time intervals on derived facts, or concurrent contradictory base evidence. See `appstate-baseline-v0.md`.
 
+## Coverage decision value v0 (SciFact, preregistered)
+
+The protocol is `experiments/coverage-scifact-v0/PREREGISTRATION.md`, committed before any arm ran. The run and its verification:
+
+```bash
+python3 experiments/coverage-scifact-v0/fetch_scifact.py
+```
+
+```bash
+python3 experiments/coverage-scifact-v0/run_coverage_scifact.py
+```
+
+```bash
+python3 tests/run_coverage_scifact_v0.py
+```
+
+The run was executed on the SciFact dev split (300 claims) at commit `5e4ae07` on a clean tree. It used oracle abstract-level stance, stdlib BM25, and a sentence-level TF-IDF audit, with k ∈ {3, 10, 20}. All six preregistered predictions held:
+
+- Default-accept made 119 wrong accepts at k = 10; NEI semantics made none.
+- Categorical coverage was `unknown` for every claim under non-exhaustive retrieval.
+- The reassess-on-`known-incomplete` arm matched plain pooling on every claim.
+- The metric gate chose no threshold at every k.
+
+CI recomputes every recorded aggregate, threshold, prediction, and bootstrap interval from the recorded per-claim rankings and labels.
+
+Limits of this evidence:
+
+- It covers one judged collection whose judged universe contains no mixed-polarity claims.
+- The stance is an oracle, and retrieval is lexical only.
+- It does not test conflicting evidence, a real stance model, or neural retrieval.
+
 ## Legacy compatibility audit
 
 Six structurally different source documents were regenerated under the WSL query-encoder runtime and compared with their records in the recovered baseline.

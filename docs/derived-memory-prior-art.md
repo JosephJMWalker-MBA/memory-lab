@@ -298,6 +298,32 @@ Removing something from current applicability is not the same operation as destr
 Reference:
 - https://docs.xtdb.com/reference/main/sql/txs.html
 
+## Claim-verification label semantics
+
+FEVER's three-way labelling (`Supported / Refuted / NotEnoughInfo`), which SciFact inherits, already turns "no evidence found" into an explicit not-enough-info outcome rather than confirmation. On SciFact it removed all 119 wrong accepts that default-accept made at k = 10.
+
+This is the established decision-level form of "no contrary evidence retrieved ≠ none exists".
+
+References:
+- James Thorne, Andreas Vlachos, Christos Christodoulopoulos, Arpit Mittal, "FEVER: a large-scale dataset for Fact Extraction and VERification", NAACL 2018.
+- David Wadden et al., "Fact or Fiction: Verifying Scientific Claims", EMNLP 2020.
+
+## Recall estimation and stopping rules
+
+Technology-assisted review in e-discovery already provides:
+
+- defensible recall estimation over a bounded collection;
+- stopping rules;
+- certification procedures with a stated envelope.
+
+That is the mature form of "bounded-complete with a reconstructible evaluation envelope". Pooling and capture–recapture estimates of the number of relevant documents are the classical IR counterparts.
+
+Any future coverage estimate should reuse these rather than define a new procedure.
+
+References:
+- Gordon V. Cormack and Maura R. Grossman, "Engineering Quality and Reliability in Technology-Assisted Review", SIGIR 2016.
+- David D. Lewis, Eugene Yang, Ophir Frieder, "Certifying One-Phase Technology-Assisted Reviews", CIKM 2021.
+
 ## Whyis + Graphiti + TMS/ATMS as a substitute architecture
 
 A plausible substitute architecture covers a large fraction of the current problem:
@@ -367,6 +393,14 @@ This is therefore partly a retrieval-age completeness problem:
 > a valid inference from selected premises can still mislead when material premises were absent from consideration.
 
 This distinction still needs targeted comparison with information-retrieval recall, database completeness statements, open-world reasoning, defeasible argumentation, provenance semirings, and evidence-completeness research before any novelty claim is justified.
+
+**Executed test (2026-09-15, `coverage-scifact-v0.md`).** On SciFact, an explicit coverage state added no decision value:
+
+- The decision consequence is NEI claim-verification semantics (below).
+- The informative variants are extra retrieval and recall estimation.
+- The representation is a DQV + PROV envelope.
+
+The distinction survives only as a rendering obligation.
 
 ## Support validity != consistency validity
 

@@ -4,7 +4,11 @@ Read this before adding architecture, schemas, storage, retrieval machinery, or 
 
 ## Current phase
 
-Memory Lab is in **prior-art integration + semantic hardening**.
+Memory Lab is a **conformance harness for epistemic-continuity obligations** (`docs/what-remains-v0.md`).
+
+Its six research distinctions were tested against Graphiti, ordinary application state, and SciFact, or delegated to GEI. None survives as a Memory Lab primitive.
+
+Do not add new distinctions, schemas, or runtime pieces to keep the project alive. `docs/what-remains-v0.md` §6 lists the triggers that would reopen a research claim.
 
 The repository already contains useful engineering and synthetic semantics, but it is not committed to becoming a standalone production memory runtime.
 
@@ -18,6 +22,7 @@ Start with:
 6. the specific experiment / schema relevant to the task
 7. `docs/gei-backpropagation-audit.md` before work touching an adjacent GEI layer (Pyxis, Hermeneia, Telos, MASI)
 8. `docs/graphiti-substitution-v0.md` before any runtime-substrate work
+9. `docs/what-remains-v0.md` before proposing any new Memory Lab work
 
 For long-horizon historical reopening work, also read:
 

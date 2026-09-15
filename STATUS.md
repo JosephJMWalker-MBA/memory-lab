@@ -1,7 +1,7 @@
 # Memory Lab Status
 
 **Standing:** active research / engineering harness  
-**Current phase:** prior-art integration + semantic hardening  
+**Current phase:** conformance harness for epistemic-continuity obligations. The research distinctions have been tested or delegated; see `docs/what-remains-v0.md`.  
 **Runtime choice:** unresolved / deliberately replaceable  
 **Current substitution map:** `docs/substitution-conformance-map-v0.md`  
 **First executed substitution result:** `docs/graphiti-substitution-v0.md`  
@@ -11,6 +11,18 @@
 ## Current identity
 
 Memory Lab studies governed epistemic memory over time.
+
+**Narrowed on 2026-09-15** (`docs/what-remains-v0.md`). Three substitution experiments were run:
+
+- Graphiti (#11);
+- ordinary application state (#13);
+- evidence coverage on SciFact (#12).
+
+None of the six research distinctions survives as a Memory Lab primitive. Memory Lab is now:
+
+> a conformance harness for epistemic-continuity obligations O1–O8. It holds executable fixtures, thin substrate adapters, and checks that report whether a memory substrate or application design preserves those obligations or collapses them.
+
+It is not a memory system, a runtime, an ontology, or a source of new distinctions.
 
 It is not currently committed to becoming the production memory runtime for GIE/GEI or any other system.
 
@@ -136,6 +148,8 @@ Memory Lab narrowed as a result:
 
 ## Strongest current research distinctions
 
+*As of 2026-09-15, each distinction below has been tested or delegated. None survives as a Memory Lab primitive; they now appear as obligations O1–O8 in `docs/what-remains-v0.md`.*
+
 Under current pressure, the most promising Memory Lab distinctions are:
 
 ```text
@@ -167,6 +181,22 @@ TMS/ATMS can establish support from reasons; provenance systems can record what 
 That distinction now carries the highest empirical burden: it must demonstrate decision value beyond retrieval metrics, search receipts, provenance, and ordinary uncertainty labels.
 
 Any coverage representation should reuse OpenTelemetry GenAI retrieval spans, PROV, and a W3C DQV measurement rather than a new object. The executable coverage schema still uses the unscoped `complete` value, which lags ML-EP-0's `bounded-complete`; see #12.
+
+**Executed (#12, `docs/coverage-scifact-v0.md`).** This was a preregistered test on SciFact. All six predictions held, and the explicit coverage state added **no decision value**:
+
+- Default-accept made 119 wrong accepts at k = 10. NEI semantics made none, with no coverage state involved.
+- Under non-exhaustive retrieval, categorical coverage was `unknown` for every claim.
+- Reassessing on `known-incomplete` matched plain pooling on every claim.
+
+This is recorded as a narrowing:
+
+- the decision consequence of coverage is NEI label semantics;
+- its informative variants are extra retrieval and recall estimation;
+- its representation is a DQV + PROV envelope.
+
+What survives is the rendering obligation O4. The conflicting-evidence case (H4) was not testable, because SciFact has no mixed-polarity claims.
+
+Consequence for the schema: the coverage schema change (GB-03) is no longer justified. Map legacy values to REC values at export (#15).
 
 ### Current-view admission
 
@@ -224,7 +254,7 @@ The negative boundary and interface obligations are in `docs/gei-backpropagation
   - Its native contradiction-resolution and episode-removal paths did not.
   - No real LLM, production backend, or real corpus was involved.
 - Memory Lab's admission rule has not yet been compared with formal argumentation semantics (#14).
-- Evidence coverage is not yet measured robustly on open real corpora.
+- Evidence coverage has been tested once, on a real judged collection (SciFact, oracle stance, lexical retrieval), where it added no decision value. It has not been tested on a collection with conflicting evidence, and not with a real stance model.
 - Real-corpus derived-memory behavior is not yet established.
 - Inheritance without foreclosure is not yet empirically established.
 - Current-view semantics have not yet been demonstrated across multiple independent existing runtimes.
@@ -239,19 +269,21 @@ The mapping phase is complete enough to move to substitution experiments.
 
 Completed:
 
-- the Graphiti adapter experiment for `derived-conflict-v0`;
-- the current-view vs application-state comparison (#13).
+- the Graphiti adapter experiment for `derived-conflict-v0` (#11);
+- the current-view vs application-state comparison (#13);
+- the coverage decision-value experiment (#12).
 
-Both narrowed Memory Lab (see above).
+All three narrowed Memory Lab. The resulting redefinition is in `docs/what-remains-v0.md`.
 
-Next sequence, ranked by information gain:
+Next sequence, given the redefinition:
 
-1. **#12 evidence-coverage decision value.** Coverage is now the only candidate Memory Lab distinction not yet reduced to ordinary machinery. First align the coverage vocabulary with ML-EP-0. Then test whether coverage state changes decisions beyond provenance plus retrieval metrics.
-2. **Concurrent contradictory base evidence.** Both Graphiti and the ordinary baseline resolve single-valued base facts by recency. Neither was tested against concurrent contradiction at the base level (the derived-memory v0 case).
-3. **#14 argumentation baseline.** Test whether grounded or preferred semantics reproduce the conflict-admission rule.
-4. **Whyis reassessment/revision substitution** (#11). Blocked here: no Whyis deployment is available.
-5. **#15 neutral export to the GEI profile.** Interface conformance against ST-002/ST-003.
-6. **Real-LLM Graphiti replication** on a production backend. Requires infrastructure and a provider key.
-7. Only then decide whether any custom runtime component is justified. Current evidence points away from one.
+1. **#15: move obligations O1–O8 into GEI's conformance layer.** This means exporting Memory Lab states to the GEI profile and expressing the obligations as GEI shapes and fixtures where RDF is natural. The executable checks for Graphiti, SQL, and retrieval pipelines stay here.
+2. **Concurrent contradictory base evidence.** This is an O3/O5 check. Both Graphiti and the ordinary baseline resolve single-valued base facts by recency, and neither was tested against concurrent contradiction at the base level.
+3. **#14 argumentation baseline.** This would further narrow O5's admission rule. Low priority.
+4. **Optional:**
+   - a Whyis substitution (#11), which would exercise O1/O2 on nanopublication revision; blocked here with no deployment;
+   - a real-LLM Graphiti replication, which needs infrastructure and a provider key;
+   - H4 on a licensed conflicting-evidence collection, which is predicted to measure retrieval, not coverage.
+5. **No custom runtime component is justified** by current evidence.
 
 Inheritance without foreclosure is tested by GEI C-001, not by a Memory Lab experiment.

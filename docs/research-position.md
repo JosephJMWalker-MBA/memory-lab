@@ -206,3 +206,24 @@ Memory Lab should be narrowed or rejected where:
 The objective is not to preserve Memory Lab as a product thesis.
 
 The objective is to discover the smallest memory-governance model reality actually needs.
+
+## 7. Position after the substitution experiments (2026-09-15)
+
+Three of the falsification conditions in §6 have now been met by executed tests:
+
+| Condition | Test | What happened |
+|---|---|---|
+| "an existing system already provides the same responsibility" | Graphiti (#11) | Graphiti covers storage, provenance, temporal fields, history, and corroboration |
+| "current-view admission can be represented adequately by ordinary application state" | #13 | Ordinary application state represented it, and also expressed scope and policy |
+| "evidence coverage does not add useful information beyond retrieval metrics / provenance in practice" | SciFact (#12) | Coverage added no decision value on homogeneous-polarity evidence |
+
+The smallest model reality needs, as far as these tests reach, is the one already present in:
+
+- TMS/ATMS;
+- bitemporal and event-sourced state;
+- PROV/DQV;
+- NEI claim-verification semantics.
+
+Memory Lab's remaining role is to check that composition does not lose it. See `what-remains-v0.md`.
+
+The research questions in this document remain valid questions. They are now answered by prior art plus executed checks, or delegated: inheritance without foreclosure goes to GEI C-001.

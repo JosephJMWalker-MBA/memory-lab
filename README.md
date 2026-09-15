@@ -6,6 +6,8 @@ Memory Lab studies how a system can preserve what was known, why it was believed
 
 It is a local-first research and engineering harness, not a claim that one custom memory runtime should replace established truth-maintenance, provenance, temporal-knowledge, graph, or retrieval systems.
 
+**Current identity (2026-09-15).** Memory Lab tested its six distinctions in three substitution experiments. Each distinction collapsed to ordinary machinery or was delegated. Memory Lab is now a **conformance harness**: executable fixtures, thin adapters, and checks that report whether a memory substrate or application design preserves eight epistemic-continuity obligations or collapses them. See [`docs/what-remains-v0.md`](docs/what-remains-v0.md).
+
 ## Start here
 
 Read:
@@ -18,6 +20,8 @@ Read:
 6. [`docs/derived-memory-prior-art.md`](docs/derived-memory-prior-art.md) — established work constraining the research
 7. [`docs/graphiti-substitution-v0.md`](docs/graphiti-substitution-v0.md) — first executed external-runtime substitution result
 8. [`docs/gei-backpropagation-audit.md`](docs/gei-backpropagation-audit.md) — GEI-derived future work and Memory Lab's negative boundary
+9. [`docs/coverage-scifact-v0.md`](docs/coverage-scifact-v0.md) — preregistered coverage decision-value test
+10. [`docs/what-remains-v0.md`](docs/what-remains-v0.md) — what remains of Memory Lab after the substitution experiments
 
 For long-horizon reopening / historical-memory work, see:
 
@@ -218,6 +222,14 @@ A second comparison tested current-view admission against ordinary application s
 
 - Ordinary event-sourced application state with a scoped, versioned policy table reproduced every Memory Lab current-view outcome on the synthetic fixtures.
 - Current-view admission is therefore treated as an application pattern that Memory Lab tests, not a primitive Memory Lab owns.
+
+A third comparison tested evidence coverage, in a preregistered experiment on SciFact ([`docs/coverage-scifact-v0.md`](docs/coverage-scifact-v0.md), issue #12).
+
+- An explicit coverage state added no decision value beyond provenance plus retrieval metrics.
+- NEI claim-verification semantics already prevented the absence fallacy.
+- Categorical coverage was constant under non-exhaustive retrieval.
+
+What remains of Memory Lab is set out in [`docs/what-remains-v0.md`](docs/what-remains-v0.md).
 
 The goal is not to maximize custom architecture.
 
