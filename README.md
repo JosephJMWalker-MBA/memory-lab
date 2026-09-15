@@ -236,7 +236,7 @@ A fourth check mapped obligations O1–O8 onto GEI's existing SHACL machinery ([
 
 - GEI's contracts state seven of the eight obligations. O7 is delegated to support models.
 - Its shapes reject their single-graph structural forms, except invalidation provenance.
-- Two GEI defects are recorded as recommendations. GEI is unchanged.
+- The two GEI defects and the erasure gap are fixed on a GEI branch (GEI PR #2, a draft, not merged), and the mapping rerun against it held.
 
 The goal is not to maximize custom architecture.
 

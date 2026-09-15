@@ -92,7 +92,7 @@ These are GEI-level conformance obligations under GEI's T1–T7 general obligati
 - **Single-graph forms:** GEI's shapes reject every single-graph structural form of the obligations except one, an invalidation with no invalidating activity. O3 is therefore ADAPTABLE.
 - **The other seven:** these are OUT-OF-SCOPE for single-graph SHACL. Each has a motivating failure that is an absence, an unresolved reference, an entailment, a plan-adequacy judgement, or support algebra. GEI's contract prose states each of them, with two exceptions: O2 lacks a lawful-erasure clause, and O7 is delegated to support models.
 - **MISSING:** none.
-- **A conflict inside GEI:** ST-007 rejects the `prov:wasRevisionOf` that GEI's T5 prescribes for corrected records.
+- **A conflict inside GEI:** ST-007 rejects the `prov:wasRevisionOf` that GEI's T5 prescribes for corrected records. GEI Round 66 (GEI PR #2, draft) narrows ST-007, and the mapping rerun against it held.
 
 The result: O1–O8 are GEI obligations with GEI citations, except O7, which GEI delegates to TMS/ATMS-style support models. Memory Lab keeps the differential (before/after) checks for substrates that are not RDF, and adds no responsibility.
 
@@ -121,4 +121,4 @@ Without one of these, the answer to "what memory semantics are actually required
 | #12 | Closed as a completed narrowing. H4 is a reopen condition only; the dataset search was dropped |
 | #13 | Closed as a completed narrowing |
 | #14 | Argumentation would further narrow O5's admission rule. Low priority |
-| #15 | Mapping executed (`gei-conformance-mapping-v0.md`). GEI's contracts state seven of the obligations (O2 without its erasure clause) and delegate O7. Its shapes check their single-graph forms, except PROV invalidation provenance. The two shape changes and one prose clause are recommendations for GEI's maintainers. The code exporter is deferred |
+| #15 | Closed as completed. The mapping holds against both GEI `4dd69ff` and GEI Round 66 (`efeb1ba`). GEI PR #2 (draft) carries the surviving changes: ST-007 narrowed, the T5 erasure clause, and an opt-in invalidation profile. The code exporter is deferred |

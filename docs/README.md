@@ -21,7 +21,7 @@ Do not treat success in one track as proof of the other.
 10. `appstate-baseline-v0.md` — current-view admission vs ordinary application state (EP-08 narrowed)
 11. `coverage-scifact-v0.md` — preregistered coverage decision-value test (no decision value found)
 12. `what-remains-v0.md` — the adversarial check and the redefinition of Memory Lab as a conformance harness
-13. `gei-conformance-mapping-v0.md` — O1–O8 mapped onto GEI's SHACL machinery (GEI states seven and delegates O7; two GEI defects recommended)
+13. `gei-conformance-mapping-v0.md` — O1–O8 mapped onto GEI's SHACL machinery (GEI states seven and delegates O7; its two defects are fixed in GEI PR #2)
 
 ## Engineering / retrieval track
 

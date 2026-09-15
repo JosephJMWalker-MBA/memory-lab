@@ -250,13 +250,27 @@ The controlled test is GEI experiment C-001, together with its pre-outcome amend
 
 OUT-OF-SCOPE means a motivating failure cannot be seen in one conformance graph: it is an absence, an unresolved reference, an entailment, a plan-adequacy judgement, or support algebra. GEI's contracts state each of these obligations, with two exceptions: O7 is delegated to support models, and O2 lacks a lawful-erasure clause.
 
-Three recommendations go to GEI's maintainers. None has been applied:
+Three recommendations went to GEI's maintainers. GEI PR #2 now carries all three (see below):
 
 - **ST-007:** it targets every `prov:wasRevisionOf` subject, so it rejects the revision relation GEI's own T5 prescribes for corrected records. GEI's own `st012-positive-v0.ttl` fails ST-007. A narrowed target fixes this, with no effect on any GEI case.
 - **PROV invalidation:** no shape checks it, although T5 names it. A Graphiti-style `invalid_at` with no invalidating activity conforms.
 - **Erasure:** T5 has no lawful-erasure clause (prose only).
 
 This is another successful narrowing. Memory Lab adds no new responsibility.
+
+**Applied on a GEI branch (GEI Round 66, [GEI PR #2](https://github.com/JosephJMWalker-MBA/governed-intelligence-ecology/pull/2), draft, not merged).** Each change was gated by a fixture set preregistered before any GEI shape changed.
+
+- **ST-007:** narrowed to coverage revisions. The guard checks both ends of a revision, because a preregistered fixture falsified Memory Lab's subject-only candidate.
+- **T5:** gains a lawful-erasure clause, as prose only.
+- **Invalidation provenance:** now an opt-in adapter profile, not core. As a core rule it rejects lawful expiry at the end of a declared validity period. Memory Lab's narrower candidate failed in both directions.
+
+**Rerun against GEI `efeb1ba`.** The mapping was rerun against the changed commit:
+
+- all 20 prediction checks held;
+- the obligation classes are unchanged;
+- GEI's own suite passes.
+
+#15 is closed as completed (`docs/gei-conformance-mapping-v0.md` §10).
 
 ## Relationship to GIE / GEI
 
@@ -295,6 +309,7 @@ The negative boundary and interface obligations are in `docs/gei-backpropagation
 - Evidence coverage has been tested once, on a real judged collection (SciFact, oracle stance, lexical retrieval), where it added no decision value. It has not been tested on a collection with conflicting evidence, and not with a real stance model. The search for such a collection is dropped; H4 is a reopen condition only.
 - No Memory Lab state has been exported to RDF by code. The GEI mapping (#15) used hand-authored overlays of observed failures.
 - The GEI mapping is Level-1 evidence: one processor (pySHACL), with no Apache Jena comparison.
+- GEI PR #2 is not merged. Until it is, GEI `main` still has the broad ST-007 and no invalidation profile.
 - Real-corpus derived-memory behavior is not yet established.
 - Inheritance without foreclosure is not yet empirically established.
 - Current-view semantics have not yet been demonstrated across multiple independent existing runtimes.
@@ -312,18 +327,13 @@ Completed:
 - the Graphiti adapter experiment for `derived-conflict-v0` (#11);
 - the current-view vs application-state comparison (#13);
 - the coverage decision-value experiment (#12);
-- the GEI conformance mapping (#15).
+- the GEI conformance mapping (#15), and its rerun against GEI Round 66 (GEI PR #2, draft).
 
 All four narrowed Memory Lab. The redefinition is in `docs/what-remains-v0.md`, and the mapping to GEI is in `docs/gei-conformance-mapping-v0.md`.
 
 Next sequence, given the mapping:
 
-1. **Offer the #15 recommendations to GEI's maintainers.** Memory Lab does not edit GEI. The recommendations are:
-   - narrow ST-007's target;
-   - check PROV invalidation provenance, either with a shape or with an adapter profile for substrates that export temporal invalidation;
-   - add a lawful-erasure clause to T5.
-
-   A code exporter is deferred until a real integration with a substrate that is not RDF needs one.
+1. **Review GEI PR #2.** It carries the #15 changes, and merging it is the owner's decision. A code exporter stays deferred until a real integration with a substrate that is not RDF needs one.
 2. **Concurrent contradictory base evidence.** This is an O3/O5 check. Both Graphiti and the ordinary baseline resolve single-valued base facts by recency, and neither was tested against concurrent contradiction at the base level.
 3. **#14 argumentation baseline.** This would further narrow O5's admission rule. Low priority.
 4. **Optional:**

@@ -389,9 +389,9 @@ After all three experiments, `docs/what-remains-v0.md` redefines Memory Lab as a
 #15 then mapped O1–O8 onto GEI's existing SHACL machinery; see `docs/gei-conformance-mapping-v0.md`.
 
 - GEI's contracts state seven of the eight obligations. O7 is delegated to support models.
-- Two GEI defects are recorded as recommendations, not applied:
-  - ST-007's target;
-  - unchecked PROV invalidation.
+- The mapping found two GEI defects: ST-007's target, and unchecked PROV invalidation.
+- GEI Round 66 (GEI PR #2, draft) fixes both and adds the T5 erasure clause.
+- The mapping rerun against GEI Round 66 held.
 
 ## 8. Relationship to existing issues
 
