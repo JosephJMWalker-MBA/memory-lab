@@ -1,0 +1,5 @@
+# Pinned environment for run_graphiti_live.py only.
+# The public test suite (make test) does not need these packages.
+graphiti-core[kuzu]==0.30.2
+kuzu==0.11.3
+httpx==0.28.1

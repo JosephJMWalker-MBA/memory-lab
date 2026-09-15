@@ -1,4 +1,4 @@
-.PHONY: test
+.PHONY: test graphiti-live
 
 test:
 	python3 tests/run_synthetic_lifecycle.py
@@ -9,3 +9,8 @@ test:
 	python3 tests/run_derived_reassessment_v0.py
 	python3 tests/run_multiple_justifications_v0.py
 	python3 tests/run_derived_conflict_v0.py
+	python3 tests/run_graphiti_adapter_v0.py
+
+# Requires the pinned environment in experiments/graphiti-conflict-v0/requirements.txt.
+graphiti-live:
+	python3 experiments/graphiti-conflict-v0/run_graphiti_live.py

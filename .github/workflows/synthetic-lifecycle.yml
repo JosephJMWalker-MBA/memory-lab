@@ -34,3 +34,6 @@ jobs:
 
       - name: Run derived conflict consistency semantics
         run: python3 tests/run_derived_conflict_v0.py
+
+      - name: Run Graphiti substitution adapter semantics and recorded-evidence check
+        run: python3 tests/run_graphiti_adapter_v0.py
