@@ -40,3 +40,6 @@ jobs:
 
       - name: Run current-view admission vs application-state baseline
         run: python3 tests/run_appstate_baseline_v0.py
+
+      - name: Run coverage decision-value logic and recorded SciFact evidence check
+        run: python3 tests/run_coverage_scifact_v0.py

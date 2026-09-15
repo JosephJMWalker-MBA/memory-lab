@@ -11,6 +11,7 @@ test:
 	python3 tests/run_derived_conflict_v0.py
 	python3 tests/run_graphiti_adapter_v0.py
 	python3 tests/run_appstate_baseline_v0.py
+	python3 tests/run_coverage_scifact_v0.py
 
 # Requires the pinned environment in experiments/graphiti-conflict-v0/requirements.txt.
 graphiti-live:
