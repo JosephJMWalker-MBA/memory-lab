@@ -14,6 +14,8 @@ This experiment maps Memory Lab obligations O1–O8 onto GEI's existing SHACL co
 | `run_gei_mapping.py` | The runner |
 | `results/gei-conformance-v0.results.json` | Environment; GEI's own baseline run; per-overlay outcomes, rejecting shape files, and messages; non-interference; prediction checks; classification |
 | `requirements.txt` | The pinned environment (pySHACL pinned as in GEI's `requirements-semantic.txt`) |
+| `expectations-gei-efeb1ba.json` | Rerun predictions for GEI Round 66 (`efeb1ba`, GEI PR #2). Derived from `expectations.json`; candidate A is GEI's own opt-in profile shape |
+| `results/gei-conformance-v0-gei-efeb1ba.results.json` | The recorded rerun |
 
 ## Run
 
@@ -37,6 +39,12 @@ Run the mapping:
 .venv-gei/bin/python experiments/gei-conformance-v0/run_gei_mapping.py --gei /path/to/gei
 ```
 
+To rerun against a later GEI commit, check that commit out and pass its expectations file:
+
+```bash
+.venv-gei/bin/python experiments/gei-conformance-v0/run_gei_mapping.py --gei /path/to/gei --expectations expectations-gei-efeb1ba.json
+```
+
 The equivalent Make target is `make gei-mapping GEI=/path/to/gei`, but it calls `python3`, so the pinned environment must be active.
 
 The runner:
@@ -53,5 +61,6 @@ The runner:
 2. **First run: crashed.** Importing GEI's `validate_semantic_transitions.py` failed before any validation ran: its dataclasses need the module registered in `sys.modules`. Fixed in `226c8aa`.
 3. **Second run: stopped by the clean-checkout guard.** The first import had written two `.pyc` files into the GEI clone's `scripts/__pycache__`. They were removed, and `cab806d` disables bytecode writing.
 4. **Third run: recorded.** At `cab806d`, with a clean tree. It took 82 s on macOS arm64 with Python 3.13.5.
+5. **Rerun against GEI Round 66: recorded.** At `b9db0a5`, with a clean tree, against GEI `efeb1ba` (GEI PR #2). All 20 prediction checks held, and GEI's own suite exited 0. Before this run, `a61ddd2` let the runner take one expectations file per GEI commit.
 
 None of the fixes changed an overlay, a candidate, or a prediction.

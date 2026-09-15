@@ -337,6 +337,24 @@ Limits of this evidence:
 - Only one processor was used (Level 1), with no Apache Jena comparison.
 - The predictions were derived from the shape text. Their holding confirms that the processor reads the shapes as written.
 
+### Rerun against GEI Round 66
+
+The rerun used GEI `efeb1ba`, the head of GEI PR #2 (draft):
+
+```bash
+python experiments/gei-conformance-v0/run_gei_mapping.py --gei /path/to/governed-intelligence-ecology --expectations expectations-gei-efeb1ba.json
+```
+
+The rerun predictions were committed at `b9db0a5` before the run. Round 66's outcomes were already known, so this rerun is a consistency check.
+
+Results:
+
+- All 20 prediction checks held.
+- GEI's own suite exited 0, across all six steps.
+- The obligation classes are unchanged.
+- GEI now accepts a correction recorded as a revision.
+- Memory Lab's subject-only ST-007 candidate now fails GEI's new regression fixture, as predicted.
+
 ## Legacy compatibility audit
 
 Six structurally different source documents were regenerated under the WSL query-encoder runtime and compared with their records in the recovered baseline.

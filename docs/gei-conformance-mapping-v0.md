@@ -1,6 +1,6 @@
 # GEI Conformance Mapping v0 (O1–O8)
 
-**Status:** executed; preregistered  
+**Status:** executed; preregistered. A rerun against GEI Round 66 (`efeb1ba`) held (§10)  
 **Date:** 2026-09-15  
 **Issue:** #15  
 **Protocol:** `experiments/gei-conformance-v0/expectations.json`, commit `0dd7d4a`, committed before any SHACL run. Two harness fixes followed (`226c8aa`, `cab806d`). Neither changed an overlay, a candidate, or a prediction, and no validation had run before them.  
@@ -274,9 +274,15 @@ That is what Memory Lab still does.
 
 **Untested alternative.** Put both snapshots in one graph, with snapshot membership expressed in DCAT/PROV terms, and use SHACL-SPARQL. That could move the absence checks (O1, O5) into SHACL. It was not tested. GEI's T1b position argues against doing the same for resolution (O2, O6).
 
-## 6. Recommended GEI changes (not applied)
+## 6. Recommended GEI changes
 
 These are ordered by strength of evidence. Each is the smallest change the evidence supports. GEI's maintainers decide; this repository does not edit GEI.
+
+**Status after approval (see §10):** all of these live in GEI PR #2, which is a draft and not merged.
+
+- R1 and R3 were applied.
+- R2 was applied as an opt-in adapter profile, after a preregistered placement test.
+- R4 and R5 were not applied.
 
 **R1. Narrow ST-007's target.**
 
@@ -348,3 +354,41 @@ This is a successful narrowing.
 ## 9. Reproduce
 
 See `experiments/gei-conformance-v0/README.md`. `python3 tests/run_gei_mapping_v0.py` runs in `make test` and in CI. It needs no RDF libraries, and it re-derives every prediction check and every class from the recorded results.
+
+## 10. Rerun against GEI Round 66 (`efeb1ba`, GEI PR #2)
+
+The owner approved three changes on a separate GEI branch:
+
+- R1 (narrow ST-007);
+- R3 (T5 lawful erasure);
+- R2, on condition that a preregistered fixture set first decide between core and profile placement.
+
+That work is GEI Round 66, in draft PR [JosephJMWalker-MBA/governed-intelligence-ecology#2](https://github.com/JosephJMWalker-MBA/governed-intelligence-ecology/pull/2). Its preregistration commit is `e8c2ef2`.
+
+### What GEI adopted
+
+- **R1, refined.** GEI's ST-007 guard checks both ends of a revision. Memory Lab's candidate B checked only the subject. GEI's preregistered fixture, an untyped coverage revision, showed that B lets a coverage revision escape ST-007. **B was falsified and not adopted.**
+- **R3.** GEI adopted the T5 lawful-erasure clause, as prose only.
+- **R2, at the narrower placement.**
+  - The rule was widened to cover all four PROV-O invalidation forms. Memory Lab's candidate A failed in both directions: it rejected a lawful inverse form and accepted an unattributed qualified form. **A was falsified and not adopted.**
+  - The rule was placed in an **opt-in adapter profile**, because a core rule would reject a lawful expiry at the end of a declared validity period.
+
+### How the rerun was set up
+
+- **Expectations:** `experiments/gei-conformance-v0/expectations-gei-efeb1ba.json`, committed at `b9db0a5` before the run. It is derived from the preregistered v0 file, and only three predictions change.
+- **What was known:** Round 66's outcomes were known when this file was written, and the file says so. The rerun is a consistency check, not a blind prediction.
+- **Candidate A:** in this rerun it is GEI's own profile shape.
+
+### Result
+
+- **Predictions:** 20 of 20 prediction checks held.
+- **GEI's own suite:** `validate_semantics.py` exited 0 across all six steps, including the new profile harness.
+- **Obligation classes are unchanged:** O3 is ADAPTABLE, the other seven are OUT-OF-SCOPE, and none is MISSING. For O3, ADAPTABLE now means that GEI core accepts the export and GEI's own opt-in profile rejects it.
+- **GEI now represents the correction-as-revision capability itself,** and `st012-positive-v0.ttl` passes ST-007.
+- **Candidate B now fails non-interference** on GEI's ST-007 regression fixture, as predicted.
+
+### Consequences
+
+- **The mapping holds.** Issue #15 is closed as completed.
+- **Where the changes live:** the surviving changes are in GEI PR #2 at `efeb1ba`. It is not merged, and merging is the owner's decision.
+- **Not done:** R4 (prose clarifications) and R5 (a Level-1 record in GEI's STATUS). Neither was approved.

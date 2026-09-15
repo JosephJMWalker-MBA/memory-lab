@@ -1,0 +1,555 @@
+{
+  "candidates": {
+    "invalidation": "gei:semantics/shapes/invalidation-provenance-profile.shacl.ttl",
+    "st007_narrowed": "candidate/st-007-narrowed.shacl.ttl"
+  },
+  "classification": {
+    "forms": {
+      "ml-good.ttl": "represented",
+      "o1-backdated-plan.ttl": "NATIVE",
+      "o1-recompute-no-history.ttl": "OUT-OF-SCOPE",
+      "o2-deleted-coverage-input.ttl": "NATIVE",
+      "o2-deleted-evidence.ttl": "OUT-OF-SCOPE",
+      "o3-closure-with-recency-plan.ttl": "OUT-OF-SCOPE",
+      "o3-closure-without-basis.ttl": "NATIVE",
+      "o3-invalidation-without-basis.ttl": "ADAPTABLE",
+      "o4-absence-as-bounded-complete.ttl": "NATIVE",
+      "o4-admitted-without-coverage.ttl": "NATIVE",
+      "o4-invented-negation.ttl": "OUT-OF-SCOPE",
+      "o5-conflict-dropped.ttl": "OUT-OF-SCOPE",
+      "o5-scoped-dual-dispositions.ttl": "represented",
+      "o6-dangling-episode.ttl": "OUT-OF-SCOPE",
+      "o7-withdrawn-despite-support.ttl": "OUT-OF-SCOPE",
+      "o8-correction-as-revision.ttl": "represented",
+      "o8-recency-invalidation-with-plan.ttl": "OUT-OF-SCOPE"
+    },
+    "obligations": {
+      "O1": "OUT-OF-SCOPE",
+      "O2": "OUT-OF-SCOPE",
+      "O3": "ADAPTABLE",
+      "O4": "OUT-OF-SCOPE",
+      "O5": "OUT-OF-SCOPE",
+      "O6": "OUT-OF-SCOPE",
+      "O7": "OUT-OF-SCOPE",
+      "O8": "OUT-OF-SCOPE"
+    }
+  },
+  "environment": {
+    "owlrl": "7.6.2",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "pyshacl": "0.40.1",
+    "python": "3.13.5",
+    "rdflib": "7.6.0"
+  },
+  "expectations_file": "expectations-gei-efeb1ba.json",
+  "experiment": "gei-conformance-v0",
+  "gei": {
+    "baseline_validate_semantics": {
+      "exit": 0,
+      "final_line": "PASS: all selected semantic validation steps completed successfully."
+    },
+    "commit": "efeb1bade87232bb6e3c0d2d2fd0294275776ab8",
+    "repository": "JosephJMWalker-MBA/governed-intelligence-ecology"
+  },
+  "gei_internal_checks": {
+    "st012-positive-under-st007": {
+      "conforms": true,
+      "conforms_with_st007_narrowed": true
+    }
+  },
+  "memory_lab_commit": {
+    "head": "b9db0a50e3293c3ff80ad9017bd7c026303fa5ff",
+    "working_tree_dirty": false
+  },
+  "noninterference": {
+    "candidate_invalidation": {
+      "atomic": {
+        "ST-001": {
+          "bad_fails": true,
+          "good_conforms": true
+        },
+        "ST-002": {
+          "bad_fails": true,
+          "good_conforms": true
+        },
+        "ST-003": {
+          "bad_fails": true,
+          "good_conforms": true
+        },
+        "ST-004": {
+          "bad_fails": true,
+          "good_conforms": true
+        },
+        "ST-005": {
+          "bad_fails": true,
+          "good_conforms": true
+        },
+        "ST-006": {
+          "bad_fails": true,
+          "good_conforms": true
+        },
+        "ST-007": {
+          "bad_fails": true,
+          "good_conforms": true
+        },
+        "ST-008": {
+          "bad_fails": true,
+          "good_conforms": true
+        },
+        "ST-009": {
+          "bad_fails": true,
+          "good_conforms": true
+        },
+        "ST-010": {
+          "bad_fails": true,
+          "good_conforms": true
+        },
+        "ST-011": {
+          "bad_fails": true,
+          "good_conforms": true
+        },
+        "ST-012": {
+          "bad_fails": true,
+          "good_conforms": true
+        },
+        "ST-013": {
+          "bad_fails": true,
+          "good_conforms": true
+        },
+        "ST-014": {
+          "bad_fails": true,
+          "good_conforms": true
+        }
+      },
+      "composed_negatives_fail": {
+        "ODRL Agreement omits normative assigner/assignee responsibility": true,
+        "authority target does not match objective and assurance operation scope": true,
+        "bounded-complete coverage lacks a reconstructible evaluation envelope": true,
+        "broken governed-objective recognition": true,
+        "capability-only gate manufactures execution eligibility": true,
+        "current-view disposition decision omits an explicit coverage input": true,
+        "downstream use permission lacks resolvable rights-policy basis": true,
+        "evidence target and interpretation body collapse into one artifact": true,
+        "explicit PROV usage precedes explicit evidence generation time": true,
+        "required clarification reply omitted before eligibility": true,
+        "sufficient corrective independence claimed despite unresolved common cause": true,
+        "superseded current-view projection omits its successor/replacement": true
+      },
+      "composed_positive_conforms": true,
+      "passes": true
+    },
+    "candidate_st007_narrowed": {
+      "atomic": {
+        "ST-001": {
+          "bad_fails": true,
+          "good_conforms": true
+        },
+        "ST-002": {
+          "bad_fails": true,
+          "good_conforms": true
+        },
+        "ST-003": {
+          "bad_fails": true,
+          "good_conforms": true
+        },
+        "ST-004": {
+          "bad_fails": true,
+          "good_conforms": true
+        },
+        "ST-005": {
+          "bad_fails": true,
+          "good_conforms": true
+        },
+        "ST-006": {
+          "bad_fails": true,
+          "good_conforms": true
+        },
+        "ST-007": {
+          "bad_fails": false,
+          "good_conforms": true
+        },
+        "ST-008": {
+          "bad_fails": true,
+          "good_conforms": true
+        },
+        "ST-009": {
+          "bad_fails": true,
+          "good_conforms": true
+        },
+        "ST-010": {
+          "bad_fails": true,
+          "good_conforms": true
+        },
+        "ST-011": {
+          "bad_fails": true,
+          "good_conforms": true
+        },
+        "ST-012": {
+          "bad_fails": true,
+          "good_conforms": true
+        },
+        "ST-013": {
+          "bad_fails": true,
+          "good_conforms": true
+        },
+        "ST-014": {
+          "bad_fails": true,
+          "good_conforms": true
+        }
+      },
+      "composed_negatives_fail": {
+        "ODRL Agreement omits normative assigner/assignee responsibility": true,
+        "authority target does not match objective and assurance operation scope": true,
+        "bounded-complete coverage lacks a reconstructible evaluation envelope": true,
+        "broken governed-objective recognition": true,
+        "capability-only gate manufactures execution eligibility": true,
+        "current-view disposition decision omits an explicit coverage input": true,
+        "downstream use permission lacks resolvable rights-policy basis": true,
+        "evidence target and interpretation body collapse into one artifact": true,
+        "explicit PROV usage precedes explicit evidence generation time": true,
+        "required clarification reply omitted before eligibility": true,
+        "sufficient corrective independence claimed despite unresolved common cause": true,
+        "superseded current-view projection omits its successor/replacement": true
+      },
+      "composed_positive_conforms": true,
+      "passes": false
+    }
+  },
+  "overlays": {
+    "ml-good.ttl": {
+      "candidate_invalidation_conforms": true,
+      "candidate_st007_narrowed_conforms": true,
+      "gei_conforms": true,
+      "messages": [],
+      "rejecting_gei_shape_files": []
+    },
+    "o1-backdated-plan.ttl": {
+      "candidate_invalidation_conforms": false,
+      "candidate_st007_narrowed_conforms": false,
+      "gei_conforms": false,
+      "messages": [
+        "ST-012: an entity with an explicit generation time must not be represented as used earlier than that generation time; later evidence belongs in a later reassessment."
+      ],
+      "rejecting_gei_shape_files": [
+        "st-012-temporal-integrity.shacl.ttl"
+      ]
+    },
+    "o1-recompute-no-history.ttl": {
+      "candidate_invalidation_conforms": true,
+      "candidate_st007_narrowed_conforms": true,
+      "gei_conforms": true,
+      "messages": [],
+      "rejecting_gei_shape_files": []
+    },
+    "o2-deleted-coverage-input.ttl": {
+      "candidate_invalidation_conforms": false,
+      "candidate_st007_narrowed_conforms": false,
+      "gei_conforms": false,
+      "messages": [
+        "Focus node does not conform to shape MinCount 1: [ sh:class dqv:QualityMeasurement ; sh:property [ sh:hasValue prof1:relevantEvidenceCoverage ; sh:path dqv:isMeasurementOf ], [ sh:in ( Literal(\"not-assessed\") Literal(\"unknown\") Literal(\"known-incomplete\") Literal(\"bounded-complete\") ) ; sh:maxCount Literal(\"1\", datatype=xsd:integer) ; sh:minCount Literal(\"1\", datatype=xsd:integer) ; sh:path dqv:value ] ]",
+        "Value does not conform to Shape [ sh:class prov:Activity ; sh:property [ sh:minCount Literal(\"2\", datatype=xsd:integer) ; sh:path prov:used ], [ sh:path prov:qualifiedAssociation ; sh:qualifiedMinCount Literal(\"1\", datatype=xsd:integer) ; sh:qualifiedValueShape [ sh:class prov:Association ; sh:property [ sh:minCount Literal(\"1\", datatype=xsd:integer) ; sh:node [ sh:class prov:Plan ] ; sh:path prov:hadPlan ], [ sh:minCount Literal(\"1\", datatype=xsd:integer) ; sh:path prov:agent ] ] ], [ sh:path prov:used ; sh:qualifiedMinCount Literal(\"1\", datatype=xsd:integer) ; sh:qualifiedValueShape [ sh:class dqv:QualityMeasurement ; sh:property [ sh:hasValue prof1:relevantEvidenceCoverage ; sh:path dqv:isMeasurementOf ], [ sh:in ( Literal(\"not-assessed\") Literal(\"unknown\") Literal(\"known-incomplete\") Literal(\"bounded-complete\") ) ; sh:maxCount Literal(\"1\", datatype=xsd:integer) ; sh:minCount Literal(\"1\", datatype=xsd:integer) ; sh:path dqv:value ] ] ] ]. See details for more information."
+      ],
+      "rejecting_gei_shape_files": [
+        "st-002-reviewed-disposition.shacl.ttl"
+      ]
+    },
+    "o2-deleted-evidence.ttl": {
+      "candidate_invalidation_conforms": true,
+      "candidate_st007_narrowed_conforms": true,
+      "gei_conforms": true,
+      "messages": [],
+      "rejecting_gei_shape_files": []
+    },
+    "o3-closure-with-recency-plan.ttl": {
+      "candidate_invalidation_conforms": true,
+      "candidate_st007_narrowed_conforms": true,
+      "gei_conforms": true,
+      "messages": [],
+      "rejecting_gei_shape_files": []
+    },
+    "o3-closure-without-basis.ttl": {
+      "candidate_invalidation_conforms": false,
+      "candidate_st007_narrowed_conforms": false,
+      "gei_conforms": false,
+      "messages": [
+        "Less than 1 values on ml:o3BlockedProjection->prov:wasGeneratedBy"
+      ],
+      "rejecting_gei_shape_files": [
+        "st-002-reviewed-disposition.shacl.ttl"
+      ]
+    },
+    "o3-invalidation-without-basis.ttl": {
+      "candidate_invalidation_conforms": false,
+      "candidate_st007_narrowed_conforms": true,
+      "gei_conforms": true,
+      "messages": [],
+      "rejecting_gei_shape_files": []
+    },
+    "o4-absence-as-bounded-complete.ttl": {
+      "candidate_invalidation_conforms": false,
+      "candidate_st007_narrowed_conforms": false,
+      "gei_conforms": false,
+      "messages": [
+        "ST-003: bounded-complete Relevant Evidence Coverage requires a provenance-bearing assessment over a versioned, access-scoped, temporally bounded source universe and an explicit assessment plan."
+      ],
+      "rejecting_gei_shape_files": [
+        "st-003-bounded-coverage.shacl.ttl"
+      ]
+    },
+    "o4-admitted-without-coverage.ttl": {
+      "candidate_invalidation_conforms": false,
+      "candidate_st007_narrowed_conforms": false,
+      "gei_conforms": false,
+      "messages": [
+        "Focus node does not conform to shape MinCount 1: [ sh:class dqv:QualityMeasurement ; sh:property [ sh:hasValue prof1:relevantEvidenceCoverage ; sh:path dqv:isMeasurementOf ], [ sh:in ( Literal(\"not-assessed\") Literal(\"unknown\") Literal(\"known-incomplete\") Literal(\"bounded-complete\") ) ; sh:maxCount Literal(\"1\", datatype=xsd:integer) ; sh:minCount Literal(\"1\", datatype=xsd:integer) ; sh:path dqv:value ] ]",
+        "Value does not conform to Shape [ sh:class prov:Activity ; sh:property [ sh:minCount Literal(\"2\", datatype=xsd:integer) ; sh:path prov:used ], [ sh:path prov:qualifiedAssociation ; sh:qualifiedMinCount Literal(\"1\", datatype=xsd:integer) ; sh:qualifiedValueShape [ sh:class prov:Association ; sh:property [ sh:minCount Literal(\"1\", datatype=xsd:integer) ; sh:node [ sh:class prov:Plan ] ; sh:path prov:hadPlan ], [ sh:minCount Literal(\"1\", datatype=xsd:integer) ; sh:path prov:agent ] ] ], [ sh:path prov:used ; sh:qualifiedMinCount Literal(\"1\", datatype=xsd:integer) ; sh:qualifiedValueShape [ sh:class dqv:QualityMeasurement ; sh:property [ sh:hasValue prof1:relevantEvidenceCoverage ; sh:path dqv:isMeasurementOf ], [ sh:in ( Literal(\"not-assessed\") Literal(\"unknown\") Literal(\"known-incomplete\") Literal(\"bounded-complete\") ) ; sh:maxCount Literal(\"1\", datatype=xsd:integer) ; sh:minCount Literal(\"1\", datatype=xsd:integer) ; sh:path dqv:value ] ] ] ]. See details for more information."
+      ],
+      "rejecting_gei_shape_files": [
+        "st-002-reviewed-disposition.shacl.ttl"
+      ]
+    },
+    "o4-invented-negation.ttl": {
+      "candidate_invalidation_conforms": true,
+      "candidate_st007_narrowed_conforms": true,
+      "gei_conforms": true,
+      "messages": [],
+      "rejecting_gei_shape_files": []
+    },
+    "o5-conflict-dropped.ttl": {
+      "candidate_invalidation_conforms": true,
+      "candidate_st007_narrowed_conforms": true,
+      "gei_conforms": true,
+      "messages": [],
+      "rejecting_gei_shape_files": []
+    },
+    "o5-scoped-dual-dispositions.ttl": {
+      "candidate_invalidation_conforms": true,
+      "candidate_st007_narrowed_conforms": true,
+      "gei_conforms": true,
+      "messages": [],
+      "rejecting_gei_shape_files": []
+    },
+    "o6-dangling-episode.ttl": {
+      "candidate_invalidation_conforms": true,
+      "candidate_st007_narrowed_conforms": true,
+      "gei_conforms": true,
+      "messages": [],
+      "rejecting_gei_shape_files": []
+    },
+    "o7-withdrawn-despite-support.ttl": {
+      "candidate_invalidation_conforms": true,
+      "candidate_st007_narrowed_conforms": true,
+      "gei_conforms": true,
+      "messages": [],
+      "rejecting_gei_shape_files": []
+    },
+    "o8-correction-as-revision.ttl": {
+      "candidate_invalidation_conforms": true,
+      "candidate_st007_narrowed_conforms": true,
+      "gei_conforms": true,
+      "messages": [],
+      "rejecting_gei_shape_files": []
+    },
+    "o8-recency-invalidation-with-plan.ttl": {
+      "candidate_invalidation_conforms": true,
+      "candidate_st007_narrowed_conforms": true,
+      "gei_conforms": true,
+      "messages": [],
+      "rejecting_gei_shape_files": []
+    }
+  },
+  "predictions": {
+    "ml-good.ttl": {
+      "held": true,
+      "observed": {
+        "candidate_invalidation_conforms": true,
+        "candidate_st007_narrowed_conforms": true,
+        "gei_conforms": true,
+        "rejecting_gei_shape_files": []
+      }
+    },
+    "noninterference": {
+      "held": true,
+      "observed": {
+        "candidate_invalidation": true,
+        "candidate_st007_narrowed": false
+      }
+    },
+    "o1-backdated-plan.ttl": {
+      "held": true,
+      "observed": {
+        "candidate_invalidation_conforms": false,
+        "candidate_st007_narrowed_conforms": false,
+        "gei_conforms": false,
+        "rejecting_gei_shape_files": [
+          "st-012-temporal-integrity.shacl.ttl"
+        ]
+      }
+    },
+    "o1-recompute-no-history.ttl": {
+      "held": true,
+      "observed": {
+        "candidate_invalidation_conforms": true,
+        "candidate_st007_narrowed_conforms": true,
+        "gei_conforms": true,
+        "rejecting_gei_shape_files": []
+      }
+    },
+    "o2-deleted-coverage-input.ttl": {
+      "held": true,
+      "observed": {
+        "candidate_invalidation_conforms": false,
+        "candidate_st007_narrowed_conforms": false,
+        "gei_conforms": false,
+        "rejecting_gei_shape_files": [
+          "st-002-reviewed-disposition.shacl.ttl"
+        ]
+      }
+    },
+    "o2-deleted-evidence.ttl": {
+      "held": true,
+      "observed": {
+        "candidate_invalidation_conforms": true,
+        "candidate_st007_narrowed_conforms": true,
+        "gei_conforms": true,
+        "rejecting_gei_shape_files": []
+      }
+    },
+    "o3-closure-with-recency-plan.ttl": {
+      "held": true,
+      "observed": {
+        "candidate_invalidation_conforms": true,
+        "candidate_st007_narrowed_conforms": true,
+        "gei_conforms": true,
+        "rejecting_gei_shape_files": []
+      }
+    },
+    "o3-closure-without-basis.ttl": {
+      "held": true,
+      "observed": {
+        "candidate_invalidation_conforms": false,
+        "candidate_st007_narrowed_conforms": false,
+        "gei_conforms": false,
+        "rejecting_gei_shape_files": [
+          "st-002-reviewed-disposition.shacl.ttl"
+        ]
+      }
+    },
+    "o3-invalidation-without-basis.ttl": {
+      "held": true,
+      "observed": {
+        "candidate_invalidation_conforms": false,
+        "candidate_st007_narrowed_conforms": true,
+        "gei_conforms": true,
+        "rejecting_gei_shape_files": []
+      }
+    },
+    "o4-absence-as-bounded-complete.ttl": {
+      "held": true,
+      "observed": {
+        "candidate_invalidation_conforms": false,
+        "candidate_st007_narrowed_conforms": false,
+        "gei_conforms": false,
+        "rejecting_gei_shape_files": [
+          "st-003-bounded-coverage.shacl.ttl"
+        ]
+      }
+    },
+    "o4-admitted-without-coverage.ttl": {
+      "held": true,
+      "observed": {
+        "candidate_invalidation_conforms": false,
+        "candidate_st007_narrowed_conforms": false,
+        "gei_conforms": false,
+        "rejecting_gei_shape_files": [
+          "st-002-reviewed-disposition.shacl.ttl"
+        ]
+      }
+    },
+    "o4-invented-negation.ttl": {
+      "held": true,
+      "observed": {
+        "candidate_invalidation_conforms": true,
+        "candidate_st007_narrowed_conforms": true,
+        "gei_conforms": true,
+        "rejecting_gei_shape_files": []
+      }
+    },
+    "o5-conflict-dropped.ttl": {
+      "held": true,
+      "observed": {
+        "candidate_invalidation_conforms": true,
+        "candidate_st007_narrowed_conforms": true,
+        "gei_conforms": true,
+        "rejecting_gei_shape_files": []
+      }
+    },
+    "o5-scoped-dual-dispositions.ttl": {
+      "held": true,
+      "observed": {
+        "candidate_invalidation_conforms": true,
+        "candidate_st007_narrowed_conforms": true,
+        "gei_conforms": true,
+        "rejecting_gei_shape_files": []
+      }
+    },
+    "o6-dangling-episode.ttl": {
+      "held": true,
+      "observed": {
+        "candidate_invalidation_conforms": true,
+        "candidate_st007_narrowed_conforms": true,
+        "gei_conforms": true,
+        "rejecting_gei_shape_files": []
+      }
+    },
+    "o7-withdrawn-despite-support.ttl": {
+      "held": true,
+      "observed": {
+        "candidate_invalidation_conforms": true,
+        "candidate_st007_narrowed_conforms": true,
+        "gei_conforms": true,
+        "rejecting_gei_shape_files": []
+      }
+    },
+    "o8-correction-as-revision.ttl": {
+      "held": true,
+      "observed": {
+        "candidate_invalidation_conforms": true,
+        "candidate_st007_narrowed_conforms": true,
+        "gei_conforms": true,
+        "rejecting_gei_shape_files": []
+      }
+    },
+    "o8-recency-invalidation-with-plan.ttl": {
+      "held": true,
+      "observed": {
+        "candidate_invalidation_conforms": true,
+        "candidate_st007_narrowed_conforms": true,
+        "gei_conforms": true,
+        "rejecting_gei_shape_files": []
+      }
+    },
+    "obligation_classes": {
+      "held": true,
+      "observed": {
+        "O1": "OUT-OF-SCOPE",
+        "O2": "OUT-OF-SCOPE",
+        "O3": "ADAPTABLE",
+        "O4": "OUT-OF-SCOPE",
+        "O5": "OUT-OF-SCOPE",
+        "O6": "OUT-OF-SCOPE",
+        "O7": "OUT-OF-SCOPE",
+        "O8": "OUT-OF-SCOPE"
+      }
+    },
+    "st012-positive-under-st007": {
+      "held": true,
+      "observed": {
+        "conforms": true,
+        "conforms_with_st007_narrowed": true
+      }
+    }
+  },
+  "run_at": "2026-09-15T14:40:08.179538+00:00",
+  "status": "executed"
+}
