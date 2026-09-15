@@ -381,7 +381,20 @@ GB-08 was executed in this session. Results, including what Graphiti makes unnec
 | #1 migrate validated local scripts | Engineering track; unaffected by GEI findings. See §9 |
 | #2 detached round-trip audit | Engineering track; unaffected by GEI findings. See §9 |
 
-New focused issues created from this audit are listed in `STATUS.md` under the prior-art integration tracker.
+New focused issues created from this audit:
+
+| Issue | Findings |
+|---|---|
+| #12 Evidence coverage: decision-value experiment over OTel GenAI + PROV + DQV | GB-03, GB-04, GB-16 |
+| #13 Current-view admission vs ordinary application state | GB-01, GB-02, GB-07, GB-09 |
+| #14 Argumentation baseline for supported-conflict admission | GB-05, GB-07 |
+| #15 Neutral export to the GEI PROV/DQV/CVD profile | GB-06, GB-10, GB-11 |
+
+No issue was created for:
+
+- GB-08, which was executed here under #11;
+- GB-12, which is resolved by documentation;
+- the P3 documentation findings.
 
 ## 9. Engineering-track items not advanced
 

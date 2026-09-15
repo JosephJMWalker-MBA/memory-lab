@@ -65,7 +65,7 @@ Admission is a read-only projection. Nothing is written back to Graphiti.
 
 ## 4. Scenario results
 
-All ten scenarios run against real Graphiti code; the verdicts are scripted. **Graphiti-current** means `invalid_at` and `expired_at` are both null, which is the natural filter an application would pass through `SearchFilters`. Graphiti itself defines no "current view" and applies no default temporal filter.
+All ten scenarios run against real Graphiti code; the verdicts are scripted. **Graphiti-current** means `invalid_at` and `expired_at` are both null, which is the natural filter an application would pass through `SearchFilters`. Graphiti itself defines no "current view", and no default temporal filter was found in its search code.
 
 | Scenario | Scripted verdict | Timing | Graphiti outcome | Memory Lab admission | Failed checks |
 |---|---|---|---|---|---|
@@ -99,7 +99,7 @@ Memory Lab's admission over that state withheld both and wrote nothing (EP-08 pa
 
 ### F2. Graphiti's native resolver resolves conflicts only by recency
 
-Whatever the LLM flags as contradictory is handed to `resolve_edge_contradictions` and the "new edge born expired" rule. Both compare `valid_at` only. So Graphiti has exactly one conflict operator: the later `valid_at` wins, and the loser gets an `invalid_at`.
+Whatever the LLM flags as contradictory is handed to `resolve_edge_contradictions` and the "new edge born expired" rule. Both compare `valid_at` only. So on the edge-resolution path of 0.30.2 there is exactly one conflict operator: the later `valid_at` wins, and the loser gets an `invalid_at`.
 
 For the three timing cases:
 
@@ -240,6 +240,8 @@ The CI test's hand-built expectations for recency collapse, multi-valued over-in
 - **Derived facts are not how Graphiti normally learns facts.** A real deployment would LLM-extract "Polaris status is blocked" from an episode with no justification structure at all. The derived-edge mapping is an adapter decision.
 - **Kuzu only.**
 - **The same author wrote the adapter and the conformance checks.** Partial mitigation: expectations were fixed before the live run, and CI recomputes every recorded verdict from the recorded states.
+- **The EP-10 check infers successors.** Graphiti records no basis for a closure. The check therefore matches a successor by subject, predicate, qualifiers, and `valid_at == invalid_at`. A production adapter should record the basis at resolution time, for example as a PROV activity, rather than infer it.
+- **The adapter both selects and records its admission policy.** It hard-codes the lane's `withhold` policy. Real use must take the policy from governance input (audit NB-03, IO-04).
 
 ## 12. Next
 

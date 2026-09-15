@@ -209,6 +209,46 @@ This experiment does not validate source-authority adjudication, probabilistic
 conflict resolution, automatic predicate-constraint discovery, complex temporal
 constraint logic, or private-corpus conflict handling.
 
+## Graphiti substitution v0 (external runtime, synthetic)
+
+The Memory-Lab-owned adapter and conformance checks run with:
+
+```bash
+python3 tests/run_graphiti_adapter_v0.py
+```
+
+This demonstrates the following without Graphiti installed:
+
+- the Polaris translation is deterministic;
+- a read-only admission projection over Graphiti-shaped edge state reproduces the native conflict lane's assessments byte-for-byte;
+- the ML-EP-0 checks detect four failure modes:
+  - recency collapse;
+  - unconstrained invalidation;
+  - deletion-as-withdrawal;
+  - dangling provenance;
+- every conformance verdict and admission recorded in the live evidence file can be recomputed from the recorded states.
+
+The live run executed `graphiti-core==0.30.2` on embedded Kuzu 0.11.3 at Memory Lab commit `c3d12d7`:
+
+```bash
+python experiments/graphiti-conflict-v0/run_graphiti_live.py
+```
+
+It exercised Graphiti's own code across ten scenarios:
+
+- persistence;
+- `resolve_extracted_edge`: the fast path, verdict handling, attribute handling, and temporal resolution;
+- `Graphiti.remove_episode`.
+
+Contradiction verdicts were scripted. No LLM, embedder, search, or production backend was used. See `graphiti-substitution-v0.md`.
+
+This is executed external-runtime evidence over one synthetic fixture. It does not validate:
+
+- real LLM contradiction behavior;
+- Graphiti search;
+- Neo4j or FalkorDB persistence;
+- real-corpus behavior.
+
 ## Legacy compatibility audit
 
 Six structurally different source documents were regenerated under the WSL query-encoder runtime and compared with their records in the recovered baseline.
@@ -312,6 +352,10 @@ A full logical equivalence audit was started between the untouched recovered bas
 - `experimental public research semantics`: executable synthetic behavior that
   tests a research model without claiming production or private-corpus validity,
   currently including derived memory v0, its adversarial v0.1 refinement, dependency-aware reassessment v0, multiple independent justifications v0, and derived conflict/consistency v0.
+- `executed external-runtime substitution (synthetic)`: a published runtime's
+  own code exercised against a Memory Lab fixture, with any substituted
+  participant (for example scripted LLM verdicts) declared; currently Graphiti
+  substitution v0.
 - `designed but unimplemented`: architectural direction that is not yet
   executable behavior, including LLM extraction, automatic evidence
   normalization, real retrieval-coverage estimation, automatic contrary-evidence

@@ -178,3 +178,28 @@ This experiment does not implement:
 
 A future resolution layer should only choose among conflicting supported records
 when an explicit, inspectable rule justifies doing so.
+
+## Withholding is a policy default
+
+`withhold_conflicting_supported` is this lane's default admission policy. It is
+not a semantic necessity.
+
+Plural admission of both records, with the conflict kept visible, is also
+legitimate under a declared policy. Wikidata, for example, returns all
+normal-rank values when none is preferred.
+
+What Memory Lab requires is narrower:
+
+- the conflict stays visible;
+- the policy's result stays separate from support and from rejection.
+
+Choosing the policy for a scope belongs to governance, not Memory Lab
+(`gei-backpropagation-audit.md` GB-07 and NB-03; issue #13).
+
+## Substrate result
+
+`graphiti-substitution-v0.md` ran this fixture against Graphiti 0.30.2.
+
+- Graphiti can store both records.
+- Its native contradiction resolver instead lets the later `valid_at` win.
+  That renders this conflict as a false temporal succession.

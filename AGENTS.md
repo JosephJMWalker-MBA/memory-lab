@@ -16,6 +16,8 @@ Start with:
 4. `docs/architecture.md`
 5. `docs/derived-memory-prior-art.md`
 6. the specific experiment / schema relevant to the task
+7. `docs/gei-backpropagation-audit.md` before work touching an adjacent GEI layer (Pyxis, Hermeneia, Telos, MASI)
+8. `docs/graphiti-substitution-v0.md` before any runtime-substrate work
 
 For long-horizon historical reopening work, also read:
 
@@ -48,6 +50,9 @@ Before inventing a new memory primitive, graph layer, truth-maintenance engine, 
 - temporal / bitemporal databases and knowledge graphs;
 - event sourcing;
 - Graphiti / Zep;
+- formal argumentation (Dung, ASPIC+, AIF);
+- SEPIO / EVI evidence vocabularies and W3C DQV quality measurements;
+- Wikidata statement ranks (support vs current standing);
 - ordinary relational application state;
 - lexical / vector / graph retrieval composition.
 
@@ -168,6 +173,32 @@ Memory Lab may contribute:
 while another system supplies runtime machinery.
 
 That is a valid success state.
+
+### Negative boundary
+
+Memory Lab reports epistemic state: support, coverage, consistency, historical standing, and current-view disposition.
+
+Preserving information about the following does not make Memory Lab their owner:
+
+- authority, authorization, and execution eligibility (Telos / policy engines);
+- which admission policy governs a scope, and whether uncertainty is material enough to block action (Telos / application governance);
+- participant standing and steward acceptance (Hermeneia / GEI standing);
+- corrective independence across participants (GEI / MASI);
+- downstream use rights and lawful erasure (rights governance);
+- truth.
+
+Do not emit fields for any of these. `admitted` never means authorized or true. `withheld` never means false.
+
+See `docs/gei-backpropagation-audit.md` §5–§6.
+
+### Substrate adapters
+
+When adapting a runtime:
+
+- never map withdrawal onto a deletion operation;
+- never let a substrate's native conflict resolver close a support-valid record for a predicate that has an explicit constraint.
+
+See `docs/graphiti-substitution-v0.md`.
 
 ## Change rule
 

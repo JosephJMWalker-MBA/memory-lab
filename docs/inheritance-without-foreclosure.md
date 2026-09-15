@@ -164,3 +164,28 @@ Evidence against the hypothesis includes:
 - the structured reopening procedure adds prompt/attention advantages rather than a genuine memory-governance advantage.
 
 The principle survives only if conditional inheritance improves long-horizon work under controlled or sufficiently strong naturalistic evidence.
+
+## Relationship to GEI C-001
+
+The controlled test of this hypothesis is GEI experiment C-001, which tests GEI claim T-GIE-05. The governing documents are:
+
+- `governed-intelligence-ecology/research/experiments/C-001-inheritance-without-foreclosure.md`;
+- `C-001-pre-outcome-amendment-v1.md`.
+
+C-001's amended design already contains the controls this document asks for:
+
+- a balanced portfolio of reopen-warranted **and** do-not-reopen cases;
+- a history-judgement instrument whose four dispositions match those in "Relationship to current-view disposition" above: still binding / eligible for bounded reopening / superseded by changed conditions / unresolved;
+- arms that separate:
+  - history availability;
+  - anti-repetition framing;
+  - structure-matched checklist attention (arm D);
+  - causal reopening (arm E);
+- at least three replicates per condition and unit.
+
+Consequences for Memory Lab:
+
+- Memory Lab does not run a competing controlled experiment.
+- Memory Lab does not author or preview C-001's sealed items; doing so would contaminate them.
+- C-001's arm E is an experimental instruction protocol, not a Memory Lab runtime mechanism. Do not describe it as one.
+- Memory Lab's contribution is the minimum historical-record shape above. Once C-001 reports, Memory Lab narrows or retains this principle according to the result.

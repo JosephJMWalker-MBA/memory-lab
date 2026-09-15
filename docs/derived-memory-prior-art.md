@@ -228,6 +228,76 @@ References:
 - https://github.com/getzep/graphiti
 - Zep: A Temporal Knowledge Graph Architecture for Agent Memory, arXiv:2501.13956
 
+### Executed substitution result
+
+`graphiti-substitution-v0.md` ran Polaris against graphiti-core 0.30.2. Three findings:
+
+- Graphiti's own conflict operator is temporal succession: the later `valid_at` wins, and equal `valid_at` closes nothing.
+- The contradiction verdict is an LLM judgement with no recorded basis.
+- Removal is deletion.
+
+Upstream issue #1728 reports collateral invalidation caused by unscoped candidate search: https://github.com/getzep/graphiti/issues/1728
+
+## Formal argumentation
+
+Several frameworks already handle conflicting arguments:
+
+- Dung-style abstract argumentation computes which sets of mutually attacking arguments are acceptable under a chosen semantics.
+- ASPIC+ builds structured arguments from strict and defeasible rules, and distinguishes attacks on premises, inferences, and conclusions.
+- AIF provides an interchange format.
+
+This is direct prior art for supported conflict and current-view admission. The Polaris rule works like this: two support-valid records that violate an exclusivity constraint are both withheld, and when one loses its premise the other is admitted. That behaves like grounded (skeptical) acceptance of a symmetric attack.
+
+Memory Lab should not claim this rule as its own. Issue #14 tests whether grounded or preferred semantics reproduce every Memory Lab admission outcome.
+
+References:
+- Phan Minh Dung, "On the acceptability of arguments and its fundamental role in nonmonotonic reasoning, logic programming and n-person games", Artificial Intelligence 77(2), 1995. DOI: 10.1016/0004-3702(94)00041-X
+- Sanjay Modgil and Henry Prakken, "The ASPIC+ framework for structured argumentation: a tutorial", Argument & Computation 5(1), 2014. DOI: 10.1080/19462166.2013.869766
+
+## Evidence and claim ontologies; quality measurement
+
+Existing vocabularies already cover most of what a bespoke "epistemic assessment" schema would define:
+
+- SEPIO: evidence lines, statements, direction and strength of evidence;
+- the Evidence Graph Ontology (EVI): a PROV-O extension with support and challenge;
+- Micropublications;
+- the Evidence & Conclusion Ontology (ECO).
+
+W3C DQV provides the container for a scoped coverage measurement.
+
+Consequence: any export of Memory Lab state should compose PROV + SEPIO/EVI/AIF + DQV + a current-view projection, rather than promote Memory Lab's JSON schemas (issue #15).
+
+References:
+- https://sepio-framework.github.io/sepio-linkml/
+- https://fairscape.github.io/EVI/reference/
+- Tim Clark, Paolo Ciccarese, and Carole Goble, "Micropublications: a semantic model for claims, evidence, arguments and annotations in biomedical communications", Journal of Biomedical Semantics 5:28, 2014. DOI: 10.1186/2041-1480-5-28
+- https://www.evidenceontology.org/
+- https://www.w3.org/TR/vocab-dqv/
+
+## Wikidata statement ranks
+
+Wikidata keeps references (where a value comes from) separate from rank (the community's current standing of the value). Multiple qualified values can coexist, and a cited value can still be deprecated.
+
+This is deployed prior art for separating support from current standing. It also shows that "withhold both" is only one admission **policy**:
+
+- With no preferred statement, Wikidata returns all normal-rank values together (plural admission).
+- `deprecated` means known-wrong, not withheld.
+
+What survives for Memory Lab is narrow: a `withheld` state (neither false nor current) for unresolved supported conflict. The choice between withholding and plural admission belongs to the policy of a scope.
+
+References:
+- https://www.wikidata.org/wiki/Help:Ranking
+- https://www.wikidata.org/wiki/Wikidata:Data_model
+
+## Correction versus erasure
+
+XTDB versions ordinary `UPDATE` and `DELETE` across system time. It reserves `ERASE` for exceptional, legally required destruction.
+
+Removing something from current applicability is not the same operation as destroying its record. Memory Lab's historical-preservation rule should treat lawful erasure as a separate, explicit operation owned by rights governance, never as withdrawal.
+
+Reference:
+- https://docs.xtdb.com/reference/main/sql/txs.html
+
 ## Whyis + Graphiti + TMS/ATMS as a substitute architecture
 
 A plausible substitute architecture covers a large fraction of the current problem:

@@ -16,6 +16,8 @@ Read:
 4. [`docs/substitution-conformance-map-v0.md`](docs/substitution-conformance-map-v0.md) — field-by-field substitution map and draft implementation-independent profile
 5. [`docs/architecture.md`](docs/architecture.md) — current architecture and validated implementation tracks
 6. [`docs/derived-memory-prior-art.md`](docs/derived-memory-prior-art.md) — established work constraining the research
+7. [`docs/graphiti-substitution-v0.md`](docs/graphiti-substitution-v0.md) — first executed external-runtime substitution result
+8. [`docs/gei-backpropagation-audit.md`](docs/gei-backpropagation-audit.md) — GEI-derived future work and Memory Lab's negative boundary
 
 For long-horizon reopening / historical-memory work, see:
 
@@ -182,6 +184,17 @@ GEI
 
 If an existing system already provides the required responsibility end-to-end more simply, Memory Lab should narrow rather than compete with it.
 
+Memory Lab reports epistemic state. Preserving information about the following does not make Memory Lab their owner:
+
+- authority;
+- the choice of admission policy;
+- decision sufficiency;
+- participant standing;
+- use rights;
+- truth.
+
+See [`docs/gei-backpropagation-audit.md`](docs/gei-backpropagation-audit.md) §5.
+
 ## Repository boundary
 
 This repository contains reusable code, schemas, contracts, sanitized fixtures, and validation documentation.
@@ -194,7 +207,12 @@ See [`docs/security-and-data-boundaries.md`](docs/security-and-data-boundaries.m
 
 Research / engineering harness in a **prior-art integration + semantic hardening** phase.
 
-The mapping phase is complete enough to begin external-runtime substitution tests. The first recommended adapter experiment is the `derived-conflict-v0` Polaris fixture against Graphiti's native contradiction/invalidation behavior; see `STATUS.md` and issue #11.
+The first external-runtime substitution experiment has been executed: `derived-conflict-v0` (Polaris) against Graphiti 0.30.2, with scripted contradiction verdicts.
+
+- Graphiti's data model plus a thin, read-only admission projection preserved the Polaris semantics.
+- Graphiti's native contradiction resolver and its episode removal did not.
+
+Memory Lab narrowed accordingly. See [`docs/graphiti-substitution-v0.md`](docs/graphiti-substitution-v0.md), `STATUS.md`, and issue #11.
 
 The goal is not to maximize custom architecture.
 

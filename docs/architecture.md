@@ -169,6 +169,29 @@ evidence normalization, real retrieval-coverage estimation, automatic discovery
 of contrary evidence, private-corpus behavior, production persistence, and
 general recursive reasoning remain unimplemented.
 
+### Substrate result
+
+The first executed substitution (`graphiti-substitution-v0.md`) placed the
+Polaris records in Graphiti 0.30.2.
+
+The substrate handled:
+
+- record storage;
+- evidence references;
+- valid time and knowledge time;
+- historical retention;
+- corroboration.
+
+Memory Lab kept only three pieces:
+
+- explicit predicate constraints;
+- a read-only admission projection;
+- conformance checks.
+
+Two Graphiti operations had to be kept out of the way: its native
+contradiction resolver (away from constrained predicates) and its episode
+removal (away from withdrawal).
+
 ## 7. Runtime boundary
 
 The validated implementation uses WSL for Chroma/HNSW read-write operations. Native Windows HNSW operations were not sufficiently reliable in the recovered environment. Long-running audits should run detached from interactive SSH sessions so terminal lifetime does not determine job lifetime.

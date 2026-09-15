@@ -634,6 +634,20 @@ def verify_recorded_evidence(plan):
         assert [item["assessment_id"] for item in admission["consistency"]] == [
             item["assessment_id"] for item in scenario["admission"]["consistency"]
         ], name
+        # Native resolution clears attributes on exactly the edges it resolves
+        # through the verdict branch; the exact-fact fast path does not.
+        resolved_by_verdict = scenario["llm_calls"] == ["dedupe_edges.resolve_edge"]
+        expected_loss = sorted(scenario["introduced"]) if resolved_by_verdict else []
+        assert adapter_attribute_loss(scenario["after"]) == scenario["adapter_attribute_loss"] == expected_loss, name
+
+    # The live projection over Graphiti's persisted state reproduces the native
+    # conflict lane's assessments exactly, before and after the world change.
+    direct = recorded["scenarios"]["direct_write_world_change"]
+    expected = expected_lane_assessments(load_fixture())
+    assert outcome(direct["admission_before"], "status") == expected["conflict_0400"]
+    assert outcome(direct["admission_before"], "depends_on") == expected["multivalue_0400"]
+    assert outcome(direct["admission"], "status") == expected["resolved_0401"]
+    assert direct["EP-08_admission_read_only"]["verdict"] == "pass"
     return "verified"
 
 

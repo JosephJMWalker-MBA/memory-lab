@@ -253,6 +253,15 @@ That is useful product behavior, but it is not the same as Memory Lab's delibera
 
 This makes `derived-conflict-v0` an excellent first Graphiti adapter fixture.
 
+**Executed result (2026-09-14):** see `graphiti-substitution-v0.md`.
+
+- Written directly, both claims are preserved natively by Graphiti 0.30.2's data model.
+- A read-only admission projection then withholds both.
+- Graphiti's native resolver keeps both current when `valid_at` is equal.
+- Otherwise the native resolver lets the later `valid_at` win, which writes a world-time end onto a support-valid record.
+
+Classification is refined from **PARTIAL** to: representation **NATIVE**; the resolver must be **bypassed for constrained predicates**.
+
 ### Ordinary application state
 
 **ADAPTABLE and a serious simpler baseline.** A database can preserve historical assertions and maintain a separate current-view table/projection. Memory Lab must demonstrate that an explicit reusable conformance profile adds value beyond ordinary careful application design.
@@ -494,6 +503,10 @@ Possible outcomes:
 - **Not representable without bypassing core behavior:** preserve the conformance distinction and test another substrate.
 
 Do not grade Graphiti negatively merely because its product semantics choose a different useful tradeoff.
+
+**Outcome:** adaptable, by bypassing the contradiction resolver for constrained predicates.
+
+Memory Lab narrowed to constraints, the admission projection, and conformance checks. See `graphiti-substitution-v0.md`.
 
 ## Second: Whyis reassessment/revision adapter
 
