@@ -18,6 +18,7 @@ Do not treat success in one track as proof of the other.
 7. `inheritance-without-foreclosure.md` — historical-memory reopening hypothesis
 8. `graphiti-substitution-v0.md` — first executed external-runtime substitution result
 9. `gei-backpropagation-audit.md` — GEI-derived findings, negative boundary, interface obligations
+10. `appstate-baseline-v0.md` — current-view admission vs ordinary application state (EP-08 narrowed)
 
 ## Engineering / retrieval track
 
@@ -43,6 +44,7 @@ Read roughly in this sequence:
 6. `derived-memory-prior-art.md`
 7. `substitution-conformance-map-v0.md`
 8. `graphiti-substitution-v0.md`
+9. `appstate-baseline-v0.md`
 
 This sequence shows how synthetic adversarial cases forced the semantics to become more precise and then how prior art removes unnecessary ownership of the underlying machinery.
 

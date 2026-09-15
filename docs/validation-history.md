@@ -249,6 +249,29 @@ This is executed external-runtime evidence over one synthetic fixture. It does n
 - Neo4j or FalkorDB persistence;
 - real-corpus behavior.
 
+## Current-view admission vs application-state baseline v0
+
+The comparison runs with:
+
+```bash
+python3 tests/run_appstate_baseline_v0.py
+```
+
+It rebuilds the reassessment, multiple-justification, and conflict lanes' artifacts with the existing lane code. It then compares them with three sqlite3 designs that import no Memory Lab semantics:
+
+- **B1:** recorded conclusions;
+- **B2:** recompute-on-read;
+- **B0:** naive mutable state.
+
+What it demonstrates:
+
+- B1 reproduces every Memory Lab current-view outcome, and also expresses scoped dispositions and policy versions.
+- B2 rewrites history when a derivation rule changes.
+- B0 invents negations, erases the conflict, and keeps no history.
+- The reassessment results' mapping onto CVD values round-trips without loss.
+
+These are synthetic comparisons over hand-designed fixtures. They do not validate real application code, concurrent writers, valid-time intervals on derived facts, or concurrent contradictory base evidence. See `appstate-baseline-v0.md`.
+
 ## Legacy compatibility audit
 
 Six structurally different source documents were regenerated under the WSL query-encoder runtime and compared with their records in the recovered baseline.

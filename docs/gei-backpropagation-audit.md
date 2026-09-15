@@ -373,6 +373,12 @@ Ranked by information gain per unit of tractable work in this environment:
 
 GB-08 was executed in this session. Results, including what Graphiti makes unnecessary in Memory Lab, are in `docs/graphiti-substitution-v0.md`.
 
+Rank 2 (GB-01, GB-02, GB-09) was then executed as #13; see `docs/appstate-baseline-v0.md`.
+
+- The ordinary baseline reproduced every Memory Lab current-view outcome.
+- It also represented scope and policy version.
+- EP-08 is therefore narrowed to a conformance obligation.
+
 ## 8. Relationship to existing issues
 
 | Existing issue | Relationship |

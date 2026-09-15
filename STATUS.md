@@ -172,7 +172,15 @@ Any coverage representation should reuse OpenTelemetry GenAI retrieval spans, PR
 
 Separate historical/support status from current-view participation remains useful in the synthetic fixtures, but ordinary application state is a serious simpler baseline. Memory Lab must show that a portable conformance boundary adds value rather than merely renaming a well-designed projection table.
 
-Admission is also a policy choice. `withhold` is the Polaris lane's default, not a semantic necessity: plural admission is legitimate under a declared policy (audit GB-07). Choosing the policy for a scope belongs to governance, not Memory Lab. The test is #13.
+Admission is also a policy choice. `withhold` is the Polaris lane's default, not a semantic necessity: plural admission is legitimate under a declared policy (audit GB-07). Choosing the policy for a scope belongs to governance, not Memory Lab.
+
+**Executed (#13, `docs/appstate-baseline-v0.md`).** The comparison baseline was ordinary event-sourced application state with a scoped, versioned policy table: 77 SQL lines and 97 Python lines.
+
+- It reproduced every Memory Lab current-view outcome across the three lanes.
+- It also expressed scope and policy versions, which Memory Lab's artifacts cannot.
+- Current-view admission is therefore an **ordinary application pattern, not a Memory Lab primitive**.
+
+What survives is the conformance checks, plus one obligation: conclusions must be recorded, not recomputed on read, when derivation rules can change. The recompute-on-read variant silently rewrote history.
 
 ### Inheritance without foreclosure
 
@@ -220,7 +228,8 @@ The negative boundary and interface obligations are in `docs/gei-backpropagation
 - Real-corpus derived-memory behavior is not yet established.
 - Inheritance without foreclosure is not yet empirically established.
 - Current-view semantics have not yet been demonstrated across multiple independent existing runtimes.
-- Memory Lab has not shown that its surviving distinctions outperform simpler application-state representations.
+- For current-view admission, a simpler application-state representation matched Memory Lab on every synthetic fixture, and exceeded it on scope and policy attribution (#13).
+- Memory Lab has not shown that any of its surviving distinctions outperforms a simpler application-state representation.
 
 ## Immediate next research direction
 
@@ -228,16 +237,21 @@ Do not add broad new runtime machinery first.
 
 The mapping phase is complete enough to move to substitution experiments.
 
-Completed: the Graphiti adapter experiment for `derived-conflict-v0` (see above).
+Completed:
 
-Next sequence, ranked by information gain (`docs/gei-backpropagation-audit.md` §7):
+- the Graphiti adapter experiment for `derived-conflict-v0`;
+- the current-view vs application-state comparison (#13).
 
-1. **#13 current-view admission vs ordinary application state.** The Graphiti result showed that admission is a pure projection over substrate state. Test whether a plain event-sourced projection table (stdlib `sqlite3`) already preserves every fixture distinction, including scoped and policy-attributed dispositions.
-2. **#12 evidence-coverage decision value.** First align the coverage vocabulary with ML-EP-0. Then test whether coverage state changes decisions beyond provenance plus retrieval metrics.
+Both narrowed Memory Lab (see above).
+
+Next sequence, ranked by information gain:
+
+1. **#12 evidence-coverage decision value.** Coverage is now the only candidate Memory Lab distinction not yet reduced to ordinary machinery. First align the coverage vocabulary with ML-EP-0. Then test whether coverage state changes decisions beyond provenance plus retrieval metrics.
+2. **Concurrent contradictory base evidence.** Both Graphiti and the ordinary baseline resolve single-valued base facts by recency. Neither was tested against concurrent contradiction at the base level (the derived-memory v0 case).
 3. **#14 argumentation baseline.** Test whether grounded or preferred semantics reproduce the conflict-admission rule.
 4. **Whyis reassessment/revision substitution** (#11). Blocked here: no Whyis deployment is available.
 5. **#15 neutral export to the GEI profile.** Interface conformance against ST-002/ST-003.
 6. **Real-LLM Graphiti replication** on a production backend. Requires infrastructure and a provider key.
-7. Only then decide whether any custom runtime component is justified.
+7. Only then decide whether any custom runtime component is justified. Current evidence points away from one.
 
 Inheritance without foreclosure is tested by GEI C-001, not by a Memory Lab experiment.

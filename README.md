@@ -214,6 +214,11 @@ The first external-runtime substitution experiment has been executed: `derived-c
 
 Memory Lab narrowed accordingly. See [`docs/graphiti-substitution-v0.md`](docs/graphiti-substitution-v0.md), `STATUS.md`, and issue #11.
 
+A second comparison tested current-view admission against ordinary application state ([`docs/appstate-baseline-v0.md`](docs/appstate-baseline-v0.md), issue #13).
+
+- Ordinary event-sourced application state with a scoped, versioned policy table reproduced every Memory Lab current-view outcome on the synthetic fixtures.
+- Current-view admission is therefore treated as an application pattern that Memory Lab tests, not a primitive Memory Lab owns.
+
 The goal is not to maximize custom architecture.
 
 The goal is to discover the smallest governed-memory model that survives comparison with reality and established systems.

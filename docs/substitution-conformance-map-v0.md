@@ -266,6 +266,15 @@ Classification is refined from **PARTIAL** to: representation **NATIVE**; the re
 
 **ADAPTABLE and a serious simpler baseline.** A database can preserve historical assertions and maintain a separate current-view table/projection. Memory Lab must demonstrate that an explicit reusable conformance profile adds value beyond ordinary careful application design.
 
+**Executed result (2026-09-14):** see `appstate-baseline-v0.md`. The baseline won.
+
+- An event-sourced facts table with SQL derivation rules and a scoped, versioned policy table reproduced every Memory Lab current-view outcome.
+- It also expressed scope and policy version.
+- A recompute-on-read variant rewrote history after a rule change.
+- A naive mutable design invented negations and erased the conflict.
+
+What survives is the conformance checks, not a representation.
+
 ## Disposition
 
 Keep the **three-way distinction** under empirical pressure.
@@ -368,6 +377,8 @@ A candidate runtime/composition does **not** need Memory Lab's JSON schemas. It 
 
 Source evidence and prior derived/reassessment history must not be silently rewritten merely because the current view changes.
 
+*Draft amendment (from #13):* this includes recomputation under a changed derivation rule or interpretation. Conclusions drawn under an earlier rule must remain readable as they were drawn.
+
 ## EP-02 Provenance closure
 
 A consequential derived proposition must be traceable through its immediate derivation/support relationships to source evidence or an explicitly external assumption.
@@ -409,7 +420,11 @@ An individually support-valid record must not lose its historical support status
 
 The system must be able to represent whether a historical/support-valid record participates in the current working view without rewriting the historical record.
 
-This requirement remains under falsification against ordinary application state.
+*Executed comparison (#13, `appstate-baseline-v0.md`):* ordinary event-sourced state with a scoped, versioned policy table satisfies this requirement. It also represents scope and policy version.
+
+EP-08 is retained as a conformance obligation, not as a Memory Lab primitive.
+
+*Draft amendment:* the disposition should be scoped and attributable to a policy identity/version.
 
 ## EP-09 Explicit conflict basis
 
