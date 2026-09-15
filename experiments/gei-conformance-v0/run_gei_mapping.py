@@ -16,6 +16,7 @@ using the same processor options as GEI's scripts/validate_reference_path.py.
 import argparse
 import importlib.util
 import json
+import os
 import pathlib
 import platform
 import subprocess
@@ -30,6 +31,7 @@ from rdflib.namespace import SH
 HERE = pathlib.Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 sys.path.insert(0, str(ROOT / "tests"))
+sys.dont_write_bytecode = True  # importing GEI's harness must not write into the GEI checkout
 
 from run_gei_mapping_v0 import EXPECTATIONS, RESULTS, classify_all, prediction_checks  # noqa: E402
 
@@ -140,7 +142,11 @@ def main():
     with_narrowed = replace_st007(gei_shapes)
 
     baseline = subprocess.run(
-        [sys.executable, "scripts/validate_semantics.py"], cwd=gei, capture_output=True, text=True
+        [sys.executable, "-B", "scripts/validate_semantics.py"],
+        cwd=gei,
+        capture_output=True,
+        text=True,
+        env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
     )
     if git(gei, "status", "--porcelain"):
         raise SystemExit("GEI validation modified the checkout")
