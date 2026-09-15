@@ -42,6 +42,7 @@ GEI_ST007 = "st-007-human-feedback-transition.shacl.ttl"
 def load_module(path, name):
     spec = importlib.util.spec_from_file_location(name, path)
     module = importlib.util.module_from_spec(spec)
+    sys.modules[name] = module  # GEI's dataclasses resolve annotations through sys.modules
     spec.loader.exec_module(module)
     return module
 
