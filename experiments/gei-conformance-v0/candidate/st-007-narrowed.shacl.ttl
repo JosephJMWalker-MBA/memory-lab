@@ -1,0 +1,88 @@
+@prefix shape: <https://example.org/memory-lab/candidate-shapes#> .
+@prefix prof: <https://example.org/gie-profile/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix oa: <http://www.w3.org/ns/oa#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+# Memory Lab candidate. This is not part of GEI.
+#
+# In one validation run only, this shape replaces GEI's ST-007, to test a
+# narrower target.
+#
+# The problem: GEI's ST-007 targets every subject of prov:wasRevisionOf, while
+# GEI's T5 prescribes prov:wasRevisionOf for any revised version of an earlier
+# entity.
+#
+# The change: this variant applies the unchanged ST-007 constraints only to
+# revisions of Relevant Evidence Coverage measurements. Everything else is
+# copied from GEI's shape. It is SHACL Core only.
+
+shape:ST007NarrowedCoverageRevision
+    a sh:NodeShape ;
+    sh:targetSubjectsOf prov:wasRevisionOf ;
+    sh:or (
+        [
+            sh:not [
+                sh:property [
+                    sh:path dqv:isMeasurementOf ;
+                    sh:hasValue prof:relevantEvidenceCoverage
+                ]
+            ]
+        ]
+        [
+            sh:class dqv:QualityMeasurement ;
+            sh:property [ sh:path dqv:isMeasurementOf ; sh:hasValue prof:relevantEvidenceCoverage ] ;
+            sh:property [ sh:path dqv:value ; sh:hasValue "known-incomplete" ] ;
+            sh:property [
+                sh:path prov:wasRevisionOf ;
+                sh:minCount 1 ;
+                sh:node [
+                    sh:class dqv:QualityMeasurement ;
+                    sh:property [ sh:path dqv:isMeasurementOf ; sh:hasValue prof:relevantEvidenceCoverage ] ;
+                    sh:property [ sh:path dqv:value ; sh:hasValue "unknown" ]
+                ]
+            ] ;
+            sh:property [
+                sh:path prov:wasGeneratedBy ;
+                sh:minCount 1 ;
+                sh:maxCount 1 ;
+                sh:node [
+                    sh:class prov:Activity ;
+                    sh:property [
+                        sh:path prov:qualifiedAssociation ;
+                        sh:qualifiedValueShape [
+                            sh:class prov:Association ;
+                            sh:property [ sh:path prov:agent ; sh:minCount 1 ] ;
+                            sh:property [
+                                sh:path prov:hadPlan ;
+                                sh:minCount 1 ;
+                                sh:node [ sh:class prov:Plan ]
+                            ]
+                        ] ;
+                        sh:qualifiedMinCount 1
+                    ] ;
+                    sh:property [
+                        sh:path prov:used ;
+                        sh:qualifiedValueShape [
+                            sh:class dqv:UserQualityFeedback ;
+                            sh:property [ sh:path oa:hasTarget ; sh:minCount 1 ] ;
+                            sh:property [ sh:path oa:hasBody ; sh:minCount 1 ] ;
+                            sh:property [ sh:path prov:wasAttributedTo ; sh:minCount 1 ]
+                        ] ;
+                        sh:qualifiedMinCount 1
+                    ] ;
+                    sh:property [
+                        sh:path prov:used ;
+                        sh:qualifiedValueShape [
+                            sh:class dqv:QualityMeasurement ;
+                            sh:property [ sh:path dqv:isMeasurementOf ; sh:hasValue prof:relevantEvidenceCoverage ] ;
+                            sh:property [ sh:path dqv:value ; sh:hasValue "unknown" ]
+                        ] ;
+                        sh:qualifiedMinCount 1
+                    ]
+                ]
+            ]
+        ]
+    ) ;
+    sh:message "ST-007 (Memory Lab candidate narrowing): a revised Relevant Evidence Coverage measurement changed by human quality feedback must come from an attributable, plan-governed reassessment that used the feedback and the prior measurement." .

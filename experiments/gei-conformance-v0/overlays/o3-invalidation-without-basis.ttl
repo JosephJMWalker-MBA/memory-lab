@@ -1,0 +1,14 @@
+@prefix ml: <https://example.org/memory-lab/export/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# O3, violation, motivating.
+# Source: graphiti-conflict-v0, native_later_valid_at_contradiction (issue #11).
+#
+# Graphiti's invalid_at on the closed edge is exported as the PROV invalidation
+# time, with no invalidating activity. Graphiti records that and when an edge
+# closed, but not what closed it.
+
+ml:o3bBlockedRecord
+    a prov:Entity ;
+    prov:invalidatedAtTime "2026-06-02T00:00:00Z"^^xsd:dateTime .

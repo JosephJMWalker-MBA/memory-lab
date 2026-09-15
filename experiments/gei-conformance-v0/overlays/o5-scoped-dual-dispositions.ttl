@@ -1,0 +1,46 @@
+@prefix ml: <https://example.org/memory-lab/export/> .
+@prefix prof: <https://example.org/gie-profile/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+
+# O5, capability.
+# Source: appstate-baseline-v0, checks C8 and C9 (issue #13).
+#
+# One supported record viewed under two scopes: release-gate withholds it and
+# exploratory admits it. Each scope's policy is a distinct, versioned prov:Plan.
+
+ml:o5bBlockedRecord a prov:Entity .
+ml:o5bEvidenceSet a prov:Entity .
+ml:o5bAgent a prov:SoftwareAgent .
+ml:o5bReleaseGateWithholdV1 a prov:Plan .
+ml:o5bExploratoryPluralV1 a prov:Plan .
+
+ml:o5bCoverage
+    a dqv:QualityMeasurement, prov:Entity ;
+    dqv:isMeasurementOf prof:relevantEvidenceCoverage ;
+    dqv:computedOn ml:o5bEvidenceSet ;
+    dqv:value "unknown" .
+
+ml:o5bGateDecision
+    a prov:Activity ;
+    prov:used ml:o5bBlockedRecord, ml:o5bCoverage ;
+    prov:qualifiedAssociation [ a prov:Association ; prov:agent ml:o5bAgent ; prov:hadPlan ml:o5bReleaseGateWithholdV1 ] ;
+    prov:generated ml:o5bGateProjection .
+
+ml:o5bGateProjection
+    a prov:Entity ;
+    prof:currentViewDisposition prof:withheld ;
+    prov:wasGeneratedBy ml:o5bGateDecision ;
+    prov:wasDerivedFrom ml:o5bBlockedRecord .
+
+ml:o5bExploreDecision
+    a prov:Activity ;
+    prov:used ml:o5bBlockedRecord, ml:o5bCoverage ;
+    prov:qualifiedAssociation [ a prov:Association ; prov:agent ml:o5bAgent ; prov:hadPlan ml:o5bExploratoryPluralV1 ] ;
+    prov:generated ml:o5bExploreProjection .
+
+ml:o5bExploreProjection
+    a prov:Entity ;
+    prof:currentViewDisposition prof:admitted ;
+    prov:wasGeneratedBy ml:o5bExploreDecision ;
+    prov:wasDerivedFrom ml:o5bBlockedRecord .

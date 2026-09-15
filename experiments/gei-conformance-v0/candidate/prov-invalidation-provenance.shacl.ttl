@@ -1,0 +1,38 @@
+@prefix shape: <https://example.org/memory-lab/candidate-shapes#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+# Memory Lab candidate. This is not part of GEI and is not proposed as GEI
+# normative text.
+#
+# GEI's T5 names PROV invalidation as the relation for an entity that ceases to
+# be available for use. T2-T4 require material changes to be explicit,
+# attributable, and basis-bearing. No GEI shape currently checks invalidation.
+#
+# This candidate adds no vocabulary. It is SHACL Core only.
+
+shape:InvalidationIsAnExplicitOperation
+    a sh:NodeShape ;
+    sh:targetSubjectsOf prov:invalidatedAtTime ;
+    sh:property [
+        sh:path prov:wasInvalidatedBy ;
+        sh:minCount 1 ;
+        sh:node [
+            sh:class prov:Activity ;
+            sh:property [ sh:path prov:used ; sh:minCount 1 ] ;
+            sh:property [
+                sh:path prov:qualifiedAssociation ;
+                sh:qualifiedValueShape [
+                    sh:class prov:Association ;
+                    sh:property [ sh:path prov:agent ; sh:minCount 1 ] ;
+                    sh:property [
+                        sh:path prov:hadPlan ;
+                        sh:minCount 1 ;
+                        sh:node [ sh:class prov:Plan ]
+                    ]
+                ] ;
+                sh:qualifiedMinCount 1
+            ]
+        ]
+    ] ;
+    sh:message "Candidate (Memory Lab, not GEI): an entity invalidated at a stated time must be invalidated by an attributable, plan-governed Activity that used the evidence for the invalidation." .

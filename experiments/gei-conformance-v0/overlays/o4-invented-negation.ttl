@@ -1,0 +1,35 @@
+@prefix ml: <https://example.org/memory-lab/export/> .
+@prefix prof: <https://example.org/gie-profile/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+
+# O4, violation, motivating.
+# Source: appstate-baseline-v0, design B0 (issue #13).
+#
+# After Vega lost its only support, the naive design wrote "Vega status clear"
+# by closed-world default. Exported faithfully, the invented record derives from
+# the withdrawn record and is admitted by a plan-governed decision.
+
+ml:o4cVegaBlockedRecord a prov:Entity .
+ml:o4cVegaClearRecord a prov:Entity ; prov:wasDerivedFrom ml:o4cVegaBlockedRecord .
+ml:o4cAgent a prov:SoftwareAgent .
+ml:o4cClosedWorldDefault a prov:Plan .
+ml:o4cEvidenceSet a prov:Entity .
+
+ml:o4cCoverage
+    a dqv:QualityMeasurement, prov:Entity ;
+    dqv:isMeasurementOf prof:relevantEvidenceCoverage ;
+    dqv:computedOn ml:o4cEvidenceSet ;
+    dqv:value "unknown" .
+
+ml:o4cDecision
+    a prov:Activity ;
+    prov:used ml:o4cVegaClearRecord, ml:o4cCoverage ;
+    prov:qualifiedAssociation [ a prov:Association ; prov:agent ml:o4cAgent ; prov:hadPlan ml:o4cClosedWorldDefault ] ;
+    prov:generated ml:o4cProjection .
+
+ml:o4cProjection
+    a prov:Entity ;
+    prof:currentViewDisposition prof:admitted ;
+    prov:wasGeneratedBy ml:o4cDecision ;
+    prov:wasDerivedFrom ml:o4cVegaClearRecord .

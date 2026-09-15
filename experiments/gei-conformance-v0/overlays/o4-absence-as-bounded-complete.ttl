@@ -1,0 +1,30 @@
+@prefix ml: <https://example.org/memory-lab/export/> .
+@prefix prof: <https://example.org/gie-profile/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+
+# O4, violation, motivating.
+# Source: coverage-scifact-v0 (issue #12).
+#
+# A top-10 BM25 retrieval found no contrary evidence, and the result is recorded
+# as bounded-complete coverage. The assessment names the corpus version but no
+# access scope and no temporal bound.
+
+ml:o4Corpus a dcat:Dataset ; dcat:version "scifact-release-2021-01-26" .
+ml:o4Agent a prov:SoftwareAgent .
+ml:o4Bm25Top10 a prov:Plan .
+ml:o4EvidenceSet a prov:Entity .
+
+ml:o4Retrieval
+    a prov:Activity ;
+    prov:used ml:o4Corpus ;
+    prov:qualifiedAssociation [ a prov:Association ; prov:agent ml:o4Agent ; prov:hadPlan ml:o4Bm25Top10 ] ;
+    prov:generated ml:o4Coverage .
+
+ml:o4Coverage
+    a dqv:QualityMeasurement, prov:Entity ;
+    dqv:isMeasurementOf prof:relevantEvidenceCoverage ;
+    dqv:computedOn ml:o4EvidenceSet ;
+    dqv:value "bounded-complete" ;
+    prov:wasGeneratedBy ml:o4Retrieval .

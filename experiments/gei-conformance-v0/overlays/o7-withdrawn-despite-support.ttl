@@ -1,0 +1,50 @@
+@prefix ml: <https://example.org/memory-lab/export/> .
+@prefix prof: <https://example.org/gie-profile/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# O7, violation, motivating.
+# Sources: graphiti-conflict-v0 (the remove_first_supporting_episode cascade)
+# and multiple-justifications-v0 (issue #11).
+#
+# Aurora has two support paths. Only the Sigma path was invalidated, and that
+# invalidation was explicit and well-founded. Yet the record is withheld as if
+# all of its support were gone.
+
+ml:o7SigmaBlocked
+    a prov:Entity ;
+    prov:invalidatedAtTime "2026-06-15T00:00:00Z"^^xsd:dateTime ;
+    prov:wasInvalidatedBy ml:o7SigmaClear .
+ml:o7SigmaClearEvidence a prov:Entity .
+ml:o7IngestAgent a prov:SoftwareAgent .
+ml:o7WorldChangeRule a prov:Plan .
+
+ml:o7SigmaClear
+    a prov:Activity ;
+    prov:used ml:o7SigmaClearEvidence ;
+    prov:qualifiedAssociation [ a prov:Association ; prov:agent ml:o7IngestAgent ; prov:hadPlan ml:o7WorldChangeRule ] .
+
+ml:o7TauBlocked a prov:Entity .
+ml:o7AuroraRecord a prov:Entity ; prov:wasDerivedFrom ml:o7SigmaBlocked, ml:o7TauBlocked .
+ml:o7Agent a prov:SoftwareAgent .
+ml:o7Policy a prov:Plan .
+ml:o7EvidenceSet a prov:Entity .
+
+ml:o7Coverage
+    a dqv:QualityMeasurement, prov:Entity ;
+    dqv:isMeasurementOf prof:relevantEvidenceCoverage ;
+    dqv:computedOn ml:o7EvidenceSet ;
+    dqv:value "unknown" .
+
+ml:o7Decision
+    a prov:Activity ;
+    prov:used ml:o7AuroraRecord, ml:o7Coverage ;
+    prov:qualifiedAssociation [ a prov:Association ; prov:agent ml:o7Agent ; prov:hadPlan ml:o7Policy ] ;
+    prov:generated ml:o7AuroraProjection .
+
+ml:o7AuroraProjection
+    a prov:Entity ;
+    prof:currentViewDisposition prof:withheld ;
+    prov:wasGeneratedBy ml:o7Decision ;
+    prov:wasDerivedFrom ml:o7AuroraRecord .

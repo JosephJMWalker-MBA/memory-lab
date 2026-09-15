@@ -1,0 +1,127 @@
+@prefix ml: <https://example.org/memory-lab/export/> .
+@prefix prof: <https://example.org/gie-profile/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Capability. A conforming export of the Polaris lane as observed in
+# graphiti-conflict-v0 direct_write_world_change, plus the SciFact exhaustive
+# ceiling from coverage-scifact-v0.
+#
+# - Both supported conflicting records keep withheld projections at 0400.
+# - The 0401 world change invalidates Sigma-blocked through an explicit,
+#   attributable, plan-governed activity.
+# - Newer projections replace the older ones without rewriting them.
+# - bounded-complete appears only with a reconstructible envelope.
+
+ml:admissionAgent a prov:SoftwareAgent .
+ml:withholdPolicyV1 a prov:Plan .
+ml:ingestionAgent a prov:SoftwareAgent .
+ml:worldChangeRule a prov:Plan .
+
+ml:polarisBlockedRecord a prov:Entity .
+ml:polarisReadyRecord a prov:Entity .
+ml:polarisEvidenceSet a prov:Entity .
+ml:sigmaClearEvidence a prov:Entity .
+
+ml:coverage0400
+    a dqv:QualityMeasurement, prov:Entity ;
+    dqv:isMeasurementOf prof:relevantEvidenceCoverage ;
+    dqv:computedOn ml:polarisEvidenceSet ;
+    dqv:value "unknown" .
+
+ml:admissionDecision0400
+    a prov:Activity ;
+    prov:used ml:polarisBlockedRecord, ml:polarisReadyRecord, ml:coverage0400 ;
+    prov:qualifiedAssociation [
+        a prov:Association ;
+        prov:agent ml:admissionAgent ;
+        prov:hadPlan ml:withholdPolicyV1
+    ] ;
+    prov:generated ml:blockedProjection0400, ml:readyProjection0400 .
+
+ml:blockedProjection0400
+    a prov:Entity ;
+    prof:currentViewDisposition prof:withheld ;
+    prov:wasGeneratedBy ml:admissionDecision0400 ;
+    prov:wasDerivedFrom ml:polarisBlockedRecord ;
+    dcterms:isReplacedBy ml:blockedProjection0401 .
+
+ml:readyProjection0400
+    a prov:Entity ;
+    prof:currentViewDisposition prof:withheld ;
+    prov:wasGeneratedBy ml:admissionDecision0400 ;
+    prov:wasDerivedFrom ml:polarisReadyRecord ;
+    dcterms:isReplacedBy ml:readyProjection0401 .
+
+ml:sigmaBlockedRecord
+    a prov:Entity ;
+    prov:invalidatedAtTime "2026-06-15T00:00:00Z"^^xsd:dateTime ;
+    prov:wasInvalidatedBy ml:sigmaWorldChange .
+
+ml:sigmaWorldChange
+    a prov:Activity ;
+    prov:used ml:sigmaClearEvidence ;
+    prov:qualifiedAssociation [
+        a prov:Association ;
+        prov:agent ml:ingestionAgent ;
+        prov:hadPlan ml:worldChangeRule
+    ] .
+
+ml:coverage0401
+    a dqv:QualityMeasurement, prov:Entity ;
+    dqv:isMeasurementOf prof:relevantEvidenceCoverage ;
+    dqv:computedOn ml:polarisEvidenceSet ;
+    dqv:value "unknown" .
+
+ml:admissionDecision0401
+    a prov:Activity ;
+    prov:used ml:polarisBlockedRecord, ml:polarisReadyRecord, ml:coverage0401 ;
+    prov:qualifiedAssociation [
+        a prov:Association ;
+        prov:agent ml:admissionAgent ;
+        prov:hadPlan ml:withholdPolicyV1
+    ] ;
+    prov:generated ml:blockedProjection0401, ml:readyProjection0401 .
+
+ml:blockedProjection0401
+    a prov:Entity ;
+    prof:currentViewDisposition prof:withheld ;
+    prov:wasGeneratedBy ml:admissionDecision0401 ;
+    prov:wasDerivedFrom ml:polarisBlockedRecord .
+
+ml:readyProjection0401
+    a prov:Entity ;
+    prof:currentViewDisposition prof:admitted ;
+    prov:wasGeneratedBy ml:admissionDecision0401 ;
+    prov:wasDerivedFrom ml:polarisReadyRecord .
+
+ml:scifactCorpus
+    a dcat:Dataset ;
+    dcat:version "scifact-release-2021-01-26" ;
+    dcterms:accessRights ml:publicLicensedAccess ;
+    dcterms:temporal ml:scifactReleaseTime .
+ml:publicLicensedAccess a prov:Entity .
+ml:scifactReleaseTime a prov:Entity .
+ml:coverageAgent a prov:SoftwareAgent .
+ml:exhaustiveAssessmentPlan a prov:Plan .
+ml:claimEvidenceSet a prov:Entity .
+
+ml:exhaustiveAssessment
+    a prov:Activity ;
+    prov:used ml:scifactCorpus ;
+    prov:qualifiedAssociation [
+        a prov:Association ;
+        prov:agent ml:coverageAgent ;
+        prov:hadPlan ml:exhaustiveAssessmentPlan
+    ] ;
+    prov:generated ml:exhaustiveCoverage .
+
+ml:exhaustiveCoverage
+    a dqv:QualityMeasurement, prov:Entity ;
+    dqv:isMeasurementOf prof:relevantEvidenceCoverage ;
+    dqv:computedOn ml:claimEvidenceSet ;
+    dqv:value "bounded-complete" ;
+    prov:wasGeneratedBy ml:exhaustiveAssessment .
