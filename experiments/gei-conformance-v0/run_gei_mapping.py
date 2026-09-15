@@ -2,16 +2,21 @@
 """Map Memory Lab obligations O1-O8 onto GEI's existing SHACL machinery (issue #15).
 
     python experiments/gei-conformance-v0/run_gei_mapping.py --gei /path/to/governed-intelligence-ecology
+    python experiments/gei-conformance-v0/run_gei_mapping.py --gei /path/to/gei --expectations expectations-<name>.json
 
 Requirements:
 
 - The pinned environment in requirements.txt (pySHACL pinned as in GEI's
   requirements-semantic.txt).
-- A GEI checkout at the commit pinned in expectations.json. The checkout is
-  only read.
+- A GEI checkout at the commit pinned in the expectations file. The checkout
+  is only read.
 
-Each overlay is validated together with GEI's composed positive reference path,
-using the same processor options as GEI's scripts/validate_reference_path.py.
+Each overlay is validated together with GEI's composed positive reference
+path, using the same processor options as GEI's
+scripts/validate_reference_path.py.
+
+An expectations file may name its own candidate shapes and results file.
+In a candidate path, a `gei:` prefix means a path inside the GEI checkout.
 """
 import argparse
 import importlib.util
@@ -33,11 +38,13 @@ ROOT = HERE.parents[1]
 sys.path.insert(0, str(ROOT / "tests"))
 sys.dont_write_bytecode = True  # importing GEI's harness must not write into the GEI checkout
 
-from run_gei_mapping_v0 import EXPECTATIONS, RESULTS, classify_all, prediction_checks  # noqa: E402
+from run_gei_mapping_v0 import EXPECTATIONS, classify_all, prediction_checks, results_path  # noqa: E402
 
 OVERLAYS = HERE / "overlays"
-CANDIDATE_INVALIDATION = HERE / "candidate" / "prov-invalidation-provenance.shacl.ttl"
-CANDIDATE_ST007 = HERE / "candidate" / "st-007-narrowed.shacl.ttl"
+DEFAULT_CANDIDATES = {
+    "invalidation": "candidate/prov-invalidation-provenance.shacl.ttl",
+    "st007_narrowed": "candidate/st-007-narrowed.shacl.ttl",
+}
 GEI_ST007 = "st-007-human-feedback-transition.shacl.ttl"
 
 
@@ -79,12 +86,10 @@ def git(path, *args):
     ).stdout.strip()
 
 
-def replace_st007(paths):
-    return [CANDIDATE_ST007 if path.name == GEI_ST007 else path for path in paths]
-
-
-def add_invalidation(paths):
-    return list(paths) + [CANDIDATE_INVALIDATION]
+def resolve(candidate, gei):
+    if candidate.startswith("gei:"):
+        return gei / candidate[len("gei:"):]
+    return HERE / candidate
 
 
 def noninterference(ref, atomic, composed_shapes, transform):
@@ -97,9 +102,11 @@ def noninterference(ref, atomic, composed_shapes, transform):
     cases = {}
     for case in atomic.CASES:
         shapes = transform([atomic.SHAPES / name for name in case.shape_files])
+        good = (case.good_fixture, *getattr(case, "extra_good_fixtures", ()))
+        bad = (case.bad_fixture, *getattr(case, "extra_bad_fixtures", ()))
         cases[case.case_id] = {
-            "good_conforms": shacl([atomic.FIXTURES / case.good_fixture], shapes)[0],
-            "bad_fails": not shacl([atomic.FIXTURES / case.bad_fixture], shapes)[0],
+            "good_conforms": all(shacl([atomic.FIXTURES / name], shapes)[0] for name in good),
+            "bad_fails": all(not shacl([atomic.FIXTURES / name], shapes)[0] for name in bad),
         }
     passes = (
         positive
@@ -124,8 +131,20 @@ def memory_lab_commit():
 def main():
     parser = argparse.ArgumentParser(description="Map Memory Lab obligations onto GEI SHACL.")
     parser.add_argument("--gei", required=True, help="path to a governed-intelligence-ecology checkout")
-    gei = pathlib.Path(parser.parse_args().gei).resolve()
-    expectations = json.loads(EXPECTATIONS.read_text(encoding="utf-8"))
+    parser.add_argument("--expectations", default=EXPECTATIONS.name, help="expectations file in this experiment")
+    args = parser.parse_args()
+    gei = pathlib.Path(args.gei).resolve()
+    expectations_file = HERE / args.expectations
+    expectations = json.loads(expectations_file.read_text(encoding="utf-8"))
+    candidates = {**DEFAULT_CANDIDATES, **expectations.get("candidates", {})}
+    candidate_invalidation = resolve(candidates["invalidation"], gei)
+    candidate_st007 = resolve(candidates["st007_narrowed"], gei)
+
+    def replace_st007(paths):
+        return [candidate_st007 if path.name == GEI_ST007 else path for path in paths]
+
+    def add_invalidation(paths):
+        return list(paths) + [candidate_invalidation]
 
     commit = git(gei, "rev-parse", "HEAD")
     if commit != expectations["gei"]["commit"]:
@@ -176,6 +195,8 @@ def main():
     results = {
         "experiment": "gei-conformance-v0",
         "status": "executed",
+        "expectations_file": expectations_file.name,
+        "candidates": candidates,
         "run_at": datetime.now(timezone.utc).isoformat(),
         "environment": {
             "python": platform.python_version(),
@@ -202,10 +223,12 @@ def main():
     }
     results["predictions"] = prediction_checks(expectations, results)
     results["classification"] = classify_all(expectations, results)
-    RESULTS.parent.mkdir(parents=True, exist_ok=True)
-    RESULTS.write_text(json.dumps(results, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    output = results_path(expectations)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(json.dumps(results, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
     print(f"GEI {commit[:7]} baseline exit={baseline.returncode}; Memory Lab {ml_commit}")
+    print(f"expectations {expectations_file.name}; candidates {candidates}")
     print(f"{'overlay':40} {'GEI':6} {'rejected by':36} {'+inval':7} {'st007n':7} prediction")
     for form in expectations["overlays"]:
         item = overlays[form["file"]]

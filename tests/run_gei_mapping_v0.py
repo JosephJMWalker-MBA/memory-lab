@@ -6,8 +6,8 @@ experiments/gei-conformance-v0/run_gei_mapping.py.
 
 - Without results, it checks the rule on synthetic records and checks that the
   expectations file is consistent.
-- With the recorded results file, it recomputes every prediction check and
-  every class from the recorded validation outcomes.
+- For each expectations file that has recorded results, it recomputes every
+  prediction check and every class from the recorded validation outcomes.
 
 It needs no RDF or SHACL libraries.
 """
@@ -19,7 +19,7 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 EXPERIMENT = ROOT / "experiments" / "gei-conformance-v0"
 EXPECTATIONS = EXPERIMENT / "expectations.json"
-RESULTS = EXPERIMENT / "results" / "gei-conformance-v0.results.json"
+DEFAULT_RESULTS_FILE = "results/gei-conformance-v0.results.json"
 ORDER = ("MISSING", "OUT-OF-SCOPE", "ADAPTABLE", "NATIVE")
 OBLIGATIONS = tuple(f"O{index}" for index in range(1, 9))
 
@@ -110,10 +110,15 @@ def check_expectations(expectations):
     assert set(expectations["predicted_obligation_classes"].values()) <= set(ORDER)
 
 
+def results_path(expectations):
+    return EXPERIMENT / expectations.get("results_file", DEFAULT_RESULTS_FILE)
+
+
 def verify_recorded(expectations):
-    if not RESULTS.exists():
+    path = results_path(expectations)
+    if not path.exists():
         return "absent"
-    recorded = json.loads(RESULTS.read_text(encoding="utf-8"))
+    recorded = json.loads(path.read_text(encoding="utf-8"))
     assert recorded["gei"]["commit"] == expectations["gei"]["commit"]
     assert set(recorded["overlays"]) == {form["file"] for form in expectations["overlays"]}
     assert prediction_checks(expectations, recorded) == recorded["predictions"]
@@ -141,11 +146,14 @@ def main():
     assert capability_status({"gei_conforms": False, "candidate_st007_narrowed_conforms": True}, False) == "rejected-by-gei"
     results["classification_rule"] = "weakest_motivating_form_with_candidate_noninterference_gate"
 
-    expectations = json.loads(EXPECTATIONS.read_text(encoding="utf-8"))
-    check_expectations(expectations)
+    live = {}
+    for path in sorted(EXPERIMENT.glob("expectations*.json")):
+        expectations = json.loads(path.read_text(encoding="utf-8"))
+        check_expectations(expectations)
+        live[path.name] = verify_recorded(expectations)
+    assert EXPECTATIONS.name in live
     results["expectations"] = "consistent_every_obligation_has_a_motivating_violation_form"
-
-    results["live_evidence"] = verify_recorded(expectations)
+    results["live_evidence"] = live
 
     output = {
         "status": "passed",
