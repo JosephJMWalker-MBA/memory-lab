@@ -87,6 +87,13 @@ These are GEI-level conformance obligations under GEI's T1–T7 general obligati
   - keep the executable Python checks here for substrates that are not RDF (Graphiti, SQL, retrieval pipelines).
 - **The Chroma/HNSW engineering track** remains separate, validated lineage. #1 and #2 remain open.
 
+### Implications back up for GEI
+
+These are recorded for GEI's maintainers. They have not been applied to the GEI repository.
+
+- **ST-002.** GEI's ST-002 requires every current-view disposition to consume an explicit Relevant Evidence Coverage measurement. `not-assessed` is an allowed value. On SciFact, the coverage state was decision-inert. ST-002 is consistent with that result if its purpose is explicitness and auditability (O4), and not if it is read as saying coverage determines the disposition. GEI may want to say which reading it means.
+- **Stop criterion 4 and the REC falsification condition.** GEI round 12's stop criterion 4 asks for "explicit evidence-set coverage state distinct from local support", and the REC profile's §12 has a falsification condition. For bounded collections, both are largely met by established technology-assisted-review recall certification (Cormack & Grossman 2016; Lewis, Yang & Frieder 2021). For decision consequences, both are met by NEI semantics. The surviving GEI-specific part is the anti-promotion rendering rule.
+
 ## 6. What would reopen a research claim
 
 | Trigger | What it would justify |
